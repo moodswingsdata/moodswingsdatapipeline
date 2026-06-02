@@ -1,6 +1,7 @@
 import click
 
 from moodswings.extract import extract_cards
+from moodswings.extract_from_images import extract_from_images
 from moodswings.download_images import download_images
 
 
@@ -11,4 +12,5 @@ def main():
 
 
 main.add_command(extract_cards)
+main.add_command(extract_from_images)
 main.add_command(download_images)
