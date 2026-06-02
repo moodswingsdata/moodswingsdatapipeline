@@ -1,2 +1,1 @@
-def hello() -> str:
-    return "Hello from moodswings!"
+from moodswings.cli import main

@@ -7,11 +7,17 @@ authors = [
     { name = "Matt Cooper", email = "vtbassmatt@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "click>=8.4.1",
+    "httpx>=0.28.1",
+    "lxml>=6.1.1",
+    "pyyaml>=6.0.3",
+]
 
 [project.scripts]
-ms = "moodswings:hello"
-moodswings = "moodswings:hello"
+ms = "moodswings:main"
+moodswings = "moodswings:main"
 
 [build-system]
 requires = ["uv_build>=0.10.10,<0.11.0"]
