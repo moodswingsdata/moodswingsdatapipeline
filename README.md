@@ -57,8 +57,10 @@ pixel analysis. Requires Tesseract to be installed.
 uv run ms extract-from-images out/edition1.yaml raw_data/card_images/2026-06-02 -o out/edition1_enriched.yaml
 ```
 
-**Note:** Artist names are extracted via OCR and may contain casing inconsistencies
-or minor errors that require manual review.
+Artist names are fuzzy-matched against `raw_data/artists.txt` (the default
+lookup database). If an OCR result doesn't match any known name, it's appended
+to the file with a leading `*`. Review the file, correct starred entries,
+remove the `*`, and re-run.
 
 ### `review-html`
 

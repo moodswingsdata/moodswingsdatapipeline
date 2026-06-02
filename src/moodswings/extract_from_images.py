@@ -6,7 +6,8 @@ from pathlib import Path
 import click
 import pytesseract
 import yaml
-from PIL import Image, ImageStat
+from PIL import Image, ImageEnhance, ImageStat
+from thefuzz import process as fuzz_process
 
 
 # Region where the reminder icon (!) appears: upper-right, left of dice
@@ -18,6 +19,30 @@ ICON_BRIGHT_THRESHOLD = 25.0  # percent
 DIE_FACE_REGION = (0.795, 0.050, 0.865, 0.125)
 # Threshold for dark pixels to distinguish black vs white dice
 DICE_DARK_THRESHOLD = 40.0  # percent
+
+# Minimum fuzzy match score to accept a lookup match
+FUZZY_MATCH_THRESHOLD = 75
+
+
+def load_artist_lookup(path: Path) -> list[str]:
+    """Load the canonical artist names from a lookup file (one per line).
+
+    Lines starting with '#' are comments (skipped entirely).
+    Lines starting with '*' are unreviewed entries (included for matching
+    but flagged as needing human review).
+    """
+    if not path.exists():
+        return []
+    names = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        # Strip leading '*' for matching purposes
+        if stripped.startswith("*"):
+            stripped = stripped[1:].strip()
+        names.append(stripped)
+    return names
 
 
 def detect_reminder_icon(img: Image.Image) -> str | None:
@@ -49,17 +74,24 @@ def detect_dice_color(img: Image.Image) -> str:
     return "black" if dark_pct > DICE_DARK_THRESHOLD else "white"
 
 
-def extract_artist(img: Image.Image) -> str | None:
-    """Extract the artist name from the bottom of the card using OCR.
+def ocr_artist(img: Image.Image) -> str | None:
+    """Run OCR on the bottom of the card to extract the raw artist text.
 
-    The bottom region contains text like:
-    'NNNN Color RARITY\\nMSW [symbol] Artist Name ™ & © 2026 Wizards of the Coast'
+    Applies preprocessing (grayscale, contrast boost, upscale) to improve
+    results on small text. Returns the raw extracted string or None.
     """
     w, h = img.size
     bottom = img.crop((0, int(h * 0.92), w, h))
-    text = pytesseract.image_to_string(bottom).strip()
 
-    # Try several patterns to extract artist name between MSW and ™/&
+    # Preprocess: grayscale, boost contrast, upscale for small text
+    gray = bottom.convert("L")
+    enhanced = ImageEnhance.Contrast(gray).enhance(2.0)
+    scaled = enhanced.resize(
+        (enhanced.width * 3, enhanced.height * 3), Image.LANCZOS
+    )
+    text = pytesseract.image_to_string(scaled).strip()
+
+    # Extract artist name from between "MSW [symbol]" and "™ &"
     patterns = [
         r"MSW\S*\s+\S+\s+(.+?)\s*(?:™|T™|1™|_™)\s*&",
         r"MSW\S*\s+\S+\s+(.+?)\s+[™T]\S*\s*&",
@@ -68,10 +100,29 @@ def extract_artist(img: Image.Image) -> str | None:
     for pattern in patterns:
         match = re.search(pattern, text)
         if match:
-            artist = match.group(1).strip().rstrip("_.,")
-            return artist
+            return match.group(1).strip().rstrip("_.,")
 
     return None
+
+
+def match_artist(raw_ocr: str, lookup: list[str]) -> tuple[str, bool]:
+    """Match raw OCR text against the canonical artist lookup list.
+
+    Uses fuzzy string matching to find the best canonical name.
+    Returns (name, matched) where matched is True if a good match was found.
+    """
+    if not lookup:
+        return raw_ocr, False
+
+    result = fuzz_process.extractOne(raw_ocr, lookup)
+    if result is None:
+        return raw_ocr, False
+
+    best_match, score = result[0], result[1]
+    if score >= FUZZY_MATCH_THRESHOLD:
+        return best_match, True
+
+    return raw_ocr, False
 
 
 def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
@@ -101,11 +152,23 @@ def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
     required=True,
     help="Output YAML file path (will not overwrite input).",
 )
-def extract_from_images(yaml_file: Path, image_dir: Path, output: Path):
+@click.option(
+    "--artist-lookup",
+    type=click.Path(path_type=Path),
+    default=Path("raw_data/artists.txt"),
+    help="Path to the artist names database (one per line). Default: raw_data/artists.txt",
+)
+def extract_from_images(
+    yaml_file: Path, image_dir: Path, output: Path, artist_lookup: Path
+):
     """Extract artist, dice color, and reminder icon from card images.
 
     Takes an input YAML file and image directory, and emits a new YAML file
     with the artist, dice_color, and reminder_icon fields updated.
+
+    OCR results are fuzzy-matched against the artist lookup database. If a name
+    doesn't match, it's added to the database with a leading '*' for human
+    review.
     """
     if output.resolve() == yaml_file.resolve():
         raise click.ClickException("Output path must differ from input YAML file.")
@@ -116,8 +179,16 @@ def extract_from_images(yaml_file: Path, image_dir: Path, output: Path):
     if not cards:
         raise click.ClickException("No cards found in input YAML file.")
 
+    # Ensure lookup file exists
+    if not artist_lookup.exists():
+        artist_lookup.touch()
+
+    lookup = load_artist_lookup(artist_lookup)
+    click.echo(f"Loaded {len(lookup)} artist names from {artist_lookup}", err=True)
+
     updated = 0
     missing = 0
+    new_artists: list[str] = []
 
     for card in cards:
         img_path = find_image_for_card(card, image_dir)
@@ -133,9 +204,40 @@ def extract_from_images(yaml_file: Path, image_dir: Path, output: Path):
 
         card["reminder_icon"] = detect_reminder_icon(img)
         card["dice_color"] = detect_dice_color(img)
-        card["artist"] = extract_artist(img)
+
+        raw_artist = ocr_artist(img)
+        if raw_artist:
+            # Split on '&' for multi-artist credits
+            raw_parts = [p.strip() for p in raw_artist.split("&") if p.strip()]
+            resolved_artists = []
+            for part in raw_parts:
+                matched_name, was_matched = match_artist(part, lookup)
+                if was_matched:
+                    resolved_artists.append(matched_name)
+                else:
+                    resolved_artists.append(part)
+                    if part not in new_artists:
+                        new_artists.append(part)
+                        lookup.append(part)
+                        click.echo(
+                            f"  New artist (unmatched): {part} (card: {card['name']})",
+                            err=True,
+                        )
+            card["artist"] = resolved_artists if len(resolved_artists) > 1 else resolved_artists[0]
+        else:
+            card["artist"] = None
 
         updated += 1
+
+    # Append new artists to the lookup file with '*' prefix
+    if new_artists:
+        with open(artist_lookup, "a", encoding="utf-8") as f:
+            for name in new_artists:
+                f.write(f"*{name}\n")
+        click.echo(
+            f"Added {len(new_artists)} new artist(s) to {artist_lookup} (marked with '*' for review)",
+            err=True,
+        )
 
     output.parent.mkdir(parents=True, exist_ok=True)
     yaml_output = yaml.safe_dump(
