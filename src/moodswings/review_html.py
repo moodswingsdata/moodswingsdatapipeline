@@ -25,6 +25,30 @@ h1 {{
     text-align: center;
     color: #fff;
 }}
+.controls {{
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    padding: 12px 20px;
+    background: #16213e;
+    border-radius: 8px;
+    border: 1px solid #0f3460;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}}
+.controls label {{
+    color: #a8d8ea;
+    font-weight: 600;
+}}
+.controls select {{
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #0f3460;
+    background: #1a1a2e;
+    color: #eee;
+    font-size: 14px;
+    cursor: pointer;
+}}
 .card-grid {{
     max-width: 1200px;
     margin: 0 auto;
@@ -87,15 +111,62 @@ h1 {{
 </head>
 <body>
 <h1>Mood Swings Card Review ({card_count} cards)</h1>
-<div class="card-grid">
+<div class="controls">
+<label for="sort-select">Sort by:</label>
+<select id="sort-select">
+<option value="name">Name (A&ndash;Z)</option>
+<option value="collector_number">Collector Number</option>
+<option value="color">Color</option>
+<option value="frame">Frame</option>
+<option value="rarity">Rarity</option>
+<option value="reminder_icon">Reminder Icon</option>
+<option value="dice_value">Dice Value</option>
+<option value="secondary_dice_value">Secondary Dice Value</option>
+</select>
+</div>
+<div class="card-grid" id="card-grid">
 {cards_html}
 </div>
+<script>
+(function() {{
+    const grid = document.getElementById("card-grid");
+    const select = document.getElementById("sort-select");
+
+    const colorOrder = {{"white": 0, "blue": 1, "black": 2, "red": 3, "green": 4}};
+    const rarityOrder = {{"common": 0, "uncommon": 1, "rare": 2, "mythic": 3}};
+
+    function sortCards(key) {{
+        const entries = Array.from(grid.querySelectorAll(".card-entry"));
+        entries.sort(function(a, b) {{
+            let av = a.dataset[key] || "";
+            let bv = b.dataset[key] || "";
+            if (key === "collector_number" || key === "dice_value" || key === "secondary_dice_value") {{
+                let an = parseInt(av) || 0;
+                let bn = parseInt(bv) || 0;
+                if (an === 0 && av === "") an = 9999;
+                if (bn === 0 && bv === "") bn = 9999;
+                return an - bn;
+            }}
+            if (key === "color") {{
+                return (colorOrder[av.toLowerCase()] ?? 99) - (colorOrder[bv.toLowerCase()] ?? 99);
+            }}
+            if (key === "rarity") {{
+                return (rarityOrder[av.toLowerCase()] ?? 99) - (rarityOrder[bv.toLowerCase()] ?? 99);
+            }}
+            return av.localeCompare(bv);
+        }});
+        entries.forEach(function(el) {{ grid.appendChild(el); }});
+    }}
+
+    select.addEventListener("change", function() {{ sortCards(this.value); }});
+}})();
+</script>
 </body>
 </html>
 """
 
 CARD_TEMPLATE = """\
-<div class="card-entry" id="card-{collector_number}">
+<div class="card-entry" id="card-{collector_number}" data-name="{name}" data-collector_number="{collector_number}" data-color="{color}" data-frame="{frame}" data-rarity="{rarity}" data-reminder_icon="{reminder_icon}" data-dice_value="{dice_value}" data-secondary_dice_value="{secondary_dice_value}">
 <div class="card-image">
 <img src="{image_src}" alt="{name}" loading="lazy">
 </div>
@@ -140,16 +211,24 @@ def render_card(card: dict, image_dir: Path | None) -> str:
     """Render a single card entry as HTML."""
     collector_number = card.get("collector_number", 0)
     name = escape_html(card.get("name", "Unknown"))
+    color = escape_html(str(card.get("color", "")))
+    frame = escape_html(str(card.get("frame", "")))
+    rarity = escape_html(str(card.get("rarity", "")))
+    reminder_icon = escape_html(str(card.get("reminder_icon") or ""))
+    dice_value = card.get("dice_value") if card.get("dice_value") is not None else ""
+    secondary_dice_value = card.get("secondary_dice_value") if card.get("secondary_dice_value") is not None else ""
 
     # Determine image source
     if image_dir:
         safe_name = card["name"].lower().replace(" ", "_").replace("'", "")
-        for ext in [".webp", ".png", ".jpg"]:
-            img_path = image_dir / f"{collector_number:03d}_{safe_name}{ext}"
-            if img_path.exists():
-                image_src = str(img_path)
+        found = False
+        for f in sorted(image_dir.iterdir()):
+            parts = f.stem.split("_", 1)
+            if len(parts) == 2 and parts[0].isdigit() and parts[1] == safe_name:
+                image_src = str(f)
+                found = True
                 break
-        else:
+        if not found:
             image_src = card.get("card_image_url", "")
     else:
         image_src = card.get("card_image_url", "")
@@ -165,6 +244,12 @@ def render_card(card: dict, image_dir: Path | None) -> str:
     return CARD_TEMPLATE.format(
         collector_number=collector_number,
         name=name,
+        color=color,
+        frame=frame,
+        rarity=rarity,
+        reminder_icon=reminder_icon,
+        dice_value=dice_value,
+        secondary_dice_value=secondary_dice_value,
         image_src=image_src,
         rows=rows,
     )
