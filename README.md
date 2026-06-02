@@ -72,3 +72,21 @@ Put card images side-by-side with extracted data for human review.
 ```bash
 uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
 ```
+
+### `add-printing`
+
+Add printing(s) for existing cards. Supports two modes:
+
+**From file** (for repeatable/automated additions):
+```bash
+uv run ms add-printing out/cards.yaml out/printings.yaml --from raw_data/extra_printings.yaml
+```
+
+Each entry in the YAML file needs a `card_name` field plus any printing fields
+(frame, rarity, collector_number, set_code, edition_name, treatment, artist, etc.).
+Can also point `--from` at a directory of YAML files.
+
+**Interactive** (prompts for each field):
+```bash
+uv run ms add-printing out/cards.yaml out/printings.yaml --card-name "Love"
+```

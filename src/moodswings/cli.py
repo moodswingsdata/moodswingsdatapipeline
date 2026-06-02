@@ -4,6 +4,7 @@ from moodswings.extract import extract_cards
 from moodswings.extract_from_images import extract_from_images
 from moodswings.download_images import download_images
 from moodswings.review_html import review_html
+from moodswings.add_printing import add_printing
 
 
 @click.group()
@@ -16,3 +17,4 @@ main.add_command(extract_cards)
 main.add_command(extract_from_images)
 main.add_command(download_images)
 main.add_command(review_html)
+main.add_command(add_printing)

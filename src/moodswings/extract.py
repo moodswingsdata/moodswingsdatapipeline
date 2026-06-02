@@ -263,6 +263,7 @@ def parse_html(html_path: Path) -> list[dict]:
             "collector_number": None,
             "set_code": "MSW",
             "edition_name": "Edition 1",
+            "treatment": "Standard",
             "artist": None,
             "card_image_url": image_url,
         }

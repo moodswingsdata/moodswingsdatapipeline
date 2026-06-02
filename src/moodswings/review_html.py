@@ -122,6 +122,7 @@ h1 {{
 <option value="reminder_icon">Reminder Icon</option>
 <option value="dice_value">Dice Value</option>
 <option value="secondary_dice_value">Secondary Dice Value</option>
+<option value="treatment">Treatment</option>
 </select>
 </div>
 <div class="card-grid" id="card-grid">
@@ -166,7 +167,7 @@ h1 {{
 """
 
 CARD_TEMPLATE = """\
-<div class="card-entry" id="card-{collector_number}" data-name="{name}" data-collector_number="{collector_number}" data-color="{color}" data-frame="{frame}" data-rarity="{rarity}" data-reminder_icon="{reminder_icon}" data-dice_value="{dice_value}" data-secondary_dice_value="{secondary_dice_value}">
+<div class="card-entry" id="card-{collector_number}" data-name="{name}" data-collector_number="{collector_number}" data-color="{color}" data-frame="{frame}" data-rarity="{rarity}" data-reminder_icon="{reminder_icon}" data-dice_value="{dice_value}" data-secondary_dice_value="{secondary_dice_value}" data-treatment="{treatment}">
 <div class="card-image">
 <img src="{image_src}" alt="{name}" loading="lazy">
 </div>
@@ -219,6 +220,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
     reminder_icon = escape_html(str(merged.get("reminder_icon") or ""))
     dice_value = merged.get("dice_value") if merged.get("dice_value") is not None else ""
     secondary_dice_value = merged.get("secondary_dice_value") if merged.get("secondary_dice_value") is not None else ""
+    treatment = escape_html(str(merged.get("treatment") or ""))
 
     # Determine image source
     if image_dir:
@@ -252,6 +254,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
         reminder_icon=reminder_icon,
         dice_value=dice_value,
         secondary_dice_value=secondary_dice_value,
+        treatment=treatment,
         image_src=image_src,
         rows=rows,
     )
