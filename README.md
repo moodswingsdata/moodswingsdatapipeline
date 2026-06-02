@@ -34,27 +34,30 @@ All tools are run via `uv run ms <subcommand>`.
 
 ### `extract-cards`
 
-Parse the raw HTML card notes file and output structured YAML.
+Parse the raw HTML card notes file and output structured YAML. Produces two
+files: a cards file (abstract card data) and a printings file (edition-specific
+data). Each card and printing share a stable `msdata-id` (UUID5).
 
 ```bash
-uv run ms extract-cards raw_data/2026-06-02-mood-swings-card-notes.html -o out/edition1-pre.yaml
+uv run ms extract-cards raw_data/2026-06-02-mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml
 ```
 
 ### `download-images`
 
-Download card images from URLs in the YAML file.
+Download card images from URLs in the printings YAML file.
 
 ```bash
-uv run ms download-images out/edition1-pre.yaml --output-dir raw_data/card_images/2026-06-02
+uv run ms download-images out/printings.yaml --output-dir raw_data/card_images/2026-06-02
 ```
 
 ### `extract-from-images`
 
 Extract artist, dice color, reminder icon, and collector number from card images
-using OCR and pixel analysis. Requires Tesseract to be installed.
+using OCR and pixel analysis. Requires Tesseract to be installed. Operates on
+the printings file (uses the cards file for name lookup).
 
 ```bash
-uv run ms extract-from-images out/edition1-pre.yaml raw_data/card_images/2026-06-02 -o out/edition1.yaml
+uv run ms extract-from-images out/cards.yaml out/printings.yaml raw_data/card_images/2026-06-02 -o out/printings_enriched.yaml
 ```
 
 Artist names are fuzzy-matched against `raw_data/artists.txt` (the default
@@ -67,5 +70,5 @@ remove the `*`, and re-run.
 Put card images side-by-side with extracted data for human review.
 
 ```bash
-uv run ms review-html out/edition1.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
 ```

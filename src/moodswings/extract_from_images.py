@@ -9,6 +9,8 @@ import yaml
 from PIL import Image, ImageEnhance, ImageStat
 from thefuzz import process as fuzz_process
 
+from moodswings.extract import generate_printing_id
+
 
 # Region where the reminder icon (!) appears: upper-right, left of dice
 ICON_REGION = (0.70, 0.05, 0.77, 0.12)
@@ -159,14 +161,15 @@ def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
 
 
 @click.command("extract-from-images")
-@click.argument("yaml_file", type=click.Path(exists=True, path_type=Path))
+@click.argument("cards_yaml", type=click.Path(exists=True, path_type=Path))
+@click.argument("printings_yaml", type=click.Path(exists=True, path_type=Path))
 @click.argument("image_dir", type=click.Path(exists=True, path_type=Path))
 @click.option(
     "-o",
     "--output",
     type=click.Path(path_type=Path),
     required=True,
-    help="Output YAML file path (will not overwrite input).",
+    help="Output printings YAML file path (will not overwrite input).",
 )
 @click.option(
     "--artist-lookup",
@@ -175,25 +178,31 @@ def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
     help="Path to the artist names database (one per line). Default: raw_data/artists.txt",
 )
 def extract_from_images(
-    yaml_file: Path, image_dir: Path, output: Path, artist_lookup: Path
+    cards_yaml: Path, printings_yaml: Path, image_dir: Path, output: Path, artist_lookup: Path
 ):
-    """Extract artist, dice color, and reminder icon from card images.
+    """Extract artist, dice color, reminder icon, and collector number from card images.
 
-    Takes an input YAML file and image directory, and emits a new YAML file
-    with the artist, dice_color, and reminder_icon fields updated.
+    Takes a cards YAML file (for card names), a printings YAML file, and an image
+    directory. Emits an updated printings YAML with artist, dice_color,
+    reminder_icon, and collector_number fields populated.
 
     OCR results are fuzzy-matched against the artist lookup database. If a name
     doesn't match, it's added to the database with a leading '*' for human
     review.
     """
-    if output.resolve() == yaml_file.resolve():
-        raise click.ClickException("Output path must differ from input YAML file.")
+    if output.resolve() == printings_yaml.resolve():
+        raise click.ClickException("Output path must differ from input printings YAML file.")
 
-    with open(yaml_file, "r", encoding="utf-8") as f:
+    with open(cards_yaml, "r", encoding="utf-8") as f:
         cards = yaml.safe_load(f)
+    with open(printings_yaml, "r", encoding="utf-8") as f:
+        printings = yaml.safe_load(f)
 
-    if not cards:
-        raise click.ClickException("No cards found in input YAML file.")
+    if not cards or not printings:
+        raise click.ClickException("No data found in input YAML files.")
+
+    # Build a lookup from card id to card name
+    id_to_name = {card["id"]: card["name"] for card in cards}
 
     # Ensure lookup file exists
     if not artist_lookup.exists():
@@ -206,11 +215,14 @@ def extract_from_images(
     missing = 0
     new_artists: list[str] = []
 
-    for card in cards:
-        img_path = find_image_for_card(card, image_dir)
+    for printing in printings:
+        card_name = id_to_name.get(printing["card-id"], "Unknown")
+        # Build a minimal card-like dict for find_image_for_card
+        card_for_lookup = {"name": card_name}
+        img_path = find_image_for_card(card_for_lookup, image_dir)
         if img_path is None:
             click.echo(
-                f"  Warning: no image found for {card['name']}",
+                f"  Warning: no image found for {card_name}",
                 err=True,
             )
             missing += 1
@@ -218,15 +230,18 @@ def extract_from_images(
 
         img = Image.open(img_path).convert("RGB")
 
-        card["reminder_icon"] = detect_reminder_icon(img)
-        card["dice_color"] = detect_dice_color(img)
+        printing["reminder_icon"] = detect_reminder_icon(img)
+        printing["dice_color"] = detect_dice_color(img)
 
         # OCR the bottom strip once for both collector number and artist
         ocr_text = ocr_card_bottom(img)
 
         collector_num = extract_collector_number(ocr_text)
         if collector_num is not None:
-            card["collector_number"] = collector_num
+            printing["collector_number"] = collector_num
+            printing["id"] = generate_printing_id(
+                card_name, printing["set_code"], collector_num
+            )
 
         raw_artist = extract_artist_from_text(ocr_text)
         if raw_artist:
@@ -243,12 +258,12 @@ def extract_from_images(
                         new_artists.append(part)
                         lookup.append(part)
                         click.echo(
-                            f"  New artist (unmatched): {part} (card: {card['name']})",
+                            f"  New artist (unmatched): {part} (card: {card_name})",
                             err=True,
                         )
-            card["artist"] = resolved_artists if len(resolved_artists) > 1 else resolved_artists[0]
+            printing["artist"] = resolved_artists if len(resolved_artists) > 1 else resolved_artists[0]
         else:
-            card["artist"] = None
+            printing["artist"] = None
 
         updated += 1
 
@@ -264,7 +279,7 @@ def extract_from_images(
 
     output.parent.mkdir(parents=True, exist_ok=True)
     yaml_output = yaml.safe_dump(
-        cards,
+        printings,
         sort_keys=False,
         allow_unicode=True,
         default_flow_style=False,

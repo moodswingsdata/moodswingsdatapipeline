@@ -1,11 +1,27 @@
 """Extract card data from the Mood Swings card notes HTML file."""
 
 import re
+import uuid
 from pathlib import Path
 
 import click
 import yaml
 from bs4 import BeautifulSoup, NavigableString, Tag
+
+
+# Fixed namespace for deterministic UUID5 generation
+MSDATA_NAMESPACE = uuid.UUID("f47ac10b-58cc-4372-a567-0d02b2c3d479")
+
+
+def generate_card_id(card_name: str) -> str:
+    """Generate a stable card ID (UUID5) from card name."""
+    return str(uuid.uuid5(MSDATA_NAMESPACE, card_name))
+
+
+def generate_printing_id(card_name: str, set_code: str, collector_number: int) -> str:
+    """Generate a stable printing ID (UUID5) from card name + set code + collector number."""
+    key = f"{card_name}:{set_code}:{collector_number}"
+    return str(uuid.uuid5(MSDATA_NAMESPACE, key))
 
 
 # Color-to-frame mapping for first edition (monocolor only)
@@ -145,6 +161,7 @@ def parse_html(html_path: Path) -> list[dict]:
         soup = BeautifulSoup(f, "lxml")
 
     cards = []
+    printings = []
 
     # Find all magic-card elements to get image URLs
     magic_cards = soup.find_all("magic-card")
@@ -222,28 +239,38 @@ def parse_html(html_path: Path) -> list[dict]:
         if image_url is None:
             click.echo(f"Warning: no image found for card '{name}'", err=True)
 
+        card_id = generate_card_id(name)
+
         card = {
+            "id": card_id,
             "name": name,
-            "edition_name": "Edition 1",
             "color": color,
-            "frame": COLOR_FRAME_MAP[color],
-            "reminder_icon": None,
-            "rarity": rarity,
             "dice": dice_info["dice"],
             "dice_value": dice_info["dice_value"],
             "secondary_dice": dice_info["secondary_dice"],
             "secondary_dice_value": dice_info["secondary_dice_value"],
-            "dice_color": None,
             "rules_text": rules_html if rules_html else None,
+            "rulings_text": rulings,
+        }
+
+        printing = {
+            "id": None,
+            "card-id": card_id,
+            "frame": COLOR_FRAME_MAP[color],
+            "reminder_icon": None,
+            "rarity": rarity,
+            "dice_color": None,
             "collector_number": None,
             "set_code": "MSW",
+            "edition_name": "Edition 1",
             "artist": None,
-            "rulings_text": rulings,
             "card_image_url": image_url,
         }
-        cards.append(card)
 
-    return cards
+        cards.append(card)
+        printings.append(printing)
+
+    return cards, printings
 
 
 @click.command("extract-cards")
@@ -252,15 +279,28 @@ def parse_html(html_path: Path) -> list[dict]:
     "-o", "--output",
     type=click.Path(path_type=Path),
     default=None,
-    help="Output YAML file path. Defaults to stdout.",
+    help="Output YAML file for cards. Defaults to stdout.",
 )
-def extract_cards(html_file: Path, output: Path | None):
-    """Extract card data from HTML and output as YAML."""
-    cards = parse_html(html_file)
+@click.option(
+    "-p", "--printings-output",
+    type=click.Path(path_type=Path),
+    default=None,
+    help="Output YAML file for printings. If not set, uses <output>_printings.yaml.",
+)
+def extract_cards(html_file: Path, output: Path | None, printings_output: Path | None):
+    """Extract card data from HTML and output as YAML (cards + printings)."""
+    cards, printings = parse_html(html_file)
     click.echo(f"Extracted {len(cards)} cards", err=True)
 
-    yaml_output = yaml.safe_dump(
+    cards_yaml = yaml.safe_dump(
         cards,
+        sort_keys=False,
+        allow_unicode=True,
+        default_flow_style=False,
+        width=120,
+    )
+    printings_yaml = yaml.safe_dump(
+        printings,
         sort_keys=False,
         allow_unicode=True,
         default_flow_style=False,
@@ -268,7 +308,17 @@ def extract_cards(html_file: Path, output: Path | None):
     )
 
     if output:
-        output.write_text(yaml_output, encoding="utf-8")
-        click.echo(f"Written to {output}", err=True)
+        output.write_text(cards_yaml, encoding="utf-8")
+        click.echo(f"Cards written to {output}", err=True)
+
+        if printings_output is None:
+            printings_output = output.with_name(
+                output.stem + "_printings" + output.suffix
+            )
+        printings_output.write_text(printings_yaml, encoding="utf-8")
+        click.echo(f"Printings written to {printings_output}", err=True)
     else:
-        click.echo(yaml_output)
+        click.echo("--- cards ---")
+        click.echo(cards_yaml)
+        click.echo("--- printings ---")
+        click.echo(printings_yaml)

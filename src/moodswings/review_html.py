@@ -12,7 +12,7 @@ HTML_TEMPLATE = """\
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mood Swings Card Review</title>
+<title>Mood Swings Set Review</title>
 <style>
 body {{
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -207,16 +207,18 @@ def format_value(key: str, value) -> str:
     return escape_html(str(value))
 
 
-def render_card(card: dict, image_dir: Path | None) -> str:
+def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
     """Render a single card entry as HTML."""
-    collector_number = card.get("collector_number", 0)
-    name = escape_html(card.get("name", "Unknown"))
-    color = escape_html(str(card.get("color", "")))
-    frame = escape_html(str(card.get("frame", "")))
-    rarity = escape_html(str(card.get("rarity", "")))
-    reminder_icon = escape_html(str(card.get("reminder_icon") or ""))
-    dice_value = card.get("dice_value") if card.get("dice_value") is not None else ""
-    secondary_dice_value = card.get("secondary_dice_value") if card.get("secondary_dice_value") is not None else ""
+    # Merge card + printing for display
+    merged = {**card, **printing}
+    collector_number = merged.get("collector_number", 0)
+    name = escape_html(merged.get("name", "Unknown"))
+    color = escape_html(str(merged.get("color", "")))
+    frame = escape_html(str(merged.get("frame", "")))
+    rarity = escape_html(str(merged.get("rarity", "")))
+    reminder_icon = escape_html(str(merged.get("reminder_icon") or ""))
+    dice_value = merged.get("dice_value") if merged.get("dice_value") is not None else ""
+    secondary_dice_value = merged.get("secondary_dice_value") if merged.get("secondary_dice_value") is not None else ""
 
     # Determine image source
     if image_dir:
@@ -229,14 +231,14 @@ def render_card(card: dict, image_dir: Path | None) -> str:
                 found = True
                 break
         if not found:
-            image_src = card.get("card_image_url", "")
+            image_src = merged.get("card_image_url", "")
     else:
-        image_src = card.get("card_image_url", "")
+        image_src = merged.get("card_image_url", "")
 
     # Build table rows for all fields
     skip_fields = {"name", "collector_number"}
     rows = ""
-    for key, value in card.items():
+    for key, value in merged.items():
         if key in skip_fields:
             continue
         rows += f"<tr><td>{escape_html(key)}</td><td>{format_value(key, value)}</td></tr>\n"
@@ -256,7 +258,8 @@ def render_card(card: dict, image_dir: Path | None) -> str:
 
 
 @click.command("review-html")
-@click.argument("yaml_file", type=click.Path(exists=True, path_type=Path))
+@click.argument("cards_yaml", type=click.Path(exists=True, path_type=Path))
+@click.argument("printings_yaml", type=click.Path(exists=True, path_type=Path))
 @click.option(
     "-o",
     "--output",
@@ -270,15 +273,23 @@ def render_card(card: dict, image_dir: Path | None) -> str:
     default=None,
     help="Local image directory. If provided, images are referenced locally.",
 )
-def review_html(yaml_file: Path, output: Path, image_dir: Path | None):
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None):
     """Generate a static HTML page for reviewing card data."""
-    with open(yaml_file, "r", encoding="utf-8") as f:
+    with open(cards_yaml, "r", encoding="utf-8") as f:
         cards = yaml.safe_load(f)
+    with open(printings_yaml, "r", encoding="utf-8") as f:
+        printings = yaml.safe_load(f)
 
-    if not cards:
-        raise click.ClickException("No cards found in YAML file.")
+    if not cards or not printings:
+        raise click.ClickException("No data found in YAML files.")
 
-    cards_html = "\n".join(render_card(card, image_dir) for card in cards)
+    # Match printings to cards by id
+    printing_by_id = {p["card-id"]: p for p in printings}
+
+    cards_html = "\n".join(
+        render_card(card, printing_by_id.get(card["id"], {}), image_dir)
+        for card in cards
+    )
 
     html = HTML_TEMPLATE.format(card_count=len(cards), cards_html=cards_html)
 
