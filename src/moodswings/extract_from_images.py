@@ -74,11 +74,11 @@ def detect_dice_color(img: Image.Image) -> str:
     return "black" if dark_pct > DICE_DARK_THRESHOLD else "white"
 
 
-def ocr_artist(img: Image.Image) -> str | None:
-    """Run OCR on the bottom of the card to extract the raw artist text.
+def ocr_card_bottom(img: Image.Image) -> str:
+    """Run OCR on the bottom of the card and return the raw text.
 
     Applies preprocessing (grayscale, contrast boost, upscale) to improve
-    results on small text. Returns the raw extracted string or None.
+    results on small text.
     """
     w, h = img.size
     bottom = img.crop((0, int(h * 0.92), w, h))
@@ -89,16 +89,32 @@ def ocr_artist(img: Image.Image) -> str | None:
     scaled = enhanced.resize(
         (enhanced.width * 3, enhanced.height * 3), Image.LANCZOS
     )
-    text = pytesseract.image_to_string(scaled).strip()
+    return pytesseract.image_to_string(scaled).strip()
 
-    # Extract artist name from between "MSW [symbol]" and "™ &"
+
+def extract_collector_number(ocr_text: str) -> int | None:
+    """Extract the collector number from OCR text.
+
+    The bottom of the card has a line like '0001 White RARE' or '0055 Black COMMON'.
+    """
+    match = re.search(r"\b(\d{4})\b", ocr_text)
+    if match:
+        return int(match.group(1))
+    return None
+
+
+def extract_artist_from_text(ocr_text: str) -> str | None:
+    """Extract the artist name from OCR text.
+
+    Looks for text between 'MSW [symbol]' and '™ &'.
+    """
     patterns = [
         r"MSW\S*\s+\S+\s+(.+?)\s*(?:™|T™|1™|_™)\s*&",
         r"MSW\S*\s+\S+\s+(.+?)\s+[™T]\S*\s*&",
         r"MSW\S*\s+\S+\s+(.+?)\s+&\s+©",
     ]
     for pattern in patterns:
-        match = re.search(pattern, text)
+        match = re.search(pattern, ocr_text)
         if match:
             return match.group(1).strip().rstrip("_.,")
 
@@ -126,18 +142,18 @@ def match_artist(raw_ocr: str, lookup: list[str]) -> tuple[str, bool]:
 
 
 def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
-    """Find the image file matching a card by collector number and name."""
-    collector_num = card["collector_number"]
+    """Find the image file matching a card by name."""
     safe_name = card["name"].lower().replace(" ", "_").replace("'", "")
-    # Try the expected filename pattern
-    for ext in [".webp", ".png", ".jpg"]:
-        filename = f"{collector_num:03d}_{safe_name}{ext}"
-        filepath = image_dir / filename
-        if filepath.exists():
-            return filepath
-    # Fallback: search by collector number prefix
-    for f in image_dir.iterdir():
-        if f.name.startswith(f"{collector_num:03d}_"):
+    # Try the expected filename pattern: NNN_name.ext
+    for f in sorted(image_dir.iterdir()):
+        stem = f.stem
+        # Strip leading numeric prefix (e.g., "001_altruism" -> "altruism")
+        parts = stem.split("_", 1)
+        if len(parts) == 2 and parts[0].isdigit():
+            file_name_part = parts[1]
+        else:
+            file_name_part = stem
+        if file_name_part == safe_name:
             return f
     return None
 
@@ -194,7 +210,7 @@ def extract_from_images(
         img_path = find_image_for_card(card, image_dir)
         if img_path is None:
             click.echo(
-                f"  Warning: no image found for {card['name']} (#{card['collector_number']})",
+                f"  Warning: no image found for {card['name']}",
                 err=True,
             )
             missing += 1
@@ -205,7 +221,14 @@ def extract_from_images(
         card["reminder_icon"] = detect_reminder_icon(img)
         card["dice_color"] = detect_dice_color(img)
 
-        raw_artist = ocr_artist(img)
+        # OCR the bottom strip once for both collector number and artist
+        ocr_text = ocr_card_bottom(img)
+
+        collector_num = extract_collector_number(ocr_text)
+        if collector_num is not None:
+            card["collector_number"] = collector_num
+
+        raw_artist = extract_artist_from_text(ocr_text)
         if raw_artist:
             # Split on '&' for multi-artist credits
             raw_parts = [p.strip() for p in raw_artist.split("&") if p.strip()]

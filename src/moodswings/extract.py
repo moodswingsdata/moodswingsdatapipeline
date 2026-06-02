@@ -235,7 +235,7 @@ def parse_html(html_path: Path) -> list[dict]:
             "secondary_dice_value": dice_info["secondary_dice_value"],
             "dice_color": None,
             "rules_text": rules_html if rules_html else None,
-            "collector_number": idx,
+            "collector_number": None,
             "set_code": "MSW",
             "artist": None,
             "rulings_text": rulings,
