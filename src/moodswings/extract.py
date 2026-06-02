@@ -255,7 +255,7 @@ def parse_html(html_path: Path) -> list[dict]:
 
         printing = {
             "id": None,
-            "card-id": card_id,
+            "card_id": card_id,
             "frame": COLOR_FRAME_MAP[color],
             "reminder_icon": None,
             "rarity": rarity,

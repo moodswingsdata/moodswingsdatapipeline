@@ -38,7 +38,7 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
     with httpx.Client(timeout=30.0) as client:
         for idx, printing in enumerate(printings, 1):
             url = printing.get("card_image_url")
-            card_name = id_to_name.get(printing["card-id"], "unknown")
+            card_name = id_to_name.get(printing["card_id"], "unknown")
             if not url:
                 click.echo(f"  Skipping {card_name}: no image URL", err=True)
                 skipped += 1

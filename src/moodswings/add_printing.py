@@ -25,7 +25,7 @@ PRINTING_FIELDS = [
 def resolve_printing(entry: dict, cards: list[dict]) -> dict:
     """Resolve a printing entry from file input.
 
-    The entry must have a 'card_name' field (used to look up the card-id).
+    The entry must have a 'card_name' field (used to look up the card_id).
     Generates the printing id if collector_number and set_code are present.
     """
     card_name = entry.get("card_name")
@@ -42,7 +42,7 @@ def resolve_printing(entry: dict, cards: list[dict]) -> dict:
     if card is None:
         raise click.ClickException(f"Card '{card_name}' not found in cards YAML.")
 
-    printing = {"id": None, "card-id": card["id"]}
+    printing = {"id": None, "card_id": card["id"]}
 
     # Copy known printing fields from the entry
     for field, _ in PRINTING_FIELDS:
@@ -147,7 +147,7 @@ def add_printing(cards_yaml: Path, printings_yaml: Path, from_path: Path | None,
         click.echo(f"Adding printing for: {card['name']} (id: {card['id']})")
         click.echo()
 
-        printing = {"id": None, "card-id": card["id"]}
+        printing = {"id": None, "card_id": card["id"]}
 
         for field, prompt_text in PRINTING_FIELDS:
             value = click.prompt(prompt_text, default="", show_default=False)

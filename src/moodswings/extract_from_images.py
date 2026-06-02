@@ -216,7 +216,7 @@ def extract_from_images(
     new_artists: list[str] = []
 
     for printing in printings:
-        card_name = id_to_name.get(printing["card-id"], "Unknown")
+        card_name = id_to_name.get(printing["card_id"], "Unknown")
         # Build a minimal card-like dict for find_image_for_card
         card_for_lookup = {"name": card_name}
         img_path = find_image_for_card(card_for_lookup, image_dir)

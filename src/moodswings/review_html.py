@@ -287,7 +287,7 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir:
         raise click.ClickException("No data found in YAML files.")
 
     # Match printings to cards by id
-    printing_by_id = {p["card-id"]: p for p in printings}
+    printing_by_id = {p["card_id"]: p for p in printings}
 
     cards_html = "\n".join(
         render_card(card, printing_by_id.get(card["id"], {}), image_dir)
