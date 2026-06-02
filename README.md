@@ -59,3 +59,11 @@ uv run ms extract-from-images out/edition1.yaml raw_data/card_images/2026-06-02 
 
 **Note:** Artist names are extracted via OCR and may contain casing inconsistencies
 or minor errors that require manual review.
+
+### `review-html`
+
+Put card images side-by-side with extracted data for human review.
+
+```bash
+uv run ms ms review-html out/edition1.yaml -o review.html --image-dir raw_data/card_images/2026-06-02 
+```
