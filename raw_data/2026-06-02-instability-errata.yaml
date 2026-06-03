@@ -1,0 +1,9 @@
+- printing_id: 9d9f6896-b0f7-5244-86cb-437d1793deb3
+  rules_text:
+    as_printed: |
+      <strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you do, they
+      choose one of those moods and gives it to you, then you give them one of your moods.
+    corrected: |
+      <strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you do, they
+      choose one of those moods and give it to you, then you give them one of your moods.
+    note: Typo in the printed card, but the correct English is clear.

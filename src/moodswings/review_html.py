@@ -107,6 +107,31 @@ h1 {{
     font-size: 13px;
     color: #ccc;
 }}
+.errata-section {{
+    margin-top: 12px;
+}}
+.errata-section summary {{
+    cursor: pointer;
+    color: #e9a345;
+    font-weight: 600;
+    font-size: 13px;
+}}
+.errata-section .errata-item {{
+    margin: 8px 0;
+    padding: 8px 12px;
+    background: #1a1a2e;
+    border-left: 3px solid #e9a345;
+    border-radius: 4px;
+    font-size: 13px;
+}}
+.errata-section .errata-note {{
+    color: #e9a345;
+    font-style: italic;
+}}
+.errata-section .errata-printed {{
+    color: #aaa;
+    margin-top: 4px;
+}}
 </style>
 </head>
 <body>
@@ -176,6 +201,7 @@ CARD_TEMPLATE = """\
 <table>
 {rows}
 </table>
+{errata_html}
 </div>
 </div>
 """
@@ -208,10 +234,53 @@ def format_value(key: str, value) -> str:
     return escape_html(str(value))
 
 
-def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
+def apply_errata(merged: dict, errata: dict | None) -> dict:
+    """Apply errata corrections to the merged card/printing data."""
+    if not errata:
+        return merged
+    for field_name, info in errata.items():
+        if field_name == "printing_id":
+            continue
+        if isinstance(info, dict) and "corrected" in info:
+            merged[field_name] = info["corrected"]
+    return merged
+
+
+def render_errata(errata: dict | None) -> str:
+    """Render errata as a collapsed details/summary section."""
+    if not errata:
+        return ""
+
+    # Skip the printing_id field, render the rest
+    fields = {k: v for k, v in errata.items() if k != "printing_id"}
+    if not fields:
+        return ""
+
+    items = ""
+    for field_name, info in fields.items():
+        note = info.get("note", "")
+        as_printed = info.get("as_printed", "")
+        corrected = info.get("corrected", "")
+        items += '<div class="errata-item">'
+        items += f'<div class="errata-note">Note ({escape_html(field_name)}): {escape_html(note)}</div>'
+        items += f'<div class="errata-printed">As printed: {escape_html(str(as_printed))}</div>'
+        items += f'<div class="errata-printed">Corrected: {escape_html(str(corrected))}</div>'
+        items += "</div>\n"
+
+    return (
+        '<details class="errata-section">\n'
+        "<summary>Errata</summary>\n"
+        f"{items}"
+        "</details>"
+    )
+
+
+def render_card(card: dict, printing: dict, image_dir: Path | None, errata: dict | None = None) -> str:
     """Render a single card entry as HTML."""
     # Merge card + printing for display
     merged = {**card, **printing}
+    # Apply errata corrections to displayed values
+    merged = apply_errata(merged, errata)
     collector_number = merged.get("collector_number", 0)
     name = escape_html(merged.get("name", "Unknown"))
     color = escape_html(str(merged.get("color", "")))
@@ -257,6 +326,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
         treatment=treatment,
         image_src=image_src,
         rows=rows,
+        errata_html=render_errata(errata),
     )
 
 
@@ -276,7 +346,13 @@ def render_card(card: dict, printing: dict, image_dir: Path | None) -> str:
     default=None,
     help="Local image directory. If provided, images are referenced locally.",
 )
-def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None):
+@click.option(
+    "--errata",
+    type=click.Path(exists=True, path_type=Path),
+    default=None,
+    help="Errata YAML file with corrections keyed by printing_id.",
+)
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None, errata: Path | None):
     """Generate a static HTML page for reviewing card data."""
     with open(cards_yaml, "r", encoding="utf-8") as f:
         cards = yaml.safe_load(f)
@@ -286,12 +362,22 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir:
     if not cards or not printings:
         raise click.ClickException("No data found in YAML files.")
 
+    # Load errata if provided
+    errata_by_printing: dict[str, dict] = {}
+    if errata:
+        with open(errata, "r", encoding="utf-8") as f:
+            errata_list = yaml.safe_load(f) or []
+        for entry in errata_list:
+            pid = entry.get("printing_id")
+            if pid:
+                errata_by_printing[pid] = entry
+
     # Build card lookup by id
     card_by_id = {card["id"]: card for card in cards}
 
     # Iterate over printings (one entry per printing, even if same card)
     cards_html = "\n".join(
-        render_card(card_by_id[p["card_id"]], p, image_dir)
+        render_card(card_by_id[p["card_id"]], p, image_dir, errata_by_printing.get(p.get("id")))
         for p in printings
         if p["card_id"] in card_by_id
     )

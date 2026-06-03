@@ -67,11 +67,33 @@ remove the `*`, and re-run.
 
 ### `review-html`
 
-Put card images side-by-side with extracted data for human review.
+Put card images side-by-side with extracted data for human review. Supports
+client-side sorting by name, collector number, color, frame, rarity, reminder
+icon, dice value, secondary dice value, and treatment.
 
 ```bash
 uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
 ```
+
+Optionally include an errata file to show corrections below affected cards
+(collapsed by default):
+
+```bash
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02 --errata raw_data/errata.yaml
+```
+
+Errata YAML format:
+```yaml
+- printing_id: "9d9f6896-b0f7-..."
+  rules_text:
+    as_printed: "Reroll tis card when any player rolls doubles."
+    corrected: "Reroll this card when any player rolls doubles."
+    note: "Typo: 'tis' should be 'this'"
+```
+
+The `corrected` value overrides the displayed field in the card data table.
+The errata details section (collapsed) shows both the as-printed and corrected
+versions alongside the note.
 
 ### `add-printing`
 
