@@ -275,7 +275,7 @@ def render_errata(errata: dict | None) -> str:
     )
 
 
-def render_card(card: dict, printing: dict, image_dir: Path | None, errata: dict | None = None) -> str:
+def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_path: Path | None, errata: dict | None = None) -> str:
     """Render a single card entry as HTML."""
     # Merge card + printing for display
     merged = {**card, **printing}
@@ -292,19 +292,27 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, errata: dict
     treatment = escape_html(str(merged.get("treatment") or ""))
 
     # Determine image source
+    image_src = ""
     if image_dir:
         safe_name = card["name"].lower().replace(" ", "_").replace("'", "")
         found = False
-        for f in sorted(image_dir.iterdir()):
-            parts = f.stem.split("_", 1)
-            if len(parts) == 2 and parts[0].isdigit() and parts[1] == safe_name:
-                image_src = str(f)
-                found = True
-                break
+        # Only look for a local file if this printing is expected to have an image
+        if merged.get("card_image_url"):
+            for f in sorted(image_dir.iterdir()):
+                parts = f.stem.split("_", 1)
+                if len(parts) == 2 and parts[0].isdigit() and parts[1] == safe_name:
+                    image_src = str(f)
+                    found = True
+                    break
         if not found:
-            image_src = merged.get("card_image_url", "")
+            if cardback_path:
+                image_src = str(cardback_path)
+            else:
+                image_src = merged.get("card_image_url") or ""
     else:
-        image_src = merged.get("card_image_url", "")
+        image_src = merged.get("card_image_url") or ""
+        if not image_src and cardback_path:
+            image_src = str(cardback_path)
 
     # Build table rows for all fields
     skip_fields = {"name", "collector_number"}
@@ -347,13 +355,25 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, errata: dict
     help="Local image directory. If provided, images are referenced locally.",
 )
 @click.option(
+    "--cardback",
+    type=click.Path(exists=True, path_type=Path),
+    default=None,
+    help="Fallback image for printings without a card image. Defaults to raw_data/cardback.png if it exists.",
+)
+@click.option(
     "--errata",
     type=click.Path(exists=True, path_type=Path),
     default=None,
     help="Errata YAML file with corrections keyed by printing_id.",
 )
-def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None, errata: Path | None):
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None, cardback: Path | None, errata: Path | None):
     """Generate a static HTML page for reviewing card data."""
+    # Resolve cardback fallback
+    if cardback is None:
+        default_cardback = Path("raw_data/cardback.png")
+        if default_cardback.exists():
+            cardback = default_cardback
+
     with open(cards_yaml, "r", encoding="utf-8") as f:
         cards = yaml.safe_load(f)
     with open(printings_yaml, "r", encoding="utf-8") as f:
@@ -377,7 +397,7 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir:
 
     # Iterate over printings (one entry per printing, even if same card)
     cards_html = "\n".join(
-        render_card(card_by_id[p["card_id"]], p, image_dir, errata_by_printing.get(p.get("id")))
+        render_card(card_by_id[p["card_id"]], p, image_dir, cardback, errata_by_printing.get(p.get("id")))
         for p in printings
         if p["card_id"] in card_by_id
     )
