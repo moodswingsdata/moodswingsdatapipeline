@@ -125,6 +125,14 @@ these shapes are available in:
 These are reference documentation for consumers of the data; they are not
 enforced at runtime by the pipeline.
 
+## Tests
+
+Run the test suite with:
+
+```bash
+uv run pytest
+```
+
 ## Fan content
 
 MoodSwingsData is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.

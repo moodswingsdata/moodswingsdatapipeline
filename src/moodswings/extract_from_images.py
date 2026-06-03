@@ -56,7 +56,7 @@ def detect_reminder_icon(img: Image.Image) -> str | None:
     w, h = gray.size
     x1, y1, x2, y2 = ICON_REGION
     region = gray.crop((int(w * x1), int(h * y1), int(w * x2), int(h * y2)))
-    pixels = list(region.getdata())
+    pixels = region.get_flattened_data()
     bright_pct = sum(1 for p in pixels if p > 200) / len(pixels) * 100
     return "!" if bright_pct > ICON_BRIGHT_THRESHOLD else None
 
@@ -71,7 +71,7 @@ def detect_dice_color(img: Image.Image) -> str:
     w, h = gray.size
     x1, y1, x2, y2 = DIE_FACE_REGION
     region = gray.crop((int(w * x1), int(h * y1), int(w * x2), int(h * y2)))
-    pixels = list(region.getdata())
+    pixels = region.get_flattened_data()
     dark_pct = sum(1 for p in pixels if p < 80) / len(pixels) * 100
     return "black" if dark_pct > DICE_DARK_THRESHOLD else "white"
 
