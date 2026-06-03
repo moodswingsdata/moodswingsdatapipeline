@@ -3,7 +3,7 @@
 from pathlib import Path
 
 import pytest
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 from moodswings.extract_from_images import (
     detect_dice_color,
@@ -11,47 +11,64 @@ from moodswings.extract_from_images import (
     extract_artist_from_text,
     extract_collector_number,
     match_artist,
+    ocr_card_bottom,
 )
+
+FIXTURES = Path(__file__).parent / "fixtures"
+
+
+@pytest.fixture
+def ambivalence_img():
+    """003_ambivalence.webp: black dice, no reminder icon, collector #27."""
+    return Image.open(FIXTURES / "003_ambivalence.webp").convert("RGB")
+
+
+@pytest.fixture
+def arrogance_img():
+    """009_arrogance.webp: white dice, reminder icon '!', collector #82."""
+    return Image.open(FIXTURES / "009_arrogance.webp").convert("RGB")
 
 
 class TestDetectDiceColor:
-    def _make_card_image(self, dice_fill: str) -> Image.Image:
-        """Create a synthetic card image with a dice region of the given fill color."""
-        img = Image.new("RGB", (750, 1050), color=(180, 180, 180))
-        draw = ImageDraw.Draw(img)
-        # DIE_FACE_REGION = (0.795, 0.050, 0.865, 0.125)
-        w, h = img.size
-        x1, y1, x2, y2 = int(w * 0.795), int(h * 0.050), int(w * 0.865), int(h * 0.125)
-        draw.rectangle([x1, y1, x2, y2], fill=dice_fill)
-        return img
+    def test_black_dice(self, ambivalence_img):
+        assert detect_dice_color(ambivalence_img) == "black"
 
-    def test_white_dice(self):
-        img = self._make_card_image("white")
-        assert detect_dice_color(img) == "white"
-
-    def test_black_dice(self):
-        img = self._make_card_image("black")
-        assert detect_dice_color(img) == "black"
+    def test_white_dice(self, arrogance_img):
+        assert detect_dice_color(arrogance_img) == "white"
 
 
 class TestDetectReminderIcon:
-    def _make_card_image(self, icon_fill: str) -> Image.Image:
-        """Create a synthetic card image with an icon region of the given fill color."""
-        img = Image.new("RGB", (750, 1050), color=(50, 50, 50))
-        draw = ImageDraw.Draw(img)
-        # ICON_REGION = (0.70, 0.05, 0.77, 0.12)
-        w, h = img.size
-        x1, y1, x2, y2 = int(w * 0.70), int(h * 0.05), int(w * 0.77), int(h * 0.12)
-        draw.rectangle([x1, y1, x2, y2], fill=icon_fill)
-        return img
+    def test_icon_present(self, arrogance_img):
+        assert detect_reminder_icon(arrogance_img) == "!"
 
-    def test_icon_present(self):
-        img = self._make_card_image("white")
-        assert detect_reminder_icon(img) == "!"
+    def test_icon_absent(self, ambivalence_img):
+        assert detect_reminder_icon(ambivalence_img) is None
 
-    def test_icon_absent(self):
-        img = self._make_card_image("black")
-        assert detect_reminder_icon(img) is None
+
+class TestOcrCardBottom:
+    """Tests that use Tesseract OCR on real card images."""
+
+    @pytest.fixture
+    def ambivalence_ocr(self, ambivalence_img):
+        return ocr_card_bottom(ambivalence_img)
+
+    @pytest.fixture
+    def arrogance_ocr(self, arrogance_img):
+        return ocr_card_bottom(arrogance_img)
+
+    def test_collector_number_ambivalence(self, ambivalence_ocr):
+        num = extract_collector_number(ambivalence_ocr)
+        assert num == 27
+
+    def test_collector_number_arrogance(self, arrogance_ocr):
+        num = extract_collector_number(arrogance_ocr)
+        assert num == 82
+
+    def test_artist_ambivalence_multiple(self, ambivalence_ocr):
+        artist = extract_artist_from_text(ambivalence_ocr)
+        assert artist is not None
+        # Multiple artists separated by & in the raw text
+        assert "&" in artist or len(artist.split()) > 1
 
 
 class TestExtractCollectorNumber:
