@@ -1,0 +1,79 @@
+"""Data models for Mood Swings card data.
+
+These TypedDicts document the shape of Card and Printing records
+as they flow through the pipeline. They are not enforced at runtime
+but serve as documentation and enable type-checking with mypy/pyright.
+"""
+
+from typing import TypedDict
+
+
+class Card(TypedDict):
+    """A unique card identity with its game-mechanical properties."""
+
+    id: str
+    """Stable UUID5 generated from the card name."""
+
+    name: str
+    """The card's display name."""
+
+    color: str
+    """Card color: White, Blue, Black, Red, or Green."""
+
+    dice: str
+    """Primary dice notation, e.g. '[3]' or '[6][1]'."""
+
+    dice_value: int
+    """Integer sum of pips in the primary dice."""
+
+    secondary_dice: str | None
+    """Secondary dice notation after '/', or None."""
+
+    secondary_dice_value: int | None
+    """Integer sum of pips in the secondary dice, or None."""
+
+    rules_text: str | None
+    """HTML-formatted rules text, or None for vanilla cards."""
+
+    rulings_text: list[str] | None
+    """List of ruling strings, or None if no rulings exist."""
+
+
+class Printing(TypedDict):
+    """A specific physical printing of a card."""
+
+    id: str | None
+    """Stable UUID5 generated from card_name:set_code:collector_number. None until collector_number is known."""
+
+    card_id: str
+    """References the Card.id this printing belongs to."""
+
+    frame: str
+    """Frame color/style, e.g. 'White', 'Blue', 'Black', 'Red', 'Green'."""
+
+    reminder_icon: str | None
+    """Reminder icon glyph (e.g. '!') or None."""
+
+    rarity: str
+    """Rarity: Common, Uncommon, Rare, or Mythic Rare."""
+
+    dice_color: str | None
+    """Color of the physical die: 'white', 'black', or None if unknown."""
+
+    collector_number: int | None
+    """Collector number within the set, or None if unknown."""
+
+    set_code: str
+    """Set code, e.g. 'MSW'."""
+
+    edition_name: str
+    """Human-readable edition name, e.g. 'Edition 1'."""
+
+    treatment: str
+    """Print treatment, e.g. 'Standard', 'Foil'."""
+
+    artist: str | list[str] | None
+    """Artist name, list of names for multi-artist credits, or None if unknown."""
+
+    card_image_url: str | None
+    """URL to the card image, or None if unavailable."""

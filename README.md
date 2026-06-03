@@ -113,6 +113,18 @@ Can also point `--from` at a directory of YAML files.
 uv run ms add-printing out/cards.yaml out/printings.yaml --card-name "Love"
 ```
 
+## Data Format
+
+The pipeline produces two YAML files: **cards** (game-mechanical identity) and
+**printings** (edition-specific physical details). Type stubs documenting
+these shapes are available in:
+
+- **Python**: `src/moodswings/models.py` — `TypedDict` classes (`Card`, `Printing`)
+- **TypeScript**: `types/moodswings.d.ts` — interfaces (`Card`, `Printing`)
+
+These are reference documentation for consumers of the data; they are not
+enforced at runtime by the pipeline.
+
 ## Fan content
 
 MoodSwingsData is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.
