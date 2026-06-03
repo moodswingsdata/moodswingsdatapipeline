@@ -17,6 +17,8 @@ PRINTINGS_YAML="out/printings_partial.yaml"
 PRINTINGS_ENRICHED="out/printings.yaml"
 REVIEW_HTML="out/review.html"
 
+mkdir -p out
+
 # Step 1: Extract cards from HTML
 echo "==> Extracting cards from HTML..."
 uv run ms extract-cards "$INPUT_HTML" \
