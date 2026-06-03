@@ -71,6 +71,9 @@ Put card images side-by-side with extracted data for human review. Supports
 client-side sorting by name, collector number, color, frame, rarity, reminder
 icon, dice value, secondary dice value, and treatment.
 
+Printings without a matching image file display `raw_data/cardback.png` as a
+fallback (auto-detected if present, or specify with `--cardback`).
+
 ```bash
 uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
 ```
