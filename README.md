@@ -36,10 +36,10 @@ All tools are run via `uv run ms <subcommand>`.
 
 Parse the raw HTML card notes file and output structured YAML. Produces two
 files: a cards file (abstract card data) and a printings file (edition-specific
-data). Each card and printing share a stable `msdata-id` (UUID5).
+data). Each card and printing share a stable `id` (UUID5).
 
 ```bash
-uv run ms extract-cards raw_data/2026-06-02-mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml
+uv run ms extract-cards raw_data/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml
 ```
 
 ### `download-images`
