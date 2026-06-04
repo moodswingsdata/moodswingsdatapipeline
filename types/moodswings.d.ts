@@ -1,7 +1,7 @@
 /**
  * Data models for Mood Swings card data.
  *
- * These interfaces document the shape of Card and Printing records
+ * These interfaces document the shape of Card, Printing, and Edition records
  * as produced by the moodswings data pipeline (YAML output).
  */
 
@@ -38,6 +38,26 @@ export interface Card {
 }
 
 /**
+ * An edition or set of cards.
+ */
+export interface Edition {
+  /** Stable UUID5 generated from set_code. */
+  id: string;
+
+  /** Set code, e.g. 'MSW'. */
+  set_code: string;
+
+  /** Human-readable edition name, e.g. 'Edition 1'. */
+  edition_name: string;
+
+  /** When this set first came out. */
+  release_date: Date;
+
+  /** Language code, like 'en' or 'es-mx'. */
+  language: string;
+}
+
+/**
  * A specific physical printing of a card.
  */
 export interface Printing {
@@ -46,6 +66,9 @@ export interface Printing {
 
   /** References the Card.id this printing belongs to. */
   card_id: string;
+
+  /** References the Edition.id this printing belongs to. */
+  edition_id: string;
 
   /** Frame color/style. */
   frame: "White" | "Blue" | "Black" | "Red" | "Green";
@@ -61,12 +84,6 @@ export interface Printing {
 
   /** Collector number within the set, or null if unknown. */
   collector_number: number | null;
-
-  /** Set code, e.g. 'MSW'. */
-  set_code: string;
-
-  /** Human-readable edition name, e.g. 'Edition 1'. */
-  edition_name: string;
 
   /** Print treatment, e.g. 'Standard', 'Foil'. */
   treatment: string;
