@@ -27,4 +27,5 @@ jobs:
           name: edition1-yaml
           path: |
             out/cards.yaml
-            out/printings_enriched.yaml
+            out/editions.yaml
+            out/printings.yaml
