@@ -256,13 +256,12 @@ def parse_html(html_path: Path) -> list[dict]:
         printing = {
             "id": None,
             "card_id": card_id,
+            "edition_id": None,  # filled in by caller
             "frame": COLOR_FRAME_MAP[color],
             "reminder_icon": None,
             "rarity": rarity,
             "dice_color": None,
             "collector_number": None,
-            "set_code": "MSW",
-            "edition_name": "Edition 1",
             "treatment": "Standard",
             "artist": None,
             "card_image_url": image_url,
@@ -288,9 +287,41 @@ def parse_html(html_path: Path) -> list[dict]:
     default=None,
     help="Output YAML file for printings. If not set, uses <output>_printings.yaml.",
 )
-def extract_cards(html_file: Path, output: Path | None, printings_output: Path | None):
+@click.option(
+    "--editions",
+    type=click.Path(exists=True, path_type=Path),
+    required=True,
+    help="Editions YAML file (output of prepare-editions).",
+)
+@click.option(
+    "--set-code",
+    required=True,
+    help="Set code for the edition these printings belong to.",
+)
+def extract_cards(html_file: Path, output: Path | None, printings_output: Path | None, editions: Path, set_code: str):
     """Extract card data from HTML and output as YAML (cards + printings)."""
+    # Load editions and find the matching one
+    with open(editions, "r", encoding="utf-8") as f:
+        editions_data = yaml.safe_load(f)
+
+    edition = None
+    for ed in editions_data:
+        if ed["set_code"].lower() == set_code.lower():
+            edition = ed
+            break
+
+    if edition is None:
+        raise click.ClickException(
+            f"Set code '{set_code}' not found in {editions}. "
+            f"Available: {', '.join(e['set_code'] for e in editions_data)}"
+        )
+
     cards, printings = parse_html(html_file)
+
+    # Assign edition_id to all printings
+    for printing in printings:
+        printing["edition_id"] = edition["id"]
+
     click.echo(f"Extracted {len(cards)} cards", err=True)
 
     cards_yaml = yaml.safe_dump(

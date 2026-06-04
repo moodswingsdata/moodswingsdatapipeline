@@ -359,6 +359,12 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     help="Output HTML file path.",
 )
 @click.option(
+    "--editions",
+    type=click.Path(exists=True, path_type=Path),
+    default=None,
+    help="Editions YAML file (output of prepare-editions). Used to resolve edition names.",
+)
+@click.option(
     "--image-dir",
     type=click.Path(exists=True, path_type=Path),
     default=None,
@@ -376,7 +382,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     default=None,
     help="Errata YAML file with corrections keyed by printing_id.",
 )
-def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, image_dir: Path | None, cardback: Path | None, errata: Path | None):
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: Path | None, image_dir: Path | None, cardback: Path | None, errata: Path | None):
     """Generate a static HTML page for reviewing card data."""
     # Resolve cardback fallback
     if cardback is None:

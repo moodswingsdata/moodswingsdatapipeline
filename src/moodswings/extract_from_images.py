@@ -172,13 +172,19 @@ def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
     help="Output printings YAML file path (will not overwrite input).",
 )
 @click.option(
+    "--editions",
+    type=click.Path(exists=True, path_type=Path),
+    required=True,
+    help="Editions YAML file (output of prepare-editions).",
+)
+@click.option(
     "--artist-lookup",
     type=click.Path(path_type=Path),
     default=Path("raw_data/artists.txt"),
     help="Path to the artist names database (one per line). Default: raw_data/artists.txt",
 )
 def extract_from_images(
-    cards_yaml: Path, printings_yaml: Path, image_dir: Path, output: Path, artist_lookup: Path
+    cards_yaml: Path, printings_yaml: Path, image_dir: Path, output: Path, editions: Path, artist_lookup: Path
 ):
     """Extract artist, dice color, reminder icon, and collector number from card images.
 
@@ -197,9 +203,14 @@ def extract_from_images(
         cards = yaml.safe_load(f)
     with open(printings_yaml, "r", encoding="utf-8") as f:
         printings = yaml.safe_load(f)
+    with open(editions, "r", encoding="utf-8") as f:
+        editions_data = yaml.safe_load(f)
 
     if not cards or not printings:
         raise click.ClickException("No data found in input YAML files.")
+
+    # Build a lookup from edition_id to set_code
+    edition_set_code = {ed["id"]: ed["set_code"] for ed in editions_data}
 
     # Build a lookup from card id to card name
     id_to_name = {card["id"]: card["name"] for card in cards}
@@ -239,8 +250,9 @@ def extract_from_images(
         collector_num = extract_collector_number(ocr_text)
         if collector_num is not None:
             printing["collector_number"] = collector_num
+            set_code = edition_set_code.get(printing.get("edition_id"), "")
             printing["id"] = generate_printing_id(
-                card_name, printing["set_code"], collector_num
+                card_name, set_code, collector_num
             )
 
         raw_artist = extract_artist_from_text(ocr_text)
