@@ -1,0 +1,7 @@
+# Keep track of Mood Swings editions as they come out by adding them here.
+
+- name: Edition 1
+  set_code: msw
+  # Secret Lair became available
+  release_date: '2026-06-01'
+  language: 'en'
