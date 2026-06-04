@@ -32,14 +32,24 @@ uv sync
 
 All tools are run via `uv run ms <subcommand>`.
 
+### `prepare-editions`
+
+Read the raw editions YAML, generate stable IDs, and produce the output editions
+file (stripping pipeline-internal `data_sources`).
+
+```bash
+uv run ms prepare-editions raw_data/editions.yaml -o out/editions.yaml
+```
+
 ### `extract-cards`
 
 Parse the raw HTML card notes file and output structured YAML. Produces two
 files: a cards file (abstract card data) and a printings file (edition-specific
-data). Each card and printing share a stable `id` (UUID5).
+data). Each card and printing share a stable `id` (UUID5). Requires a prepared
+editions file and the set code for the edition being extracted.
 
 ```bash
-uv run ms extract-cards raw_data/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml
+uv run ms extract-cards raw_data/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml --editions out/editions.yaml --set-code MSW
 ```
 
 ### `download-images`
@@ -57,7 +67,7 @@ using OCR and pixel analysis. Requires Tesseract to be installed. Operates on
 the printings file (uses the cards file for name lookup).
 
 ```bash
-uv run ms extract-from-images out/cards.yaml out/printings.yaml raw_data/card_images/2026-06-02 -o out/printings_enriched.yaml
+uv run ms extract-from-images out/cards.yaml out/printings.yaml raw_data/card_images/2026-06-02 -o out/printings_enriched.yaml --editions out/editions.yaml
 ```
 
 Artist names are fuzzy-matched against `raw_data/artists.txt` (the default
@@ -104,26 +114,27 @@ Add printing(s) for existing cards. Supports two modes:
 
 **From file** (for repeatable/automated additions):
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --from raw_data/extra_printings.yaml
+uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from raw_data/extra_printings.yaml
 ```
 
-Each entry in the YAML file needs a `card_name` field plus any printing fields
-(frame, rarity, collector_number, set_code, edition_name, treatment, artist, etc.).
-Can also point `--from` at a directory of YAML files.
+Each entry in the YAML file needs a `card_name` field plus a `set_code` field
+(to resolve the edition) and any printing fields (frame, rarity, collector_number,
+treatment, artist, etc.). Can also point `--from` at a directory of YAML files.
 
 **Interactive** (prompts for each field):
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --card-name "Love"
+uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --card-name "Love"
 ```
 
 ## Data Format
 
-The pipeline produces two YAML files: **cards** (game-mechanical identity) and
-**printings** (edition-specific physical details). Type stubs documenting
-these shapes are available in:
+The pipeline produces three YAML files: **editions** (set identity and metadata),
+**cards** (game-mechanical identity), and **printings** (edition-specific physical
+details). Printings reference their edition via `edition_id`. Type stubs
+documenting these shapes are available in:
 
-- **Python**: `src/moodswings/models.py` — `TypedDict` classes (`Card`, `Printing`)
-- **TypeScript**: `types/moodswings.d.ts` — interfaces (`Card`, `Printing`)
+- **Python**: `src/moodswings/models.py` — `TypedDict` classes (`Card`, `Edition`, `Printing`)
+- **TypeScript**: `types/moodswings.d.ts` — interfaces (`Card`, `Edition`, `Printing`)
 
 These are reference documentation for consumers of the data; they are not
 enforced at runtime by the pipeline.

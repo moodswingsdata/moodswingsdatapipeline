@@ -1,29 +1,74 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Build Edition 1 YAML files from raw data.
-# Assumes raw_data/ exists (except raw_data/card_images/ which may be downloaded).
+# Build YAML files for a single edition from raw data.
+# Reads input paths from raw_data/editions.yaml based on set code.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
-INPUT_HTML="raw_data/msw-edition1/mood-swings-card-notes.html"
-IMAGE_DIR="raw_data/card_images/2026-06-02"
-LOVE_PREMIUM="raw_data/msw-edition1/love-premium.yaml"
-ERRATA="raw_data/msw-edition1/instability-errata.yaml"
+SET_CODE="msw"
 
+EDITIONS_INPUT="raw_data/editions.yaml"
+EDITIONS_YAML="out/editions.yaml"
 CARDS_YAML="out/cards.yaml"
 PRINTINGS_YAML="out/printings_partial.yaml"
 PRINTINGS_ENRICHED="out/printings.yaml"
 REVIEW_HTML="out/review.html"
 
+# Extract data source paths from editions.yaml for this set code
+read_edition_field() {
+    uv run python -c "
+import yaml, sys
+with open('$EDITIONS_INPUT') as f:
+    editions = yaml.safe_load(f)
+edition = next((e for e in editions if e['set_code'] == '$SET_CODE'), None)
+if edition is None:
+    print(f'Error: set_code $SET_CODE not found', file=sys.stderr)
+    sys.exit(1)
+field = '$1'
+ds = edition.get('data_sources', [])
+if field == 'core_file':
+    for item in ds:
+        if 'core_file' in item:
+            print(item['core_file'])
+            sys.exit(0)
+elif field == 'date':
+    for item in ds:
+        if 'date' in item:
+            print(item['date'])
+            sys.exit(0)
+elif field == 'additional_printings':
+    for item in ds:
+        if 'additional_printings' in item:
+            for p in item['additional_printings']:
+                print(p)
+            sys.exit(0)
+elif field == 'errata':
+    for item in ds:
+        if 'errata' in item:
+            for e in item['errata']:
+                print(e)
+            sys.exit(0)
+"
+}
+
+INPUT_HTML="raw_data/$(read_edition_field core_file)"
+IMAGE_DIR="raw_data/card_images/${SET_CODE}"
+
 mkdir -p out
+
+# Step 0: Prepare editions
+echo "==> Preparing editions..."
+uv run ms prepare-editions "$EDITIONS_INPUT" -o "$EDITIONS_YAML"
 
 # Step 1: Extract cards from HTML
 echo "==> Extracting cards from HTML..."
 uv run ms extract-cards "$INPUT_HTML" \
     -o "$CARDS_YAML" \
-    -p "$PRINTINGS_YAML"
+    -p "$PRINTINGS_YAML" \
+    --editions "$EDITIONS_YAML" \
+    --set-code "$SET_CODE"
 
 # Step 2: Download card images if not already present
 if [ -d "$IMAGE_DIR" ] && [ "$(ls -A "$IMAGE_DIR" 2>/dev/null)" ]; then
@@ -37,18 +82,34 @@ fi
 # Step 3: Extract metadata from images (artist, dice color, reminder icon)
 echo "==> Extracting metadata from card images..."
 uv run ms extract-from-images "$CARDS_YAML" "$PRINTINGS_YAML" "$IMAGE_DIR" \
-    -o "$PRINTINGS_ENRICHED"
+    -o "$PRINTINGS_ENRICHED" \
+    --editions "$EDITIONS_YAML"
 
-# Step 4: Add the Love premium card printing
-echo "==> Adding Love premium printing..."
-uv run ms add-printing "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
-    --from "$LOVE_PREMIUM"
+# Step 4: Add additional printings
+ADDITIONAL_PRINTINGS="$(read_edition_field additional_printings)"
+if [ -n "$ADDITIONAL_PRINTINGS" ]; then
+    while IFS= read -r printing_file; do
+        echo "==> Adding printings from ${printing_file}..."
+        uv run ms add-printing "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
+            --editions "$EDITIONS_YAML" \
+            --from "raw_data/${printing_file}"
+    done <<< "$ADDITIONAL_PRINTINGS"
+fi
 
 # Step 5: Generate review HTML with errata
+ERRATA_FILES="$(read_edition_field errata)"
+ERRATA_ARGS=""
+if [ -n "$ERRATA_FILES" ]; then
+    while IFS= read -r errata_file; do
+        ERRATA_ARGS="--errata raw_data/${errata_file}"
+    done <<< "$ERRATA_FILES"
+fi
+
 echo "==> Generating review HTML..."
 uv run ms review-html "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     -o "$REVIEW_HTML" \
+    --editions "$EDITIONS_YAML" \
     --image-dir "$IMAGE_DIR" \
-    --errata "$ERRATA"
+    $ERRATA_ARGS
 
 echo "==> Done! Review at $REVIEW_HTML"

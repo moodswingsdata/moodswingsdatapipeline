@@ -210,6 +210,5 @@ class TestParseHtml:
     def test_printing_defaults(self, parsed):
         _, printings = parsed
         for p in printings:
-            assert p["set_code"] == "MSW"
-            assert p["edition_name"] == "Edition 1"
+            assert p["edition_id"] is None  # not filled in by parse_html
             assert p["treatment"] == "Standard"

@@ -5,6 +5,7 @@ as they flow through the pipeline. They are not enforced at runtime
 but serve as documentation and enable type-checking with mypy/pyright.
 """
 
+from datetime import date
 from typing import TypedDict
 
 
@@ -39,6 +40,25 @@ class Card(TypedDict):
     """List of ruling strings, or None if no rulings exist."""
 
 
+class Edition(TypedDict):
+    """An edition or set of cards."""
+
+    id: str
+    """Stable UUID5 generated from set_code."""
+
+    set_code: str
+    """Set code, e.g. 'MSW'."""
+
+    edition_name: str
+    """Human-readable edition name, e.g. 'Edition 1'."""
+
+    release_date: date
+    """When this set first came out."""
+
+    language: str
+    """Language code, like 'en' or 'es-mx'."""
+
+
 class Printing(TypedDict):
     """A specific physical printing of a card."""
 
@@ -47,6 +67,9 @@ class Printing(TypedDict):
 
     card_id: str
     """References the Card.id this printing belongs to."""
+
+    edition_id: str
+    """References the Edition.id this printing belongs to."""
 
     frame: str
     """Frame color/style, e.g. 'White', 'Blue', 'Black', 'Red', 'Green'."""
@@ -62,12 +85,6 @@ class Printing(TypedDict):
 
     collector_number: int | None
     """Collector number within the set, or None if unknown."""
-
-    set_code: str
-    """Set code, e.g. 'MSW'."""
-
-    edition_name: str
-    """Human-readable edition name, e.g. 'Edition 1'."""
 
     treatment: str
     """Print treatment, e.g. 'Standard', 'Foil'."""

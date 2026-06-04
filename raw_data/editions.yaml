@@ -1,0 +1,14 @@
+# Keep track of Mood Swings editions as they come out by adding them here.
+
+- name: Edition 1
+  set_code: msw
+  # Secret Lair became available
+  release_date: '2026-06-01'
+  language: 'en'
+  data_sources:
+  - core_file: msw-edition1/mood-swings-card-notes.html
+    date: '2026-06-01'
+  - additional_printings:
+    - msw-edition1/love-premium.yaml
+  - errata:
+    - msw-edition1/instability-errata.yaml
