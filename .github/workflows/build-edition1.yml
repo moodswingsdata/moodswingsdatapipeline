@@ -24,8 +24,11 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: edition1-yaml
+          name: edition1-data
           path: |
             out/cards.yaml
+            out/cards.json
             out/editions.yaml
+            out/editions.json
             out/printings.yaml
+            out/printings.json
