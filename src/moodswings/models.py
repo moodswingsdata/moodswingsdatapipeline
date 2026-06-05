@@ -18,8 +18,8 @@ class Card(TypedDict):
     name: str
     """The card's display name."""
 
-    color: str
-    """Card color: White, Blue, Black, Red, or Green."""
+    color: list[str]
+    """Card colors: e.g. ['White'], ['Blue', 'Black'], or [] for colorless."""
 
     dice: str
     """Primary dice notation, e.g. '[3]' or '[6][1]'."""

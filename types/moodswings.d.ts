@@ -15,8 +15,8 @@ export interface Card {
   /** The card's display name. */
   name: string;
 
-  /** Card color: White, Blue, Black, Red, or Green. */
-  color: "White" | "Blue" | "Black" | "Red" | "Green";
+  /** Card colors: e.g. ['White'], ['Blue', 'Black'], or [] for colorless. */
+  color: ("White" | "Blue" | "Black" | "Red" | "Green")[];
 
   /** Primary dice notation, e.g. '[3]' or '[6][1]'. */
   dice: string;

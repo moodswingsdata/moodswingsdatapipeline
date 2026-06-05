@@ -18,7 +18,7 @@ FIXTURES = Path(__file__).parent / "fixtures"
 CARD_FIELDS = {
     "id": (str,),
     "name": (str,),
-    "color": (str,),
+    "color": (list,),
     "dice": (str,),
     "dice_value": (int,),
     "secondary_dice": (str, type(None)),
@@ -81,9 +81,13 @@ class TestCardConformsToModel:
     def test_card_color_values(self, parsed_data):
         cards, _ = parsed_data
         for card in cards:
-            assert card["color"] in VALID_COLORS, (
-                f"Card {card['name']} has invalid color '{card['color']}'"
+            assert isinstance(card["color"], list), (
+                f"Card {card['name']} color should be a list, got {type(card['color'])}"
             )
+            for c in card["color"]:
+                assert c in VALID_COLORS, (
+                    f"Card {card['name']} has invalid color '{c}'"
+                )
 
     def test_card_rulings_items_are_strings(self, parsed_data):
         cards, _ = parsed_data

@@ -284,7 +284,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     merged = apply_errata(merged, errata)
     collector_number = merged.get("collector_number", 0)
     name = escape_html(merged.get("name", "Unknown"))
-    color = escape_html(str(merged.get("color", "")))
+    color = escape_html(", ".join(merged.get("color", [])))
     frame = escape_html(str(merged.get("frame", "")))
     rarity = escape_html(str(merged.get("rarity", "")))
     reminder_icon = escape_html(str(merged.get("reminder_icon") or ""))
