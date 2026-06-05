@@ -20,7 +20,7 @@ def to_json(yaml_file: Path, output: Path | None):
     with open(yaml_file, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
-    json_str = json.dumps(data, indent=2, ensure_ascii=False, default=str)
+    json_str = json.dumps(data, ensure_ascii=False, default=str)
 
     if output:
         output.parent.mkdir(parents=True, exist_ok=True)
