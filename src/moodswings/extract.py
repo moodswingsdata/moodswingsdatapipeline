@@ -244,7 +244,7 @@ def parse_html(html_path: Path) -> list[dict]:
         card = {
             "id": card_id,
             "name": name,
-            "color": color,
+            "color": [color],
             "dice": dice_info["dice"],
             "dice_value": dice_info["dice_value"],
             "secondary_dice": dice_info["secondary_dice"],

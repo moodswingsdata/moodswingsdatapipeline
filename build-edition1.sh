@@ -10,6 +10,7 @@ cd "$SCRIPT_DIR"
 SET_CODE="msw"
 
 EDITIONS_INPUT="raw_data/editions.yaml"
+EXTRA_CARDS_INPUT="raw_data/hurt-feelings.yaml"
 EDITIONS_YAML="out/editions.yaml"
 CARDS_YAML="out/cards.yaml"
 PRINTINGS_YAML="out/printings_partial.yaml"
@@ -58,11 +59,11 @@ IMAGE_DIR="raw_data/card_images/${SET_CODE}"
 
 mkdir -p out
 
-# Step 0: Prepare editions
+# Step 1: Prepare editions
 echo "==> Preparing editions..."
 uv run ms prepare-editions "$EDITIONS_INPUT" -o "$EDITIONS_YAML"
 
-# Step 1: Extract cards from HTML
+# Step 2: Extract cards from HTML
 echo "==> Extracting cards from HTML..."
 uv run ms extract-cards "$INPUT_HTML" \
     -o "$CARDS_YAML" \
@@ -70,7 +71,13 @@ uv run ms extract-cards "$INPUT_HTML" \
     --editions "$EDITIONS_YAML" \
     --set-code "$SET_CODE"
 
-# Step 2: Download card images if not already present
+# Step 3: Add the Hurt Feelings token
+echo "==> Adding additional known cards..."
+# uv run ms add-card out/cards.yaml --from raw_data/new_cards.yaml
+uv run ms add-card "$CARDS_YAML" \
+    --from "$EXTRA_CARDS_INPUT"
+
+# Step 4: Download card images if not already present
 if [ -d "$IMAGE_DIR" ] && [ "$(ls -A "$IMAGE_DIR" 2>/dev/null)" ]; then
     echo "==> Card images already exist in $IMAGE_DIR, skipping download."
 else
@@ -79,13 +86,13 @@ else
         --output-dir "$IMAGE_DIR"
 fi
 
-# Step 3: Extract metadata from images (artist, dice color, reminder icon)
+# Step 5: Extract metadata from images (artist, dice color, reminder icon)
 echo "==> Extracting metadata from card images..."
 uv run ms extract-from-images "$CARDS_YAML" "$PRINTINGS_YAML" "$IMAGE_DIR" \
     -o "$PRINTINGS_ENRICHED" \
     --editions "$EDITIONS_YAML"
 
-# Step 4: Add additional printings
+# Step 6: Add additional printings
 ADDITIONAL_PRINTINGS="$(read_edition_field additional_printings)"
 if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     while IFS= read -r printing_file; do
@@ -96,7 +103,7 @@ if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     done <<< "$ADDITIONAL_PRINTINGS"
 fi
 
-# Step 5: Generate review HTML with errata
+# Step 7: Generate review HTML with errata
 ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then

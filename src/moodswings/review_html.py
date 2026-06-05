@@ -276,7 +276,7 @@ def render_errata(errata: dict | None) -> str:
     )
 
 
-def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_path: Path | None, errata: dict | None = None, output_dir: Path | None = None) -> str:
+def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path: Path | None, errata: dict | None = None, output_dir: Path | None = None) -> str:
     """Render a single card entry as HTML."""
     # Merge card + printing for display
     merged = {**card, **printing}
@@ -284,7 +284,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     merged = apply_errata(merged, errata)
     collector_number = merged.get("collector_number", 0)
     name = escape_html(merged.get("name", "Unknown"))
-    color = escape_html(str(merged.get("color", "")))
+    color = escape_html(", ".join(merged.get("color", [])))
     frame = escape_html(str(merged.get("frame", "")))
     rarity = escape_html(str(merged.get("rarity", "")))
     reminder_icon = escape_html(str(merged.get("reminder_icon") or ""))
@@ -309,20 +309,20 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
                     found = True
                     break
         if not found:
-            if cardback_path:
+            if missing_path:
                 if output_dir:
-                    image_src = str(Path(os.path.relpath(cardback_path, output_dir)))
+                    image_src = str(Path(os.path.relpath(missing_path, output_dir)))
                 else:
-                    image_src = str(cardback_path)
+                    image_src = str(missing_path)
             else:
                 image_src = merged.get("card_image_url") or ""
     else:
         image_src = merged.get("card_image_url") or ""
-        if not image_src and cardback_path:
+        if not image_src and missing_path:
             if output_dir:
-                image_src = str(Path(os.path.relpath(cardback_path, output_dir)))
+                image_src = str(Path(os.path.relpath(missing_path, output_dir)))
             else:
-                image_src = str(cardback_path)
+                image_src = str(missing_path)
 
     # Build table rows for all fields
     skip_fields = {"name", "collector_number"}
@@ -371,10 +371,10 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     help="Local image directory. If provided, images are referenced locally.",
 )
 @click.option(
-    "--cardback",
+    "--missing",
     type=click.Path(exists=True, path_type=Path),
     default=None,
-    help="Fallback image for printings without a card image. Defaults to raw_data/cardback.png if it exists.",
+    help="Fallback image for printings without a card image. Defaults to raw_data/missing.png if it exists.",
 )
 @click.option(
     "--errata",
@@ -382,19 +382,19 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, cardback_pat
     default=None,
     help="Errata YAML file with corrections keyed by printing_id.",
 )
-def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: Path | None, image_dir: Path | None, cardback: Path | None, errata: Path | None):
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: Path | None, image_dir: Path | None, missing: Path | None, errata: Path | None):
     """Generate a static HTML page for reviewing card data."""
-    # Resolve cardback fallback
-    if cardback is None:
-        default_cardback = Path("raw_data/cardback.png")
-        if default_cardback.exists():
-            cardback = default_cardback
+    # Resolve missing image fallback
+    if missing is None:
+        default_missing = Path("raw_data/missing.png")
+        if default_missing.exists():
+            missing = default_missing
 
     # Resolve paths so relative path computation works correctly
     if image_dir:
         image_dir = image_dir.resolve()
-    if cardback:
-        cardback = cardback.resolve()
+    if missing:
+        missing = missing.resolve()
 
     with open(cards_yaml, "r", encoding="utf-8") as f:
         cards = yaml.safe_load(f)
@@ -420,7 +420,7 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: 
     # Iterate over printings (one entry per printing, even if same card)
     output_dir = output.parent.resolve()
     cards_html = "\n".join(
-        render_card(card_by_id[p["card_id"]], p, image_dir, cardback, errata_by_printing.get(p.get("id")), output_dir)
+        render_card(card_by_id[p["card_id"]], p, image_dir, missing, errata_by_printing.get(p.get("id")), output_dir)
         for p in printings
         if p["card_id"] in card_by_id
     )

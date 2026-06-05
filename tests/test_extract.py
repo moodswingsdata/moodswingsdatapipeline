@@ -141,11 +141,11 @@ class TestParseHtml:
     def test_card_colors(self, parsed):
         cards, _ = parsed
         by_name = {c["name"]: c for c in cards}
-        assert by_name["Altruism"]["color"] == "White"
-        assert by_name["Ambition"]["color"] == "Black"
-        assert by_name["Anger"]["color"] == "Red"
-        assert by_name["Bliss"]["color"] == "Green"
-        assert by_name["Ambivalence"]["color"] == "Blue"
+        assert by_name["Altruism"]["color"] == ["White"]
+        assert by_name["Ambition"]["color"] == ["Black"]
+        assert by_name["Anger"]["color"] == ["Red"]
+        assert by_name["Bliss"]["color"] == ["Green"]
+        assert by_name["Ambivalence"]["color"] == ["Blue"]
 
     def test_card_dice_values(self, parsed):
         cards, _ = parsed

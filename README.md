@@ -81,8 +81,8 @@ Put card images side-by-side with extracted data for human review. Supports
 client-side sorting by name, collector number, color, frame, rarity, reminder
 icon, dice value, secondary dice value, and treatment.
 
-Printings without a matching image file display `raw_data/cardback.png` as a
-fallback (auto-detected if present, or specify with `--cardback`).
+Printings without a matching image file display `raw_data/missing.png` as a
+fallback (auto-detected if present, or specify with `--missing`).
 
 ```bash
 uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
@@ -107,6 +107,26 @@ Errata YAML format:
 The `corrected` value overrides the displayed field in the card data table.
 The errata details section (collapsed) shows both the as-printed and corrected
 versions alongside the note.
+
+### `add-card`
+
+Add card(s) to the cards file. Supports two modes:
+
+**From file** (for repeatable/automated additions):
+```bash
+uv run ms add-card out/cards.yaml --from raw_data/new_cards.yaml
+```
+
+Each entry needs at minimum `name` and `dice` fields. The `color` field can be
+a comma-separated string or a list. Cards already in the file are skipped.
+
+**Interactive** (prompts for each field):
+```bash
+uv run ms add-card out/cards.yaml
+```
+
+After adding a card interactively, you'll be reminded to create a printing for
+it to appear in a set.
 
 ### `add-printing`
 
