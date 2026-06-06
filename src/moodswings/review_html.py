@@ -276,7 +276,7 @@ def render_errata(errata: dict | None) -> str:
     )
 
 
-def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path: Path | None, errata: dict | None = None, output_dir: Path | None = None) -> str:
+def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path: Path | None, errata: dict | None = None, output_dir: Path | None = None, printing_index: int | None = None) -> str:
     """Render a single card entry as HTML."""
     # Merge card + printing for display
     merged = {**card, **printing}
@@ -299,15 +299,20 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path
         found = False
         # Only look for a local file if this printing is expected to have an image
         if merged.get("card_image_url"):
+            # Match by printing_index + name for unique identification
+            # (printing_index mirrors the enumerate index used by download-images)
             for f in sorted(image_dir.iterdir()):
                 parts = f.stem.split("_", 1)
-                if len(parts) == 2 and parts[0].isdigit() and parts[1] == safe_name:
-                    if output_dir:
-                        image_src = str(Path(os.path.relpath(f, output_dir)))
-                    else:
-                        image_src = str(f)
-                    found = True
-                    break
+                if len(parts) == 2 and parts[0].isdigit():
+                    file_num = int(parts[0])
+                    file_name_part = parts[1]
+                    if file_name_part == safe_name and (printing_index is None or file_num == printing_index):
+                        if output_dir:
+                            image_src = str(Path(os.path.relpath(f, output_dir)))
+                        else:
+                            image_src = str(f)
+                        found = True
+                        break
         if not found:
             if missing_path:
                 if output_dir:
@@ -420,8 +425,8 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: 
     # Iterate over printings (one entry per printing, even if same card)
     output_dir = output.parent.resolve()
     cards_html = "\n".join(
-        render_card(card_by_id[p["card_id"]], p, image_dir, missing, errata_by_printing.get(p.get("id")), output_dir)
-        for p in printings
+        render_card(card_by_id[p["card_id"]], p, image_dir, missing, errata_by_printing.get(p.get("id")), output_dir, printing_index=idx)
+        for idx, p in enumerate(printings, 1)
         if p["card_id"] in card_by_id
     )
 

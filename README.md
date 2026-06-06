@@ -54,10 +54,22 @@ uv run ms extract-cards raw_data/msw-edition1/mood-swings-card-notes.html -o out
 
 ### `download-images`
 
-Download card images from URLs in the printings YAML file.
+Download card images from URLs in the printings YAML file. Images are saved as
+`{index}_{name}.{ext}` where the index is the printing's position in the YAML
+list. This ensures each printing gets a unique file, even when two printings
+share the same card name (e.g. Love at different collector numbers).
 
 ```bash
-uv run ms download-images out/printings.yaml --output-dir raw_data/card_images/2026-06-02
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir raw_data/card_images/2026-06-02
+```
+
+After adding new printings with `add-printing`, re-run `download-images` against
+the same output directory — existing images are skipped and only the new
+printings are fetched:
+
+```bash
+uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from raw_data/extra_printings.yaml
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir raw_data/card_images/2026-06-02
 ```
 
 ### `extract-from-images`

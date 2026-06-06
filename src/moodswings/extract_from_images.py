@@ -143,8 +143,12 @@ def match_artist(raw_ocr: str, lookup: list[str]) -> tuple[str, bool]:
     return raw_ocr, False
 
 
-def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
-    """Find the image file matching a card by name."""
+def find_image_for_card(card: dict, image_dir: Path, printing_index: int | None = None) -> Path | None:
+    """Find the image file matching a card by list index and name.
+
+    The printing_index is the 1-based position in the printings list,
+    matching the numeric prefix used by download-images.
+    """
     safe_name = card["name"].lower().replace(" ", "_").replace("'", "")
     # Try the expected filename pattern: NNN_name.ext
     for f in sorted(image_dir.iterdir()):
@@ -152,11 +156,17 @@ def find_image_for_card(card: dict, image_dir: Path) -> Path | None:
         # Strip leading numeric prefix (e.g., "001_altruism" -> "altruism")
         parts = stem.split("_", 1)
         if len(parts) == 2 and parts[0].isdigit():
+            file_num = int(parts[0])
             file_name_part = parts[1]
         else:
-            file_name_part = stem
-        if file_name_part == safe_name:
-            return f
+            continue
+        # Match by printing_index if provided, otherwise fall back to name only
+        if printing_index is not None:
+            if file_num == printing_index and file_name_part == safe_name:
+                return f
+        else:
+            if file_name_part == safe_name:
+                return f
     return None
 
 
@@ -226,11 +236,11 @@ def extract_from_images(
     missing = 0
     new_artists: list[str] = []
 
-    for printing in printings:
+    for idx, printing in enumerate(printings, 1):
         card_name = id_to_name.get(printing["card_id"], "Unknown")
         # Build a minimal card-like dict for find_image_for_card
         card_for_lookup = {"name": card_name}
-        img_path = find_image_for_card(card_for_lookup, image_dir)
+        img_path = find_image_for_card(card_for_lookup, image_dir, printing_index=idx)
         if img_path is None:
             click.echo(
                 f"  Warning: no image found for {card_name}",

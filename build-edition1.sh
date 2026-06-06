@@ -103,13 +103,18 @@ if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     done <<< "$ADDITIONAL_PRINTINGS"
 fi
 
-# Step 7: Make JSON versions
+# Step 7: Download card images for additional printings (rely on download-images to skip existing)
+echo "==> Downloading additional card images to $IMAGE_DIR..."
+uv run ms download-images "$CARDS_YAML" "$PRINTINGS_YAML" \
+    --output-dir "$IMAGE_DIR"
+
+# Step 8: Make JSON versions
 echo "==> Converting YAML to JSON..."
 uv run ms to-json "$EDITIONS_YAML" -o out/editions.json
 uv run ms to-json "$CARDS_YAML" -o out/cards.json
 uv run ms to-json "$PRINTINGS_ENRICHED" -o out/printings.json
 
-# Step 8: Generate review HTML with errata
+# Step 9: Generate review HTML with errata
 ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then
