@@ -63,12 +63,12 @@ share the same card name (e.g. Love at different collector numbers).
 uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/sets/msw-edition1/card_images
 ```
 
-After adding new printings with `add-printing`, re-run `download-images` against
+After adding new printings with `merge-printings`, re-run `download-images` against
 the same output directory — existing images are skipped and only the new
 printings are fetched:
 
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from inputs/extra_printings.yaml
+uv run ms merge-printings out/printings.yaml inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml -o out/printings.yaml
 uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/sets/msw-edition1/card_images
 ```
 
@@ -120,42 +120,48 @@ The `corrected` value overrides the displayed field in the card data table.
 The errata details section (collapsed) shows both the as-printed and corrected
 versions alongside the note.
 
-### `add-card`
+### `merge-cards`
 
-Add card(s) to the cards file. Supports two modes:
+Merge two or more cards YAML files into a single output. Cards are deduplicated
+by ID (first occurrence wins) and sorted by name.
 
-**From file** (for repeatable/automated additions):
 ```bash
-uv run ms add-card out/cards.yaml --from inputs/new_cards.yaml
+uv run ms merge-cards out/cards.yaml inputs/sets/msw-edition1/hurt-feelings.yaml -o out/cards.yaml
 ```
 
-Each entry needs at minimum `name` and `dice` fields. The `color` field can be
-a comma-separated string or a list. Cards already in the file are skipped.
+### `create-card`
 
-**Interactive** (prompts for each field):
+Create a card interactively and write it to a YAML file. If the file exists,
+the new card is appended (keeping cards sorted by name). If it doesn't exist,
+it is created.
+
 ```bash
-uv run ms add-card out/cards.yaml
+uv run ms create-card inputs/sets/msw-edition1/hurt-feelings.yaml
 ```
 
-After adding a card interactively, you'll be reminded to create a printing for
-it to appear in a set.
+After creating a card, you'll be reminded to create a printing for it to appear
+in a set.
 
-### `add-printing`
+### `merge-printings`
 
-Add printing(s) for existing cards. Supports two modes:
+Merge two or more printings YAML files into a single output. Printings are
+deduplicated by ID (first occurrence wins) and sorted by collector number.
+Input files may use `name`/`set_code` (resolved automatically) or
+already-resolved `card_id`/`edition_id`.
 
-**From file** (for repeatable/automated additions):
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from inputs/extra_printings.yaml
+uv run ms merge-printings out/printings.yaml inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml -o out/printings.yaml
 ```
 
-Each entry in the YAML file needs a `card_name` field plus a `set_code` field
-(to resolve the edition) and any printing fields (frame, rarity, collector_number,
-treatment, artist, etc.). Can also point `--from` at a directory of YAML files.
+Can also point at a directory of YAML files as one of the inputs.
 
-**Interactive** (prompts for each field):
+### `create-printing`
+
+Create a printing interactively and write it to a YAML file. If the file exists,
+the new printing is appended (keeping printings sorted by collector number).
+
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --card-name "Love"
+uv run ms create-printing inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml --card-name "Love"
 ```
 
 ## Data Format

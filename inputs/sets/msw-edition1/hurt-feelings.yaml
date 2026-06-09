@@ -1,13 +1,11 @@
-- card_name: Hurt Feelings
-  id: 1e86b53b-12ac-5477-b797-b27738d739eb
-  card_id: aacf1143-7ab8-54dc-9343-eb0fe6484edf
+- id: 1e86b53b-12ac-5477-b797-b27738d739eb
+  card_id: 1e86b53b-12ac-5477-b797-b27738d739eb
+  edition_id: 7123a285-e0f7-51c5-86c6-f007b2184eb0
   frame: null
   reminder_icon: null
   rarity: null
   dice_color: null
   collector_number: 9999
-  set_code: MSW
-  edition_name: Edition 1
   treatment: Helper
   artist: Mike Dringenberg
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_SDbCBoXR0F.webp

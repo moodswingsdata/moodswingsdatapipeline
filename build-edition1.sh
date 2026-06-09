@@ -71,11 +71,10 @@ uv run ms extract-cards "$INPUT_HTML" \
     --editions "$EDITIONS_YAML" \
     --set-code "$SET_CODE"
 
-# Step 3: Add the Hurt Feelings token
-echo "==> Adding additional known cards..."
-# uv run ms add-card out/cards.yaml --from inputs/new_cards.yaml
-uv run ms add-card "$CARDS_YAML" \
-    --from "$EXTRA_CARDS_INPUT"
+# Step 3: Merge in the Hurt Feelings token
+echo "==> Merging additional known cards..."
+uv run ms merge-cards "$CARDS_YAML" "$EXTRA_CARDS_INPUT" \
+    -o "$CARDS_YAML"
 
 # Step 4: Download card images if not already present
 if [ -d "$IMAGE_DIR" ] && [ "$(ls -A "$IMAGE_DIR" 2>/dev/null)" ]; then
@@ -96,10 +95,11 @@ uv run ms extract-from-images "$CARDS_YAML" "$PRINTINGS_YAML" "$IMAGE_DIR" \
 ADDITIONAL_PRINTINGS="$(read_edition_field additional_printings)"
 if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     while IFS= read -r printing_file; do
-        echo "==> Adding printings from ${printing_file}..."
-        uv run ms add-printing "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
+        echo "==> Merging printings from ${printing_file}..."
+        uv run ms merge-printings "$PRINTINGS_ENRICHED" "inputs/${printing_file}" \
+            --cards "$CARDS_YAML" \
             --editions "$EDITIONS_YAML" \
-            --from "inputs/${printing_file}"
+            -o "$PRINTINGS_ENRICHED"
     done <<< "$ADDITIONAL_PRINTINGS"
 fi
 

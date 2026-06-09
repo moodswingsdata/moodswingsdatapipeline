@@ -21,7 +21,10 @@ Data model types are documented in `src/moodswings/models.py` (Python `TypedDict
 **Pipeline flow:**
 1. `prepare-editions` — Generates stable IDs for editions and strips internal `data_sources`
 2. `extract-cards` — Parses HTML card notes into cards YAML + printings YAML
-3. `add-card` / `add-printing` — Add cards or printings from file or interactively
+3. `create-card` — Create a card interactively and write to a YAML file
+4. `merge-cards` — Merge two or more cards YAML files (deduplicates, sorts by name)
+5. `create-printing` — Create a printing interactively and write to a YAML file
+6. `merge-printings` — Merge two or more printings YAML files (deduplicates, sorts by collector number)
 4. `download-images` — Fetches card images from URLs in printings YAML (skips existing)
 5. `extract-from-images` — Uses OCR (Tesseract) and pixel analysis to fill in artist, dice color, reminder icon, and collector number
 6. `to-json` — Converts YAML output files to JSON
