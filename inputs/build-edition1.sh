@@ -2,16 +2,16 @@
 set -euo pipefail
 
 # Build YAML files for a single edition from raw data.
-# Reads input paths from inputs/editions.yaml based on set code.
+# Reads input paths from editions.yaml based on set code.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 SET_CODE="msw"
 
-EDITIONS_INPUT="inputs/editions.yaml"
-EXTRA_CARDS_INPUT="inputs/game/hurt-feelings-card.yaml"
-OUT_BASE="out/"
+EDITIONS_INPUT="editions.yaml"
+EXTRA_CARDS_INPUT="game/hurt-feelings-card.yaml"
+OUT_BASE="../out/"
 EDITIONS_YAML="${OUT_BASE}editions.yaml"
 CARDS_YAML="${OUT_BASE}cards.yaml"
 PRINTINGS_YAML="${OUT_BASE}printings_partial.yaml"
@@ -55,8 +55,8 @@ elif field == 'errata':
 "
 }
 
-INPUT_HTML="inputs/$(read_edition_field core_file)"
-IMAGE_DIR="inputs/sets/msw-edition1/card_images"
+INPUT_HTML="$(read_edition_field core_file)"
+IMAGE_DIR="sets/msw-edition1/card_images"
 
 mkdir -p "${OUT_BASE}"
 
@@ -97,7 +97,7 @@ ADDITIONAL_PRINTINGS="$(read_edition_field additional_printings)"
 if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     while IFS= read -r printing_file; do
         echo "==> Merging printings from ${printing_file}..."
-        uv run ms merge-printings "$PRINTINGS_ENRICHED" "inputs/${printing_file}" \
+        uv run ms merge-printings "$PRINTINGS_ENRICHED" "${printing_file}" \
             --cards "$CARDS_YAML" \
             --editions "$EDITIONS_YAML" \
             -o "$PRINTINGS_ENRICHED"
@@ -120,7 +120,7 @@ ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then
     while IFS= read -r errata_file; do
-        ERRATA_ARGS="--errata inputs/${errata_file}"
+        ERRATA_ARGS="--errata ${errata_file}"
     done <<< "$ERRATA_FILES"
 fi
 
