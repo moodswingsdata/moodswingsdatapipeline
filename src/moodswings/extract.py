@@ -20,7 +20,7 @@ def generate_card_id(card_name: str) -> str:
 
 def generate_printing_id(card_name: str, set_code: str, collector_number: int) -> str:
     """Generate a stable printing ID (UUID5) from card name + set code + collector number."""
-    key = f"{card_name}:{set_code}:{collector_number}"
+    key = f"{card_name}:{set_code.lower()}:{collector_number}"
     return str(uuid.uuid5(MSDATA_NAMESPACE, key))
 
 
