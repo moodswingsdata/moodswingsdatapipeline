@@ -11,11 +11,12 @@ SET_CODE="msw"
 
 EDITIONS_INPUT="inputs/editions.yaml"
 EXTRA_CARDS_INPUT="inputs/sets/msw-edition1/hurt-feelings.yaml"
-EDITIONS_YAML="out/editions.yaml"
-CARDS_YAML="out/cards.yaml"
-PRINTINGS_YAML="out/printings_partial.yaml"
-PRINTINGS_ENRICHED="out/printings.yaml"
-REVIEW_HTML="out/review.html"
+OUT_BASE="out/"
+EDITIONS_YAML="${OUT_BASE}editions.yaml"
+CARDS_YAML="${OUT_BASE}cards.yaml"
+PRINTINGS_YAML="${OUT_BASE}printings_partial.yaml"
+PRINTINGS_ENRICHED="${OUT_BASE}printings.yaml"
+REVIEW_HTML="${OUT_BASE}review.html"
 
 # Extract data source paths from editions.yaml for this set code
 read_edition_field() {
@@ -57,7 +58,7 @@ elif field == 'errata':
 INPUT_HTML="inputs/$(read_edition_field core_file)"
 IMAGE_DIR="inputs/sets/msw-edition1/card_images"
 
-mkdir -p out
+mkdir -p "${OUT_BASE}"
 
 # Step 1: Prepare editions
 echo "==> Preparing editions..."
@@ -110,9 +111,9 @@ uv run ms download-images "$CARDS_YAML" "$PRINTINGS_YAML" \
 
 # Step 8: Make JSON versions
 echo "==> Converting YAML to JSON..."
-uv run ms to-json "$EDITIONS_YAML" -o out/editions.json
-uv run ms to-json "$CARDS_YAML" -o out/cards.json
-uv run ms to-json "$PRINTINGS_ENRICHED" -o out/printings.json
+uv run ms to-json "$EDITIONS_YAML" -o "${OUT_BASE}editions.json"
+uv run ms to-json "$CARDS_YAML" -o "${OUT_BASE}cards.json"
+uv run ms to-json "$PRINTINGS_ENRICHED" -o "${OUT_BASE}printings.json"
 
 # Step 9: Generate review HTML with errata
 ERRATA_FILES="$(read_edition_field errata)"
