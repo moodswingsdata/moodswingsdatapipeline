@@ -49,7 +49,7 @@ data). Each card and printing share a stable `id` (UUID5). Requires a prepared
 editions file and the set code for the edition being extracted.
 
 ```bash
-uv run ms extract-cards inputs/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml --editions out/editions.yaml --set-code MSW
+uv run ms extract-cards inputs/sets/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml --editions out/editions.yaml --set-code MSW
 ```
 
 ### `download-images`
@@ -60,7 +60,7 @@ list. This ensures each printing gets a unique file, even when two printings
 share the same card name (e.g. Love at different collector numbers).
 
 ```bash
-uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/card_images/2026-06-02
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/sets/msw-edition1/card_images
 ```
 
 After adding new printings with `add-printing`, re-run `download-images` against
@@ -69,7 +69,7 @@ printings are fetched:
 
 ```bash
 uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from inputs/extra_printings.yaml
-uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/card_images/2026-06-02
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/sets/msw-edition1/card_images
 ```
 
 ### `extract-from-images`
@@ -79,7 +79,7 @@ using OCR and pixel analysis. Requires Tesseract to be installed. Operates on
 the printings file (uses the cards file for name lookup).
 
 ```bash
-uv run ms extract-from-images out/cards.yaml out/printings.yaml inputs/card_images/2026-06-02 -o out/printings_enriched.yaml --editions out/editions.yaml
+uv run ms extract-from-images out/cards.yaml out/printings.yaml inputs/sets/msw-edition1/card_images -o out/printings_enriched.yaml --editions out/editions.yaml
 ```
 
 Artist names are fuzzy-matched against `inputs/artists.txt` (the default
@@ -97,14 +97,14 @@ Printings without a matching image file display `inputs/missing.png` as a
 fallback (auto-detected if present, or specify with `--missing`).
 
 ```bash
-uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/card_images/2026-06-02
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/sets/msw-edition1/card_images
 ```
 
 Optionally include an errata file to show corrections below affected cards
 (collapsed by default):
 
 ```bash
-uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/card_images/2026-06-02 --errata inputs/errata.yaml
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/sets/msw-edition1/card_images --errata inputs/errata.yaml
 ```
 
 Errata YAML format:

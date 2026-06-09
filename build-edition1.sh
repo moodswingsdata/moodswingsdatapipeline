@@ -10,7 +10,7 @@ cd "$SCRIPT_DIR"
 SET_CODE="msw"
 
 EDITIONS_INPUT="inputs/editions.yaml"
-EXTRA_CARDS_INPUT="inputs/hurt-feelings.yaml"
+EXTRA_CARDS_INPUT="inputs/sets/msw-edition1/hurt-feelings.yaml"
 EDITIONS_YAML="out/editions.yaml"
 CARDS_YAML="out/cards.yaml"
 PRINTINGS_YAML="out/printings_partial.yaml"
@@ -55,7 +55,7 @@ elif field == 'errata':
 }
 
 INPUT_HTML="inputs/$(read_edition_field core_file)"
-IMAGE_DIR="inputs/card_images/${SET_CODE}"
+IMAGE_DIR="inputs/sets/msw-edition1/card_images"
 
 mkdir -p out
 
