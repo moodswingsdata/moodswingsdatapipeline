@@ -1,5 +1,6 @@
 """Extract card metadata from card images (artist, dice color, reminder icon)."""
 
+import json
 import re
 from pathlib import Path
 
@@ -9,6 +10,7 @@ import yaml
 from PIL import Image, ImageEnhance, ImageStat
 from thefuzz import process as fuzz_process
 
+from moodswings.download_images import IMAGE_MAP_FILENAME
 from moodswings.extract import generate_printing_id
 
 
@@ -143,29 +145,38 @@ def match_artist(raw_ocr: str, lookup: list[str]) -> tuple[str, bool]:
     return raw_ocr, False
 
 
-def find_image_for_card(card: dict, image_dir: Path, printing_index: int | None = None) -> Path | None:
-    """Find the image file matching a card by list index and name.
+def load_image_map(image_dir: Path) -> dict[str, str]:
+    """Load the image map JSON from the image directory."""
+    map_path = image_dir / IMAGE_MAP_FILENAME
+    if map_path.exists():
+        with open(map_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
 
-    The printing_index is the 1-based position in the printings list,
-    matching the numeric prefix used by download-images.
+
+def find_image_for_printing(printing: dict, image_dir: Path, image_map: dict[str, str]) -> Path | None:
+    """Find the local image file for a printing using the image map.
+
+    Falls back to filename pattern matching if the map doesn't have the URL.
     """
-    safe_name = card["name"].lower().replace(" ", "_").replace("'", "")
-    # Try the expected filename pattern: NNN_name.ext
+    url = printing.get("card_image_url")
+    if url and url in image_map:
+        path = image_dir / image_map[url]
+        if path.exists():
+            return path
+
+    # Fallback: match by filename pattern (for backwards compatibility)
+    card_name = printing.get("_card_name", "")
+    if not card_name:
+        return None
+    safe_name = card_name.lower().replace(" ", "_").replace("'", "")
     for f in sorted(image_dir.iterdir()):
+        if f.name == IMAGE_MAP_FILENAME:
+            continue
         stem = f.stem
-        # Strip leading numeric prefix (e.g., "001_altruism" -> "altruism")
         parts = stem.split("_", 1)
         if len(parts) == 2 and parts[0].isdigit():
-            file_num = int(parts[0])
-            file_name_part = parts[1]
-        else:
-            continue
-        # Match by printing_index if provided, otherwise fall back to name only
-        if printing_index is not None:
-            if file_num == printing_index and file_name_part == safe_name:
-                return f
-        else:
-            if file_name_part == safe_name:
+            if parts[1] == safe_name:
                 return f
     return None
 
@@ -236,11 +247,13 @@ def extract_from_images(
     missing = 0
     new_artists: list[str] = []
 
+    image_map = load_image_map(image_dir)
+
     for idx, printing in enumerate(printings, 1):
         card_name = id_to_name.get(printing["card_id"], "Unknown")
-        # Build a minimal card-like dict for find_image_for_card
-        card_for_lookup = {"name": card_name}
-        img_path = find_image_for_card(card_for_lookup, image_dir, printing_index=idx)
+        printing["_card_name"] = card_name
+        img_path = find_image_for_printing(printing, image_dir, image_map)
+        printing.pop("_card_name", None)
         if img_path is None:
             click.echo(
                 f"  Warning: no image found for {card_name}",

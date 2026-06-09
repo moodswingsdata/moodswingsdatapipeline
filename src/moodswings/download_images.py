@@ -1,10 +1,14 @@
 """Download card images from URLs in the printings YAML file."""
 
+import json
 from pathlib import Path
 
 import click
 import httpx
 import yaml
+
+
+IMAGE_MAP_FILENAME = "image_map.json"
 
 
 @click.command("download-images")
@@ -32,6 +36,14 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
     # Build id-to-name lookup
     id_to_name = {card["id"]: card["name"] for card in cards}
 
+    # Load existing image map if present
+    map_path = output_dir / IMAGE_MAP_FILENAME
+    if map_path.exists():
+        with open(map_path, "r", encoding="utf-8") as f:
+            image_map: dict[str, str] = json.load(f)
+    else:
+        image_map = {}
+
     downloaded = 0
     skipped = 0
 
@@ -51,6 +63,8 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
 
             if filepath.exists():
                 click.echo(f"  Exists: {filename}", err=True)
+                # Ensure map is up to date even for existing files
+                image_map[url] = filename
                 skipped += 1
                 continue
 
@@ -59,9 +73,15 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
                 resp = client.get(url, follow_redirects=True)
                 resp.raise_for_status()
                 filepath.write_bytes(resp.content)
+                image_map[url] = filename
                 downloaded += 1
             except httpx.HTTPError as e:
                 click.echo(f"  Error downloading {card_name}: {e}", err=True)
                 skipped += 1
+
+    # Write the image map
+    with open(map_path, "w", encoding="utf-8") as f:
+        json.dump(image_map, f, indent=2, sort_keys=True)
+        f.write("\n")
 
     click.echo(f"Done: {downloaded} downloaded, {skipped} skipped", err=True)

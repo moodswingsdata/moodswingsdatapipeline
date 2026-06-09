@@ -10,7 +10,7 @@ cd "$SCRIPT_DIR"
 SET_CODE="msw"
 
 EDITIONS_INPUT="inputs/editions.yaml"
-EXTRA_CARDS_INPUT="inputs/sets/msw-edition1/hurt-feelings.yaml"
+EXTRA_CARDS_INPUT="inputs/game/hurt-feelings-card.yaml"
 OUT_BASE="out/"
 EDITIONS_YAML="${OUT_BASE}editions.yaml"
 CARDS_YAML="${OUT_BASE}cards.yaml"
@@ -106,7 +106,7 @@ fi
 
 # Step 7: Download card images for additional printings (rely on download-images to skip existing)
 echo "==> Downloading additional card images to $IMAGE_DIR..."
-uv run ms download-images "$CARDS_YAML" "$PRINTINGS_YAML" \
+uv run ms download-images "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --output-dir "$IMAGE_DIR"
 
 # Step 8: Make JSON versions
