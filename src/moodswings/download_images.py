@@ -56,6 +56,14 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
                 skipped += 1
                 continue
 
+            # Check if already downloaded (via image map)
+            if url in image_map:
+                existing_file = output_dir / image_map[url]
+                if existing_file.exists():
+                    click.echo(f"  Exists: {image_map[url]}", err=True)
+                    skipped += 1
+                    continue
+
             safe_name = card_name.lower().replace(" ", "_").replace("'", "")
             ext = Path(url).suffix or ".webp"
             filename = f"{idx:03d}_{safe_name}{ext}"
@@ -63,7 +71,6 @@ def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
 
             if filepath.exists():
                 click.echo(f"  Exists: {filename}", err=True)
-                # Ensure map is up to date even for existing files
                 image_map[url] = filename
                 skipped += 1
                 continue
