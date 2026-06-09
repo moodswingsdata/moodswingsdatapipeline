@@ -190,8 +190,8 @@ def find_image_for_card(card: dict, image_dir: Path, printing_index: int | None 
 @click.option(
     "--artist-lookup",
     type=click.Path(path_type=Path),
-    default=Path("raw_data/artists.txt"),
-    help="Path to the artist names database (one per line). Default: raw_data/artists.txt",
+    default=Path("inputs/artists.txt"),
+    help="Path to the artist names database (one per line). Default: inputs/artists.txt",
 )
 def extract_from_images(
     cards_yaml: Path, printings_yaml: Path, image_dir: Path, output: Path, editions: Path, artist_lookup: Path

@@ -379,7 +379,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path
     "--missing",
     type=click.Path(exists=True, path_type=Path),
     default=None,
-    help="Fallback image for printings without a card image. Defaults to raw_data/missing.png if it exists.",
+    help="Fallback image for printings without a card image. Defaults to inputs/missing.png if it exists.",
 )
 @click.option(
     "--errata",
@@ -391,7 +391,7 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: 
     """Generate a static HTML page for reviewing card data."""
     # Resolve missing image fallback
     if missing is None:
-        default_missing = Path("raw_data/missing.png")
+        default_missing = Path("inputs/missing.png")
         if default_missing.exists():
             missing = default_missing
 

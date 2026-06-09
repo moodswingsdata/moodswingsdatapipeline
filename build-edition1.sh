@@ -2,15 +2,15 @@
 set -euo pipefail
 
 # Build YAML files for a single edition from raw data.
-# Reads input paths from raw_data/editions.yaml based on set code.
+# Reads input paths from inputs/editions.yaml based on set code.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 SET_CODE="msw"
 
-EDITIONS_INPUT="raw_data/editions.yaml"
-EXTRA_CARDS_INPUT="raw_data/hurt-feelings.yaml"
+EDITIONS_INPUT="inputs/editions.yaml"
+EXTRA_CARDS_INPUT="inputs/hurt-feelings.yaml"
 EDITIONS_YAML="out/editions.yaml"
 CARDS_YAML="out/cards.yaml"
 PRINTINGS_YAML="out/printings_partial.yaml"
@@ -54,8 +54,8 @@ elif field == 'errata':
 "
 }
 
-INPUT_HTML="raw_data/$(read_edition_field core_file)"
-IMAGE_DIR="raw_data/card_images/${SET_CODE}"
+INPUT_HTML="inputs/$(read_edition_field core_file)"
+IMAGE_DIR="inputs/card_images/${SET_CODE}"
 
 mkdir -p out
 
@@ -73,7 +73,7 @@ uv run ms extract-cards "$INPUT_HTML" \
 
 # Step 3: Add the Hurt Feelings token
 echo "==> Adding additional known cards..."
-# uv run ms add-card out/cards.yaml --from raw_data/new_cards.yaml
+# uv run ms add-card out/cards.yaml --from inputs/new_cards.yaml
 uv run ms add-card "$CARDS_YAML" \
     --from "$EXTRA_CARDS_INPUT"
 
@@ -99,7 +99,7 @@ if [ -n "$ADDITIONAL_PRINTINGS" ]; then
         echo "==> Adding printings from ${printing_file}..."
         uv run ms add-printing "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
             --editions "$EDITIONS_YAML" \
-            --from "raw_data/${printing_file}"
+            --from "inputs/${printing_file}"
     done <<< "$ADDITIONAL_PRINTINGS"
 fi
 
@@ -119,7 +119,7 @@ ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then
     while IFS= read -r errata_file; do
-        ERRATA_ARGS="--errata raw_data/${errata_file}"
+        ERRATA_ARGS="--errata inputs/${errata_file}"
     done <<< "$ERRATA_FILES"
 fi
 

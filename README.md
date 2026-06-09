@@ -38,7 +38,7 @@ Read the raw editions YAML, generate stable IDs, and produce the output editions
 file (stripping pipeline-internal `data_sources`).
 
 ```bash
-uv run ms prepare-editions raw_data/editions.yaml -o out/editions.yaml
+uv run ms prepare-editions inputs/editions.yaml -o out/editions.yaml
 ```
 
 ### `extract-cards`
@@ -49,7 +49,7 @@ data). Each card and printing share a stable `id` (UUID5). Requires a prepared
 editions file and the set code for the edition being extracted.
 
 ```bash
-uv run ms extract-cards raw_data/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml --editions out/editions.yaml --set-code MSW
+uv run ms extract-cards inputs/msw-edition1/mood-swings-card-notes.html -o out/cards.yaml -p out/printings.yaml --editions out/editions.yaml --set-code MSW
 ```
 
 ### `download-images`
@@ -60,7 +60,7 @@ list. This ensures each printing gets a unique file, even when two printings
 share the same card name (e.g. Love at different collector numbers).
 
 ```bash
-uv run ms download-images out/cards.yaml out/printings.yaml --output-dir raw_data/card_images/2026-06-02
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/card_images/2026-06-02
 ```
 
 After adding new printings with `add-printing`, re-run `download-images` against
@@ -68,8 +68,8 @@ the same output directory — existing images are skipped and only the new
 printings are fetched:
 
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from raw_data/extra_printings.yaml
-uv run ms download-images out/cards.yaml out/printings.yaml --output-dir raw_data/card_images/2026-06-02
+uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from inputs/extra_printings.yaml
+uv run ms download-images out/cards.yaml out/printings.yaml --output-dir inputs/card_images/2026-06-02
 ```
 
 ### `extract-from-images`
@@ -79,10 +79,10 @@ using OCR and pixel analysis. Requires Tesseract to be installed. Operates on
 the printings file (uses the cards file for name lookup).
 
 ```bash
-uv run ms extract-from-images out/cards.yaml out/printings.yaml raw_data/card_images/2026-06-02 -o out/printings_enriched.yaml --editions out/editions.yaml
+uv run ms extract-from-images out/cards.yaml out/printings.yaml inputs/card_images/2026-06-02 -o out/printings_enriched.yaml --editions out/editions.yaml
 ```
 
-Artist names are fuzzy-matched against `raw_data/artists.txt` (the default
+Artist names are fuzzy-matched against `inputs/artists.txt` (the default
 lookup database). If an OCR result doesn't match any known name, it's appended
 to the file with a leading `*`. Review the file, correct starred entries,
 remove the `*`, and re-run.
@@ -93,18 +93,18 @@ Put card images side-by-side with extracted data for human review. Supports
 client-side sorting by name, collector number, color, frame, rarity, reminder
 icon, dice value, secondary dice value, and treatment.
 
-Printings without a matching image file display `raw_data/missing.png` as a
+Printings without a matching image file display `inputs/missing.png` as a
 fallback (auto-detected if present, or specify with `--missing`).
 
 ```bash
-uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/card_images/2026-06-02
 ```
 
 Optionally include an errata file to show corrections below affected cards
 (collapsed by default):
 
 ```bash
-uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir raw_data/card_images/2026-06-02 --errata raw_data/errata.yaml
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/card_images/2026-06-02 --errata inputs/errata.yaml
 ```
 
 Errata YAML format:
@@ -126,7 +126,7 @@ Add card(s) to the cards file. Supports two modes:
 
 **From file** (for repeatable/automated additions):
 ```bash
-uv run ms add-card out/cards.yaml --from raw_data/new_cards.yaml
+uv run ms add-card out/cards.yaml --from inputs/new_cards.yaml
 ```
 
 Each entry needs at minimum `name` and `dice` fields. The `color` field can be
@@ -146,7 +146,7 @@ Add printing(s) for existing cards. Supports two modes:
 
 **From file** (for repeatable/automated additions):
 ```bash
-uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from raw_data/extra_printings.yaml
+uv run ms add-printing out/cards.yaml out/printings.yaml --editions out/editions.yaml --from inputs/extra_printings.yaml
 ```
 
 Each entry in the YAML file needs a `card_name` field plus a `set_code` field

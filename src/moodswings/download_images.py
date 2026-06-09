@@ -13,8 +13,8 @@ import yaml
 @click.option(
     "--output-dir",
     type=click.Path(path_type=Path),
-    default=Path("raw_data/card_images"),
-    help="Directory to save card images. Default: raw_data/card_images",
+    default=Path("inputs/card_images"),
+    help="Directory to save card images. Default: inputs/card_images",
 )
 def download_images(cards_yaml: Path, printings_yaml: Path, output_dir: Path):
     """Download card images referenced in the printings YAML file."""

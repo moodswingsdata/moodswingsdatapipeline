@@ -32,7 +32,7 @@ Data model types are documented in `src/moodswings/models.py` (Python `TypedDict
 - Each pipeline tool is a Click command in its own module under `src/moodswings/`, registered in `cli.py`.
 - The entry point is a Click group (`main`) exported from `__init__.py`.
 - Pipeline tools do not overwrite their inputs — they write to a specified output path.
-- Card images are stored in `raw_data/card_images/<set_code>/` and are not committed to git.
+- Card images are stored in `inputs/card_images/<set_code>/` and are not committed to git.
 - YAML output uses `sort_keys=False, allow_unicode=True, default_flow_style=False`.
 - External tool dependency: Tesseract OCR must be installed on the system for `extract-from-images`.
 - When adding or updating a tool, make sure to update README.md.
