@@ -1,4 +1,4 @@
-name: Build Edition 1
+name: Build Data Files
 
 on:
   workflow_dispatch:
@@ -18,8 +18,8 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Build Edition 1
-        run: ./build-edition1.sh
+      - name: Collate editions
+        run: ./build-data.sh
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

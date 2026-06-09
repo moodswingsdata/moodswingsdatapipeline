@@ -11,11 +11,11 @@ SET_CODE="msw"
 
 EDITIONS_INPUT="editions.yaml"
 EXTRA_CARDS_INPUT="game/hurt-feelings-card.yaml"
-OUT_BASE="../out/"
+OUT_BASE="../out/${SET_CODE}/"
 EDITIONS_YAML="${OUT_BASE}editions.yaml"
-CARDS_YAML="${OUT_BASE}cards.yaml"
+CARDS_YAML="${OUT_BASE}cards_${SET_CODE}.yaml"
 PRINTINGS_YAML="${OUT_BASE}printings_partial.yaml"
-PRINTINGS_ENRICHED="${OUT_BASE}printings.yaml"
+PRINTINGS_ENRICHED="${OUT_BASE}printings_${SET_CODE}.yaml"
 REVIEW_HTML="${OUT_BASE}review.html"
 
 # Extract data source paths from editions.yaml for this set code
@@ -109,13 +109,7 @@ echo "==> Downloading additional card images to $IMAGE_DIR..."
 uv run ms download-images "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --output-dir "$IMAGE_DIR"
 
-# Step 8: Make JSON versions
-echo "==> Converting YAML to JSON..."
-uv run ms to-json "$EDITIONS_YAML" -o "${OUT_BASE}editions.json"
-uv run ms to-json "$CARDS_YAML" -o "${OUT_BASE}cards.json"
-uv run ms to-json "$PRINTINGS_ENRICHED" -o "${OUT_BASE}printings.json"
-
-# Step 9: Generate review HTML with errata
+# Step 8: Generate review HTML with errata
 ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then
@@ -130,5 +124,13 @@ uv run ms review-html "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --editions "$EDITIONS_YAML" \
     --image-dir "$IMAGE_DIR" \
     $ERRATA_ARGS
+
+# Step 9: Copy set-relevant files here
+echo "==> Copying data files here..."
+TARGET_DIR="$(dirname $INPUT_HTML)"
+HEADER_FILE="${OUT_BASE}header"
+echo '# Generated file; edit inputs and re-retun build-*.sh to edit.' >"$HEADER_FILE"
+cat "${HEADER_FILE}" "${CARDS_YAML}" >"${TARGET_DIR}/$(basename ""${CARDS_YAML}"")"
+cat "${HEADER_FILE}" "${PRINTINGS_ENRICHED}" >"${TARGET_DIR}/$(basename ""${PRINTINGS_ENRICHED}"")"
 
 echo "==> Done! Review at $REVIEW_HTML"
