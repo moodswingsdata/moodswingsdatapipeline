@@ -24,14 +24,14 @@ def parse_color_input(raw: str) -> list[str]:
     return colors
 
 
-def parse_dice_input(raw: str) -> tuple[str, int]:
+def parse_dice_input(raw: str) -> tuple[str | None, int]:
     """Parse and validate a dice string like '[3]' or '[6][1]'.
 
-    Returns (dice_str, dice_value).
+    Returns (dice_str, dice_value). Returns (None, 0) if blank.
     """
     raw = raw.strip()
     if not raw:
-        raise click.ClickException("Dice value is required.")
+        return None, 0
     value = dice_to_int(raw)
     return raw, value
 
@@ -64,7 +64,7 @@ def create_card(output: Path):
     )
     color = parse_color_input(color_raw)
 
-    dice_raw = click.prompt("Dice (e.g. '[3]' or '[6][1]')")
+    dice_raw = click.prompt("Dice (e.g. '[3]' or '[6][1]', or blank for none)", default="", show_default=False)
     dice, dice_value = parse_dice_input(dice_raw)
 
     secondary_raw = click.prompt(
@@ -73,7 +73,7 @@ def create_card(output: Path):
         show_default=False,
     )
     secondary_dice: str | None = None
-    secondary_dice_value: int | None = None
+    secondary_dice_value: int = 0
     if secondary_raw.strip():
         secondary_dice = secondary_raw.strip()
         secondary_dice_value = dice_to_int(secondary_dice)

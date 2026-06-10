@@ -21,17 +21,17 @@ class Card(TypedDict):
     color: list[str]
     """Card colors: e.g. ['White'], ['Blue', 'Black'], or [] for colorless."""
 
-    dice: str
-    """Primary dice notation, e.g. '[3]' or '[6][1]'."""
+    dice: str | None
+    """Primary dice notation, e.g. '[3]' or '[6][1]'. None for helper cards."""
 
     dice_value: int
-    """Integer sum of pips in the primary dice."""
+    """Integer sum of pips in the primary dice. 0 if dice is None."""
 
     secondary_dice: str | None
     """Secondary dice notation after '/', or None."""
 
-    secondary_dice_value: int | None
-    """Integer sum of pips in the secondary dice, or None."""
+    secondary_dice_value: int
+    """Integer sum of pips in the secondary dice. 0 if secondary_dice is None."""
 
     rules_text: str | None
     """HTML-formatted rules text, or None for vanilla cards."""

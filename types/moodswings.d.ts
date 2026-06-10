@@ -18,17 +18,17 @@ export interface Card {
   /** Card colors: e.g. ['White'], ['Blue', 'Black'], or [] for colorless. */
   color: ("White" | "Blue" | "Black" | "Red" | "Green")[];
 
-  /** Primary dice notation, e.g. '[3]' or '[6][1]'. */
-  dice: string;
+  /** Primary dice notation, e.g. '[3]' or '[6][1]'. Null for helper cards. */
+  dice: string | null;
 
-  /** Integer sum of pips in the primary dice. */
+  /** Integer sum of pips in the primary dice. 0 if dice is null. */
   dice_value: number;
 
   /** Secondary dice notation after '/', or null. */
   secondary_dice: string | null;
 
-  /** Integer sum of pips in the secondary dice, or null. */
-  secondary_dice_value: number | null;
+  /** Integer sum of pips in the secondary dice. 0 if secondary_dice is null. */
+  secondary_dice_value: number;
 
   /** HTML-formatted rules text, or null for vanilla cards. */
   rules_text: string | null;

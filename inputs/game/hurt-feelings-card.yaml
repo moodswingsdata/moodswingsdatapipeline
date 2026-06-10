@@ -1,10 +1,10 @@
 - id: aacf1143-7ab8-54dc-9343-eb0fe6484edf
   name: Hurt Feelings
   color: []
-  dice: '[]'
+  dice: null
   dice_value: 0
   secondary_dice: null
-  secondary_dice_value: null
+  secondary_dice_value: 0
   rules_text: '<em>(In a 3+ player game, at the end of each round, the player with the lowest score this round gets Hurt Feelings
     for the next round. If there''s a tie, whoever took a turn latest this round wins the tie.)</em>
 
