@@ -112,7 +112,7 @@ def merge_printings(printings_files: tuple[Path, ...], output: Path, cards: Path
     or unresolved entries (with name/set_code that get resolved).
 
     Printings are deduplicated by ID (first occurrence wins) and sorted by
-    collector number. Requires at least two input files.
+    edition ID then collector number. Requires at least two input files.
     """
     if len(printings_files) < 2:
         raise click.ClickException("At least two input files are required.")
@@ -142,7 +142,7 @@ def merge_printings(printings_files: tuple[Path, ...], output: Path, cards: Path
 
     merged = sorted(
         seen_ids.values(),
-        key=lambda p: (p.get("collector_number") or 9999, p.get("card_id", "")),
+        key=lambda p: (p.get("edition_id", ""), p.get("collector_number") or 9999, p.get("card_id", "")),
     )
 
     yaml_output = yaml.safe_dump(

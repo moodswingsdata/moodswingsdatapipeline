@@ -93,9 +93,9 @@ class TestLintCards:
 class TestLintPrintings:
     def test_no_issues(self):
         data = [
-            {"id": "aaa", "card_id": "c1", "collector_number": 1},
-            {"id": "bbb", "card_id": "c2", "collector_number": 2},
-            {"id": "ccc", "card_id": "c3", "collector_number": 3},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 1},
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed1", "collector_number": 2},
+            {"id": "ccc", "card_id": "c3", "edition_id": "ed1", "collector_number": 3},
         ]
         errors = []
         lint_printings(data, "test.yaml", errors)
@@ -103,38 +103,59 @@ class TestLintPrintings:
 
     def test_duplicate_id(self):
         data = [
-            {"id": "aaa", "card_id": "c1", "collector_number": 1},
-            {"id": "aaa", "card_id": "c2", "collector_number": 2},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 1},
+            {"id": "aaa", "card_id": "c2", "edition_id": "ed1", "collector_number": 2},
         ]
         errors = []
         lint_printings(data, "test.yaml", errors)
         assert len(errors) == 1
         assert "duplicate printing id" in errors[0]
 
-    def test_sort_order_correct(self):
+    def test_sort_order_correct_same_edition(self):
         data = [
-            {"id": "aaa", "card_id": "c1", "collector_number": 10},
-            {"id": "bbb", "card_id": "c2", "collector_number": 20},
-            {"id": "ccc", "card_id": "c3", "collector_number": 9999},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 10},
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed1", "collector_number": 20},
+            {"id": "ccc", "card_id": "c3", "edition_id": "ed1", "collector_number": 9999},
         ]
         errors = []
         lint_printings(data, "test.yaml", errors)
         assert errors == []
 
-    def test_sort_order_violation(self):
+    def test_sort_order_correct_across_editions(self):
+        """edition_id 'ed1' < 'ed2' lexicographically, so ed1 first is correct."""
         data = [
-            {"id": "bbb", "card_id": "c2", "collector_number": 5},
-            {"id": "aaa", "card_id": "c1", "collector_number": 2},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 50},
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed2", "collector_number": 1},
+        ]
+        errors = []
+        lint_printings(data, "test.yaml", errors)
+        assert errors == []
+
+    def test_sort_order_violation_within_edition(self):
+        data = [
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed1", "collector_number": 5},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 2},
         ]
         errors = []
         lint_printings(data, "test.yaml", errors)
         assert len(errors) == 1
-        assert "not sorted by collector_number" in errors[0]
+        assert "not sorted correctly" in errors[0]
+
+    def test_sort_order_violation_wrong_edition_order(self):
+        """edition_id 'ed2' > 'ed1' lexicographically, so ed2 first is wrong."""
+        data = [
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed2", "collector_number": 1},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 50},
+        ]
+        errors = []
+        lint_printings(data, "test.yaml", errors)
+        assert len(errors) == 1
+        assert "not sorted correctly" in errors[0]
 
     def test_null_collector_number_treated_as_9999(self):
         data = [
-            {"id": "aaa", "card_id": "c1", "collector_number": 50},
-            {"id": "bbb", "card_id": "c2", "collector_number": None},
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 50},
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed1", "collector_number": None},
         ]
         errors = []
         lint_printings(data, "test.yaml", errors)

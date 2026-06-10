@@ -124,7 +124,7 @@ def create_printing(output: Path, cards: Path, editions: Path, card_name: str):
 
     existing_printings.append(printing)
     existing_printings.sort(
-        key=lambda p: (p.get("collector_number") or 9999, p.get("card_id", ""))
+        key=lambda p: (p.get("edition_id", ""), p.get("collector_number") or 9999, p.get("card_id", ""))
     )
 
     output.parent.mkdir(parents=True, exist_ok=True)

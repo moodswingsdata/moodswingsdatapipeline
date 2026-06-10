@@ -69,7 +69,7 @@ def lint_cards(data: list[dict], path: str, errors: list[str]) -> None:
 def lint_printings(data: list[dict], path: str, errors: list[str]) -> None:
     """Check printings YAML for issues."""
     seen_ids: dict[str, int] = {}
-    prev_sort_key: tuple[int, str] | None = None
+    prev_sort_key: tuple[str, int, str] | None = None
 
     for idx, entry in enumerate(data, 1):
         entry_id = entry.get("id")
@@ -80,14 +80,16 @@ def lint_printings(data: list[dict], path: str, errors: list[str]) -> None:
             else:
                 seen_ids[entry_id] = idx
 
+        edition_id = entry.get("edition_id", "")
         collector_number = entry.get("collector_number") or 9999
         card_id = entry.get("card_id", "")
-        sort_key = (collector_number, card_id)
+        sort_key = (edition_id, collector_number, card_id)
 
         if prev_sort_key is not None and sort_key < prev_sort_key:
             errors.append(
-                f"{path}: printings not sorted by collector_number: "
-                f"entry {idx} (#{collector_number}) comes after entry {idx-1} (#{prev_sort_key[0]})"
+                f"{path}: printings not sorted correctly: "
+                f"entry {idx} (edition {edition_id}, #{collector_number}) "
+                f"comes after entry {idx-1} (edition {prev_sort_key[0]}, #{prev_sort_key[1]})"
             )
         prev_sort_key = sort_key
 
