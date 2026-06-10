@@ -84,7 +84,11 @@ for SET_CODE in "${SET_CODES[@]}"; do
     -o "$PRINTINGS_YAML"
 done
 
-# Step 4: Make JSON versions
+# Step 4: Lint before proceeding
+echo "==> Linting output files..."
+uv run ms lint --editions "$EDITIONS_YAML" --cards "$CARDS_YAML" --printings "$PRINTINGS_YAML"
+
+# Step 5: Make JSON versions
 echo "==> Converting YAML to JSON..."
 uv run ms to-json "$EDITIONS_YAML" -o "${OUT_BASE}editions.json"
 uv run ms to-json "$CARDS_YAML" -o "${OUT_BASE}cards.json"

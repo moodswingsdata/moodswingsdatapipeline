@@ -120,6 +120,17 @@ The `corrected` value overrides the displayed field in the card data table.
 The errata details section (collapsed) shows both the as-printed and corrected
 versions alongside the note.
 
+### `lint`
+
+Check output YAML files for common issues: duplicate IDs, duplicate names,
+and sort order (cards sorted by name, printings by collector number).
+
+```bash
+uv run ms lint --editions out/editions.yaml --cards out/cards.yaml --printings out/printings.yaml
+```
+
+Exits with code 1 if any issues are found.
+
 ### `merge-cards`
 
 Merge two or more cards YAML files into a single output. Cards are deduplicated

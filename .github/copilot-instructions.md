@@ -28,7 +28,8 @@ Data model types are documented in `src/moodswings/models.py` (Python `TypedDict
 4. `download-images` — Fetches card images from URLs in printings YAML (skips existing)
 5. `extract-from-images` — Uses OCR (Tesseract) and pixel analysis to fill in artist, dice color, reminder icon, and collector number
 6. `to-json` — Converts YAML output files to JSON
-7. `review-html` — Generates a static HTML page for human review of the output
+7. `lint` — Checks edition, card, and printing YAMLs for duplicates and sort order
+8. `review-html` — Generates a static HTML page for human review of the output
 
 ## Conventions
 
