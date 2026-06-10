@@ -1,13 +1,11 @@
-- card_name: Love
-  id: 072bfb5e-ef12-5eb1-87ae-cbe879c63376
+- id: 072bfb5e-ef12-5eb1-87ae-cbe879c63376
   card_id: 4102e551-315d-5490-abec-a1389d261a34
+  edition_id: 7123a285-e0f7-51c5-86c6-f007b2184eb0
   frame: Green
   reminder_icon: null
   rarity: Mythic
   dice_color: black
   collector_number: 134
-  set_code: MSW
-  edition_name: Edition 1
   treatment: Foil
   artist: Mark Rosewater
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8674b312121.webp

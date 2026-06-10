@@ -78,4 +78,4 @@ dmypy.json
 .pytype/
 
 # Card images (large media, not stored in git)
-raw_data/card_images/
+**/card_images/

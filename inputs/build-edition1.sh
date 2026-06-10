@@ -2,20 +2,21 @@
 set -euo pipefail
 
 # Build YAML files for a single edition from raw data.
-# Reads input paths from raw_data/editions.yaml based on set code.
+# Reads input paths from editions.yaml based on set code.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 SET_CODE="msw"
 
-EDITIONS_INPUT="raw_data/editions.yaml"
-EXTRA_CARDS_INPUT="raw_data/hurt-feelings.yaml"
-EDITIONS_YAML="out/editions.yaml"
-CARDS_YAML="out/cards.yaml"
-PRINTINGS_YAML="out/printings_partial.yaml"
-PRINTINGS_ENRICHED="out/printings.yaml"
-REVIEW_HTML="out/review.html"
+EDITIONS_INPUT="editions.yaml"
+EXTRA_CARDS_INPUT="game/hurt-feelings-card.yaml"
+OUT_BASE="../out/${SET_CODE}/"
+EDITIONS_YAML="${OUT_BASE}editions.yaml"
+CARDS_YAML="${OUT_BASE}cards_${SET_CODE}.yaml"
+PRINTINGS_YAML="${OUT_BASE}printings_partial.yaml"
+PRINTINGS_ENRICHED="${OUT_BASE}printings_${SET_CODE}.yaml"
+REVIEW_HTML="${OUT_BASE}review.html"
 
 # Extract data source paths from editions.yaml for this set code
 read_edition_field() {
@@ -54,10 +55,10 @@ elif field == 'errata':
 "
 }
 
-INPUT_HTML="raw_data/$(read_edition_field core_file)"
-IMAGE_DIR="raw_data/card_images/${SET_CODE}"
+INPUT_HTML="$(read_edition_field core_file)"
+IMAGE_DIR="sets/msw-edition1/card_images"
 
-mkdir -p out
+mkdir -p "${OUT_BASE}"
 
 # Step 1: Prepare editions
 echo "==> Preparing editions..."
@@ -71,11 +72,10 @@ uv run ms extract-cards "$INPUT_HTML" \
     --editions "$EDITIONS_YAML" \
     --set-code "$SET_CODE"
 
-# Step 3: Add the Hurt Feelings token
-echo "==> Adding additional known cards..."
-# uv run ms add-card out/cards.yaml --from raw_data/new_cards.yaml
-uv run ms add-card "$CARDS_YAML" \
-    --from "$EXTRA_CARDS_INPUT"
+# Step 3: Merge in the Hurt Feelings token
+echo "==> Merging additional known cards..."
+uv run ms merge-cards "$CARDS_YAML" "$EXTRA_CARDS_INPUT" \
+    -o "$CARDS_YAML"
 
 # Step 4: Download card images if not already present
 if [ -d "$IMAGE_DIR" ] && [ "$(ls -A "$IMAGE_DIR" 2>/dev/null)" ]; then
@@ -96,30 +96,25 @@ uv run ms extract-from-images "$CARDS_YAML" "$PRINTINGS_YAML" "$IMAGE_DIR" \
 ADDITIONAL_PRINTINGS="$(read_edition_field additional_printings)"
 if [ -n "$ADDITIONAL_PRINTINGS" ]; then
     while IFS= read -r printing_file; do
-        echo "==> Adding printings from ${printing_file}..."
-        uv run ms add-printing "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
+        echo "==> Merging printings from ${printing_file}..."
+        uv run ms merge-printings "$PRINTINGS_ENRICHED" "${printing_file}" \
+            --cards "$CARDS_YAML" \
             --editions "$EDITIONS_YAML" \
-            --from "raw_data/${printing_file}"
+            -o "$PRINTINGS_ENRICHED"
     done <<< "$ADDITIONAL_PRINTINGS"
 fi
 
 # Step 7: Download card images for additional printings (rely on download-images to skip existing)
 echo "==> Downloading additional card images to $IMAGE_DIR..."
-uv run ms download-images "$CARDS_YAML" "$PRINTINGS_YAML" \
+uv run ms download-images "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --output-dir "$IMAGE_DIR"
 
-# Step 8: Make JSON versions
-echo "==> Converting YAML to JSON..."
-uv run ms to-json "$EDITIONS_YAML" -o out/editions.json
-uv run ms to-json "$CARDS_YAML" -o out/cards.json
-uv run ms to-json "$PRINTINGS_ENRICHED" -o out/printings.json
-
-# Step 9: Generate review HTML with errata
+# Step 8: Generate review HTML with errata
 ERRATA_FILES="$(read_edition_field errata)"
 ERRATA_ARGS=""
 if [ -n "$ERRATA_FILES" ]; then
     while IFS= read -r errata_file; do
-        ERRATA_ARGS="--errata raw_data/${errata_file}"
+        ERRATA_ARGS="--errata ${errata_file}"
     done <<< "$ERRATA_FILES"
 fi
 
@@ -129,5 +124,13 @@ uv run ms review-html "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --editions "$EDITIONS_YAML" \
     --image-dir "$IMAGE_DIR" \
     $ERRATA_ARGS
+
+# Step 9: Copy set-relevant files here
+echo "==> Copying data files here..."
+TARGET_DIR="$(dirname $INPUT_HTML)"
+HEADER_FILE="${OUT_BASE}header"
+echo '# Generated file; edit inputs and re-retun build-*.sh to edit.' >"$HEADER_FILE"
+cat "${HEADER_FILE}" "${CARDS_YAML}" >"${TARGET_DIR}/$(basename ""${CARDS_YAML}"")"
+cat "${HEADER_FILE}" "${PRINTINGS_ENRICHED}" >"${TARGET_DIR}/$(basename ""${PRINTINGS_ENRICHED}"")"
 
 echo "==> Done! Review at $REVIEW_HTML"

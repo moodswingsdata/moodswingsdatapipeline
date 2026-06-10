@@ -6,10 +6,10 @@
   release_date: '2026-06-01'
   language: 'en'
   data_sources:
-  - core_file: msw-edition1/mood-swings-card-notes.html
+  - core_file: sets/msw-edition1/mood-swings-card-notes.html
     date: '2026-06-01'
   - additional_printings:
-    - msw-edition1/love-premium.yaml
-    - msw-edition1/hurt-feelings.yaml
+    - sets/msw-edition1/love-premium.yaml
+    - sets/msw-edition1/hurt-feelings.yaml
   - errata:
-    - msw-edition1/instability-errata.yaml
+    - sets/msw-edition1/instability-errata.yaml
