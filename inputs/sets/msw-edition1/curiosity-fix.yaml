@@ -1,0 +1,8 @@
+- card_id: 28daf6ae-739b-5cd9-b8ea-fa2cc9cfd51f
+  field_name: secondary_dice
+  old: null
+  new: '[6]'
+- card_id: 28daf6ae-739b-5cd9-b8ea-fa2cc9cfd51f
+  field_name: secondary_dice_value
+  old: null
+  new: 6

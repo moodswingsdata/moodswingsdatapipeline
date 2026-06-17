@@ -581,8 +581,8 @@
   - Blue
   dice: '[3]'
   dice_value: 3
-  secondary_dice: null
-  secondary_dice_value: null
+  secondary_dice: '[6]'
+  secondary_dice_value: 6
   rules_text: <strong>After playing this mood</strong> — You may choose a player. If you do, that player reveals a random
     card from their hand. If the revealed card shares a color with any mood, this mood's value becomes [6].
   rulings_text:

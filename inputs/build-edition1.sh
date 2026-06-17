@@ -77,6 +77,11 @@ echo "==> Merging additional known cards..."
 uv run ms merge-cards "$CARDS_YAML" "$EXTRA_CARDS_INPUT" \
     -o "$CARDS_YAML"
 
+# Step 3b: Apply manual card fixes
+echo "==> Applying manual card fixes..."
+uv run ms apply-fix "$CARDS_YAML" "sets/msw-edition1/curiosity-fix.yaml" \
+    -o "$CARDS_YAML"
+
 # Step 4: Download card images if not already present
 if [ -d "$IMAGE_DIR" ] && [ "$(ls -A "$IMAGE_DIR" 2>/dev/null)" ]; then
     echo "==> Card images already exist in $IMAGE_DIR, skipping download."
