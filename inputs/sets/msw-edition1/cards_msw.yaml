@@ -657,7 +657,11 @@
   - The card stays as a copy even if the original later leaves play.
   - If you use Creativity to copy a Creativity in play, you copy whatever that Creativity is a copy of and not Creativity
     itself.
-  errata: null
+  - Cards are the color they are in your hand when you play them. A Doubt stopping blue would stop Creativity from being played.
+  errata:
+    fields:
+    - notes
+    note: The note about card color and Doubt was added per correspondence with Mark Rosewater via Discord in June 2026.
 - id: d4a2a670-b99a-50af-8142-0a1edc674b23
   name: Cruelty
   color:
