@@ -11,6 +11,22 @@
 export const SCHEMA_VERSION: readonly [0, 9, 0];
 
 /**
+ * Marks a record whose data was corrected from what was originally printed.
+ *
+ * Errata is fundamentally a printing-side notion: a printing's as-printed text
+ * can differ from the card's oracle (canonical) text. The correction is
+ * reflected in the oracle field; this marker records that the correction
+ * happened so downstream apps can choose how to display it.
+ */
+export interface Errata {
+  /** Names of the fields that were corrected by this erratum. */
+  fields: string[];
+
+  /** Human-readable explanation of the correction. */
+  note: string;
+}
+
+/**
  * A unique card identity with its game-mechanical properties.
  */
 export interface Card {
@@ -35,11 +51,14 @@ export interface Card {
   /** Integer sum of pips in the secondary dice. 0 if secondary_dice is null. */
   secondary_dice_value: number;
 
-  /** HTML-formatted rules text, or null for vanilla cards. */
+  /** Oracle (canonical) HTML-formatted rules text, or null for vanilla cards. */
   rules_text: string | null;
 
   /** List of ruling strings, or null if no rulings exist. */
   rulings_text: string[] | null;
+
+  /** Errata applied to this card's oracle data, or null if there is none. */
+  errata: Errata | null;
 }
 
 /**
@@ -98,4 +117,17 @@ export interface Printing {
 
   /** URL to the card image, or null if unavailable. */
   card_image_url: string | null;
+
+  /**
+   * Rules text exactly as physically printed on this printing, or null when it
+   * is identical to the card's oracle rules_text. Populated when an erratum
+   * means the printed text differs from the corrected oracle text.
+   */
+  printed_rules_text: string | null;
+
+  /**
+   * Errata recorded for this printing (e.g. the printed text differs from the
+   * oracle), or null if there is none.
+   */
+  errata: Errata | null;
 }

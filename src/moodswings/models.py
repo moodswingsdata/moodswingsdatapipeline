@@ -12,6 +12,22 @@ SCHEMA_VERSION = (0, 9, 0)
 """Semantic version of the data schema as a (major, minor, patch) tuple."""
 
 
+class Errata(TypedDict):
+    """Marks a record whose data was corrected from what was originally printed.
+
+    Errata is fundamentally a printing-side notion: a printing's as-printed text
+    can differ from the card's oracle (canonical) text. The correction is
+    reflected in the oracle field; this marker records that the correction
+    happened so downstream apps can choose how to display it.
+    """
+
+    fields: list[str]
+    """Names of the fields that were corrected by this erratum."""
+
+    note: str
+    """Human-readable explanation of the correction."""
+
+
 class Card(TypedDict):
     """A unique card identity with its game-mechanical properties."""
 
@@ -37,10 +53,13 @@ class Card(TypedDict):
     """Integer sum of pips in the secondary dice. 0 if secondary_dice is None."""
 
     rules_text: str | None
-    """HTML-formatted rules text, or None for vanilla cards."""
+    """Oracle (canonical) HTML-formatted rules text, or None for vanilla cards."""
 
     rulings_text: list[str] | None
     """List of ruling strings, or None if no rulings exist."""
+
+    errata: Errata | None
+    """Errata applied to this card's oracle data, or None if there is none."""
 
 
 class Edition(TypedDict):
@@ -97,3 +116,12 @@ class Printing(TypedDict):
 
     card_image_url: str | None
     """URL to the card image, or None if unavailable."""
+
+    printed_rules_text: str | None
+    """Rules text exactly as physically printed on this printing, or None when
+    it is identical to the card's oracle rules_text. Populated when an erratum
+    means the printed text differs from the corrected oracle text."""
+
+    errata: Errata | None
+    """Errata recorded for this printing (e.g. the printed text differs from the
+    oracle), or None if there is none."""

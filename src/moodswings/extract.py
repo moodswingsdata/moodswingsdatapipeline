@@ -251,6 +251,7 @@ def parse_html(html_path: Path) -> list[dict]:
             "secondary_dice_value": dice_info["secondary_dice_value"],
             "rules_text": rules_html if rules_html else None,
             "rulings_text": rulings,
+            "errata": None,
         }
 
         printing = {
@@ -265,6 +266,8 @@ def parse_html(html_path: Path) -> list[dict]:
             "treatment": "Standard",
             "artist": None,
             "card_image_url": image_url,
+            "printed_rules_text": None,
+            "errata": None,
         }
 
         cards.append(card)

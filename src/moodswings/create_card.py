@@ -94,6 +94,7 @@ def create_card(output: Path):
         "secondary_dice_value": secondary_dice_value,
         "rules_text": rules_text if rules_text else None,
         "rulings_text": None,
+        "errata": None,
     }
 
     click.echo()

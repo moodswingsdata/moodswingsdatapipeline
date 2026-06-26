@@ -1,6 +1,7 @@
 import click
 
 from moodswings.apply_fix import apply_fix
+from moodswings.apply_errata import apply_errata
 from moodswings.create_card import create_card
 from moodswings.create_printing import create_printing
 from moodswings.extract import extract_cards
@@ -22,6 +23,7 @@ def main():
 
 
 main.add_command(apply_fix)
+main.add_command(apply_errata)
 main.add_command(prepare_editions)
 main.add_command(extract_cards)
 main.add_command(extract_from_images)

@@ -49,6 +49,18 @@ elif field == 'errata':
             for e in item['errata']:
                 print(e)
             sys.exit(0)
+elif field == 'card_errata':
+    for item in ds:
+        if 'card_errata' in item:
+            for e in item['card_errata']:
+                print(e)
+            sys.exit(0)
+elif field == 'printing_errata':
+    for item in ds:
+        if 'printing_errata' in item:
+            for e in item['printing_errata']:
+                print(e)
+            sys.exit(0)
 "
 }
 
@@ -84,17 +96,31 @@ for SET_CODE in "${SET_CODES[@]}"; do
     -o "$PRINTINGS_YAML"
 done
 
-# Step 4: Lint before proceeding
+# Step 4: Apply errata into cards and printings
+echo "==> Applying errata..."
+for SET_CODE in "${SET_CODES[@]}"; do
+  INPUT_HTML="$(read_edition_field core_file)"
+  SET_DIR="$(dirname $INPUT_HTML)"
+
+  while IFS= read -r ERRATA; do
+    [ -z "$ERRATA" ] && continue
+    echo "... $SET_CODE: inputs/${ERRATA}"
+    uv run ms apply-errata "$CARDS_YAML" "$PRINTINGS_YAML" "inputs/${ERRATA}" \
+      --cards-out "$CARDS_YAML" --printings-out "$PRINTINGS_YAML"
+  done < <(read_edition_field card_errata; read_edition_field printing_errata)
+done
+
+# Step 5: Lint before proceeding
 echo "==> Linting output files..."
 uv run ms lint --editions "$EDITIONS_YAML" --cards "$CARDS_YAML" --printings "$PRINTINGS_YAML"
 
-# Step 5: Make JSON versions
+# Step 6: Make JSON versions
 echo "==> Converting YAML to JSON..."
 uv run ms to-json "$EDITIONS_YAML" -o "${OUT_BASE}editions.json"
 uv run ms to-json "$CARDS_YAML" -o "${OUT_BASE}cards.json"
 uv run ms to-json "$PRINTINGS_YAML" -o "${OUT_BASE}printings.json"
 
-# Step 6: Write meta file (schema version + output file hashes)
+# Step 7: Write meta file (schema version + output file hashes)
 echo "==> Writing meta file..."
 META_YAML="${OUT_BASE}meta.yaml"
 uv run ms write-meta \

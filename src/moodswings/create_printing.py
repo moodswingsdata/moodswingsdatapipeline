@@ -103,6 +103,9 @@ def create_printing(output: Path, cards: Path, editions: Path, card_name: str):
         else:
             printing[field] = value if value else None
 
+    printing["printed_rules_text"] = None
+    printing["errata"] = None
+
     if printing["collector_number"] is not None and set_code_value:
         printing["id"] = generate_printing_id(
             card["name"], set_code_value, printing["collector_number"]

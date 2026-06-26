@@ -100,25 +100,52 @@ fallback (auto-detected if present, or specify with `--missing`).
 uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/sets/msw-edition1/card_images
 ```
 
-Optionally include an errata file to show corrections below affected cards
-(collapsed by default):
+Errata baked into the data appear below the affected card (collapsed by
+default). Card errata are read from `card.errata`; printing errata from
+`printing.errata`, with the as-printed text shown from `printing.printed_rules_text`:
 
 ```bash
-uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/sets/msw-edition1/card_images --errata inputs/errata.yaml
+uv run ms review-html out/cards.yaml out/printings_enriched.yaml -o review.html --image-dir inputs/sets/msw-edition1/card_images
 ```
 
-Errata YAML format:
+The errata details section (collapsed) shows the as-printed value alongside the
+corrected oracle value and the note. The data is read straight from the baked
+output — no separate errata files are passed. See [`apply-errata`](#apply-errata)
+for how errata get into the data.
+
+### `apply-errata`
+
+Bake errata corrections into the cards and printings YAML files. Used by the
+build so corrections reach the shipped output, not just the review page. A single
+errata file is keyed by **either** `card_id` **or** `printing_id` (the two keys
+may not be mixed in one file).
+
+```bash
+uv run ms apply-errata out/cards.yaml out/printings.yaml inputs/sets/msw-edition1/printings-errata.yaml --cards-out out/cards.yaml --printings-out out/printings.yaml
+```
+
+Errata is fundamentally a printing-side concept: a printing's as-printed text
+differs from the card's canonical (oracle) text. A **printing-keyed** entry
+preserves the original printed text on the printing (`printed_rules_text`),
+writes the corrected oracle value to the referenced card, and records an `errata`
+marker (which fields changed plus a note) on the printing. A **card-keyed** entry
+corrects the card's oracle field directly and records the marker on the card.
+
+Errata YAML format (printing example):
 ```yaml
-- printing_id: "9d9f6896-b0f7-..."
+- printing_id: "83974c7d-6793-..."
   rules_text:
-    as_printed: "Reroll tis card when any player rolls doubles."
-    corrected: "Reroll this card when any player rolls doubles."
-    note: "Typo: 'tis' should be 'this'"
+    as_printed: "...gives it to you..."
+    corrected: "...give it to you..."
+    note: "Typo in the printed card."
 ```
 
-The `corrected` value overrides the displayed field in the card data table.
-The errata details section (collapsed) shows both the as-printed and corrected
-versions alongside the note.
+Each entry replaces the oracle field with the `corrected` value and stores the
+`errata` marker so downstream consumers can choose how to display the change. The
+`as_printed` value is compared against the current data (ignoring whitespace
+wrapping); a mismatch emits a warning and skips that field, so errata that have
+drifted out of sync with the data are caught rather than silently applied.
+Re-running is idempotent.
 
 ### `lint`
 
@@ -200,6 +227,13 @@ documenting these shapes are available in:
 
 These are reference documentation for consumers of the data; they are not
 enforced at runtime by the pipeline.
+
+Cards carry the **oracle** (canonical) text in `rules_text`. A printing's
+`printed_rules_text` holds the text physically printed on that card *only when it
+differs* from the card's oracle text (otherwise `null`); this is how errata are
+represented in the data. Both cards and printings have an optional `errata`
+marker recording which fields were corrected and a note, so downstream apps can
+choose how to surface the change (see [`apply-errata`](#apply-errata)).
 
 The schema is versioned via `SCHEMA_VERSION` in both stub files. A build also
 emits `meta.yaml`/`meta.json` recording that version alongside SHA256 hashes of

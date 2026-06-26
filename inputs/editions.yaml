@@ -11,5 +11,5 @@
   - additional_printings:
     - sets/msw-edition1/love-premium.yaml
     - sets/msw-edition1/hurt-feelings.yaml
-  - errata:
-    - sets/msw-edition1/instability-errata.yaml
+  - printing_errata:
+    - sets/msw-edition1/printings-errata.yaml

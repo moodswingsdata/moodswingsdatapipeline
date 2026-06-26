@@ -25,6 +25,7 @@ CARD_FIELDS = {
     "secondary_dice_value": (int, type(None)),
     "rules_text": (str, type(None)),
     "rulings_text": (list, type(None)),
+    "errata": (dict, type(None)),
 }
 
 PRINTING_FIELDS = {
@@ -39,6 +40,8 @@ PRINTING_FIELDS = {
     "treatment": (str,),
     "artist": (str, list, type(None)),
     "card_image_url": (str, type(None)),
+    "printed_rules_text": (str, type(None)),
+    "errata": (dict, type(None)),
 }
 
 VALID_COLORS = {"White", "Blue", "Black", "Red", "Green"}

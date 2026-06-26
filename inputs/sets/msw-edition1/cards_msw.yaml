@@ -17,6 +17,7 @@
   - Turn order is clockwise, and the next player is the one to your left.
   - All cards that aren't given to a player will end up on the bottom of the deck, meaning after this card is played, the
     discard pile will be empty.
+  errata: null
 - id: dc03d692-52e1-5108-9468-84766b872712
   name: Ambition
   color:
@@ -32,6 +33,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Ambition. You may first play the additional
     card for Hurt Feelings before you play the additional card for Ambition.
+  errata: null
 - id: 59909272-b94a-51a3-9ebb-e661ce15cd71
   name: Ambivalence
   color:
@@ -44,6 +46,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Ambivalence
     is worth [3] if there are two red moods, two green moods, or a red mood and a green mood in play.
+  errata: null
 - id: 612a5606-161d-5f24-bd92-5793d9f0dd3d
   name: Anger
   color:
@@ -71,6 +74,7 @@
   - Copying an Anger with Duplicity (the effect happens twice) does not allow you to put a card with over a [5] value into
     the discard pile. For example, if your opponent has Boredom, worth [4], and Generosity, worth [6], you can't put them
     both into the discard pile. Each instance of Anger has to be applied separately.
+  errata: null
 - id: 34f674cb-cec1-505e-b7fb-ae5bcc6ff674
   name: Angst
   color:
@@ -96,6 +100,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Angst, choosing to put a card in the discard
     pile. You may first play the additional card for Hurt Feelings before you play the additional card for Angst.
+  errata: null
 - id: a843cb49-9be8-570d-84cf-76d57511dbf2
   name: Animosity
   color:
@@ -110,6 +115,7 @@
     Ways to Play</a>), this card does not care about the number of cards in a teammate's hand.
   - In a game with three or more players, only one opponent needs to have three or more cards for Animosity to have a value
     of [5].
+  errata: null
 - id: 375c17d4-71b2-558f-a49e-66fc69001c3c
   name: Anxiety
   color:
@@ -124,6 +130,7 @@
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - '[0] is even.'
+  errata: null
 - id: 11a0a573-79ed-5741-abba-9df81046c1b7
   name: Apathy
   color:
@@ -136,6 +143,7 @@
   rulings_text:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
+  errata: null
 - id: 011ffb3c-6c78-5bae-9658-10b88baa9bc0
   name: Arrogance
   color:
@@ -156,6 +164,7 @@
     in play.
   - If Arrogance moves to another player, you still keep the card taken by it. But if it leaves play, even if another player
     has it, the card goes back to its original owner.
+  errata: null
 - id: 9325105f-32cf-5676-a3c1-5b0af6315d72
   name: Avoidance
   color:
@@ -173,6 +182,7 @@
     whether it's suppressed.
   - Moods moving players does not make "After playing this mood" effects happen.
   - Avoidance can be chosen as the card you choose to move.
+  errata: null
 - id: 518520f9-3407-5d21-a294-74f029017fa0
   name: Awe
   color:
@@ -194,6 +204,7 @@
     card, so with Awe, none of the "after scoring" effects will happen. If we ever make an "after scoring" effect that is
     part of a "While in play" ability (none currently exist), that would happen the next time there is a scoring.
   - Cards that score additional times (Bliss, Enthusiasm, Exhilaration, and Passion) do not score, as there is no scoring.
+  errata: null
 - id: fb225a36-1180-5132-849f-79d49aefa35b
   name: Bashfulness
   color:
@@ -218,6 +229,7 @@
     If Betrayal happens first, you will get the Bashfulness card, and if you won the turn, it would go to the bottom of the
     deck and you would draw a card. If you choose to have the Bashfulness "after scoring" effect happen first, the player
     who has Bashfulness would put it on the bottom of the deck and draw the card (assuming they won this turn).
+  errata: null
 - id: 0ae16dd1-ea47-52bf-99dc-2c2e8acf3bdf
   name: Benevolence
   color:
@@ -235,6 +247,7 @@
     card for Hurt Feelings before you play the additional card for Benevolence.
   - If Imagination is in play, you won't be able to play any card in your hand or the discard pile that is the color named
     with Imagination. The card in your hand doesn't become the color named by Imagination until it is in play.
+  errata: null
 - id: e7f1779c-3866-5e35-8dd9-9ec4d65a620d
   name: Betrayal
   color:
@@ -257,6 +270,7 @@
     If Betrayal happens first, you will get the Relentless card before it goes to the bottom of the deck and draw the card.
     If you choose to have the Recklessness "after scoring" effect happen first, the player who has Recklessness would put
     it on the bottom of the deck and they would draw the card.
+  errata: null
 - id: 5670c935-e7c6-50c2-8a98-3f832b4005f6
   name: Bitterness
   color:
@@ -275,6 +289,7 @@
   - A Bitterness can be put into the discard pile by a different Bitterness (this could be done with Creativity or a second
     Bitterness if you added one to the deck).
   - You should count suppressed cards when calculating the most common color.
+  errata: null
 - id: 8287e325-2740-57f2-8cce-30c0c67ffc45
   name: Bliss
   color:
@@ -296,6 +311,7 @@
     will stack with other cards that score extra times (Enthusiasm, Exhilaration, and Passion), meaning you get to add all
     the extra combined scores together.
   - Bliss remembers the color of the card discarded. The card doesn't need to be in the discard pile for the effect to happen.
+  errata: null
 - id: 85785981-46a8-5e47-89f6-f3bfaf019b2c
   name: Boredom
   color:
@@ -308,6 +324,7 @@
   rulings_text:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
+  errata: null
 - id: 8e5d237e-740a-5125-97f6-ab6d87637b0f
   name: Bravado
   color:
@@ -323,6 +340,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Bravado. You may first play the additional
     card for Hurt Feelings before you play the additional card for Bravado.
+  errata: null
 - id: 4cb63495-c751-5e2b-8e5a-1a6397393e79
   name: Celebration
   color:
@@ -338,6 +356,7 @@
     play for it to be worth [6][1].
   - The only way for Celebration to be worth [6][1] with Imagination in play is for you to have both cards and your opponents
     have no cards (as you would then have one color to their zero colors).
+  errata: null
 - id: d87924ef-49ee-5429-b1bb-bdbd2569a199
   name: Chaos
   color:
@@ -357,6 +376,7 @@
     goes to their hand and not the player who originally played the card.
   - If Chaos is the first card played in a game, it will essentially stay in play for that player. (It is technically shuffled
     and dealt out starting with that player.)
+  errata: null
 - id: a0d37cc4-9064-53ac-9490-e0a77dd8a4d2
   name: Charity
   color:
@@ -371,6 +391,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Charity. You may first play the additional
     card for Hurt Feelings before you play the additional card for Charity.
+  errata: null
 - id: 2d7a30b8-38ea-5353-bb1d-0cd43c722806
   name: Cheer
   color:
@@ -389,6 +410,7 @@
     right corner.
   - Without another card (Encouragement or Idealism) telling you otherwise, you will always use the value determined when
     you played the card. If you didn't discard a card, the card's value is [3], and if you did, the card's value is [5].
+  errata: null
 - id: e7450bd8-9555-5a10-ab77-450049c60210
   name: Chivalry
   color:
@@ -402,6 +424,7 @@
   - This card is worth [5] in games with three or more players as long as someone else went first.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), this card is worth [5] even if your teammate went first.
+  errata: null
 - id: b06c8d15-8fad-54f2-aadf-e306eea80a25
   name: Complacency
   color:
@@ -414,6 +437,7 @@
   rulings_text:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
+  errata: null
 - id: 64d63bed-7cd9-5d30-8874-8c74b92d1b05
   name: Compulsion
   color:
@@ -432,6 +456,7 @@
     Ways to Play</a>), you may choose your teammate to give you a card.
   - If you have the ability to play an additional card (say with Hurt Feelings), you may then play the card you just received
     with Compulsion.
+  errata: null
 - id: 8e6a1519-97ca-5443-aa20-f90d032e0423
   name: Condescension
   color:
@@ -447,6 +472,7 @@
   - To get a value of [6], you must give a card to another player. If you don't have another card in hand, you can't get [6].
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), you can give the extra card to a teammate.
+  errata: null
 - id: 26935aa4-21ee-5f11-a953-4e8a4cb4d007
   name: Confusion
   color:
@@ -462,6 +488,7 @@
   - If a player does not have a card, they do not pass one.
   - Selected cards should be passed face down (so they aren't known), and no player should look at their card until all the
     cards have been passed.
+  errata: null
 - id: 8a16ab72-441b-53ed-bfb2-760477e7d958
   name: Contempt
   color:
@@ -481,6 +508,7 @@
   - If you choose the first option, you can put a green or white card of yours into the discard pile.
   - If you choose the second option, all green and white cards, including yours, are put into the discard pile.
   - If Imagination makes Contempt green or white, it will be put into the discard pile.
+  errata: null
 - id: 5966e99f-267c-5090-b61e-db8e77fb0577
   name: Conviction
   color:
@@ -494,6 +522,7 @@
   rulings_text:
   - If the deck is empty, the player will draw the card they just put on the bottom.
   - You can choose any player's mood, including your own. That mood's player is the one who draws the card.
+  errata: null
 - id: 3be13926-6df3-5bfe-8839-a36540670fa7
   name: Corruption
   color:
@@ -514,6 +543,7 @@
     the game with four wins. It's just bragging rights.
   - If someone plays Corruption then Awe (no one scores this round), the winner will not win two rounds. They have to win
     one round to get two won rounds.
+  errata: null
 - id: dea9a96d-7ee3-5374-aedf-ed1b8ca3d937
   name: Courage
   color:
@@ -532,6 +562,7 @@
     will be able to affect it. For example, your opponent has Obsession in play ([6] if there are two white and/or black cards
     in play) and Courage is the second white card in play. Courage being played will change Obsession to [6] when the "While
     in play" effects happen, and Courage can choose Obsession to be put into the discard pile.
+  errata: null
 - id: 06f6dc87-58bb-5668-a4e1-eeb38ad693c1
   name: Creativity
   color:
@@ -556,6 +587,7 @@
   - The card stays as a copy even if the original later leaves play.
   - If you use Creativity to copy a Creativity in play, you copy whatever that Creativity is a copy of and not Creativity
     itself.
+  errata: null
 - id: d4a2a670-b99a-50af-8142-0a1edc674b23
   name: Cruelty
   color:
@@ -575,6 +607,7 @@
     default method.
   - As long as that player has a mood, it can be randomly chosen, even if it is just temporarily theirs (through something
     like Recklessness).
+  errata: null
 - id: 28daf6ae-739b-5cd9-b8ea-fa2cc9cfd51f
   name: Curiosity
   color:
@@ -592,6 +625,7 @@
   - If Imagination ("All moods are the chosen color") is in play, cards in hand are the color they actually are and are not
     the color all moods have been changed to by Imagination. Let's say Imagination is set to white. To have a Curiosity with
     a value of [6], you will need to reveal a card that's actually white from the chosen player's hand.
+  errata: null
 - id: 9d6bba0a-5ec9-57b2-8e72-3480061bcb90
   name: Cynicism
   color:
@@ -607,6 +641,7 @@
     target="_blank">Other Ways to Play</a>), you can't affect a teammate's cards.
   - If there are no cards in the discard pile, Cynicism can't have a value of [6].
   - You get to choose which card to give to your opponent.
+  errata: null
 - id: 9fc280f5-ee7f-5b64-a48a-bd880e0483e3
   name: Delight
   color:
@@ -625,6 +660,7 @@
     right corner.
   - Without another card (Encouragement or Idealism) telling you otherwise, you will always use the value determined when
     you played the card. If you didn't discard a card, the card's value is [3], and if you did, the card's value is [5].
+  errata: null
 - id: d059f586-4f38-5ec1-ad23-bbf17a8aab6e
   name: Denial
   color:
@@ -642,6 +678,7 @@
     inform you that the score can change.)'
   - You can put a mood that was another player's mood originally into your hand. For example, you steal Love from another
     player with Guile. If you then play Denial choosing Love as one of your two cards, Love would go into your hand.
+  errata: null
 - id: ca8e7c50-efd1-5f4d-848d-57bb045fc241
   name: Determination
   color:
@@ -657,6 +694,7 @@
   - Determination counts itself, so if there are two other green cards in play, Determination has a value of [6].
   - Determination merely cares that there are three cards of any one color. Which color doesn't matter, and Determination
     can stay at [6] even if the three cards that share the same color change.
+  errata: null
 - id: 541a97e1-665a-5339-b166-67087dcc8ff4
   name: Dignity
   color:
@@ -675,6 +713,7 @@
     right corner.
   - Without another card (Encouragement or Idealism) telling you otherwise, you will always use the value determined when
     you played the card. If you didn't discard a card, the card's value is [3], and if you did, the card's value is [5].
+  errata: null
 - id: 031876e3-2e0d-5802-90ed-cef9ecfaf843
   name: Discipline
   color:
@@ -687,6 +726,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Discipline
     is worth [3] if there are two black moods, two red moods, or a black mood and a red mood in play.
+  errata: null
 - id: 7709e849-9887-59a3-b8a5-6e1c1d603f2b
   name: Disgust
   color:
@@ -699,6 +739,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Disgust
     is worth [3] if there are two green moods, two white moods, or a green mood and a white mood in play.
+  errata: null
 - id: 86f5f7be-e478-5467-b3f2-8252e319d477
   name: Disillusionment
   color:
@@ -719,6 +760,7 @@
     cards to return to their normal color happens too late to save the cards from Disillusionment's effect.
   - Disillusionment never puts itself into the discard pile.
   - A second Disillusionment (say you copy it with Creativity) can destroy the first Disillusionment.
+  errata: null
 - id: b03fa3ea-0384-5537-b974-ebd455622639
   name: Disorientation
   color:
@@ -739,6 +781,7 @@
     hands.
   - A second Disorientation (say you copy it with Creativity) can return the first Disorientation to its player's hand if
     [0] is named.
+  errata: null
 - id: a0046c3d-2d8b-5014-ae68-47d3d2bc39ca
   name: Disregard
   color:
@@ -751,6 +794,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Disregard
     is worth [3] if there are two blue moods, two black moods, or a blue mood and a black mood in play.
+  errata: null
 - id: 34db865f-eec2-575c-bfd4-5b38566755d4
   name: Doubt
   color:
@@ -770,6 +814,7 @@
     are unaffected by it.
   - You will need to make note of what colors can't be played on the next turn.
   - This effect also affects you, the player who played Doubt, but not until your next turn.
+  errata: null
 - id: efd67624-1048-5bfb-9aa4-c347b27ca53c
   name: Duplicity
   color:
@@ -796,6 +841,7 @@
     You then will have the second effect happen. For example, you play Courage to destroy Laziness. When Laziness goes away,
     Ambivalence changes from [3] to [6], as there now aren't two red and/or green cards in play. You may now choose to hit
     Ambivalence with the second effect of Courage.
+  errata: null
 - id: d27ba546-7886-5a60-aa27-869945d3251d
   name: Eagerness
   color:
@@ -814,6 +860,7 @@
   - If Imagination is in play, it only affects the cards in play (i.e., the moods) and not the cards in your hand. This would
     mean you could only play an additional card with Eagerness that is the color in your hand that was named by the person
     who played Imagination.
+  errata: null
 - id: 8621fbe9-2a03-5684-a26a-bbf53e3419a1
   name: Embarrassment
   color:
@@ -829,6 +876,7 @@
   - If you discard what is asked and the card has multiple values, in play it will always be the lower left value (with the
     card arranged vertically). We recommend turning the card 180 degrees so that the current score is represented in the top
     right corner.
+  errata: null
 - id: d1431b6c-7621-50de-9c03-be7c1b426029
   name: Encouragement
   color:
@@ -848,6 +896,7 @@
     the lower value on the card.
   - If Encouragement leaves play, the card it is affecting will revert to the value it would naturally have based on the state
     of the game. If a choice had previously been made for the card (from when you played it) that previous choice returns.
+  errata: null
 - id: 932f1867-e25d-5cfc-bafc-29f3c6fff5b3
   name: Enjoyment
   color:
@@ -860,6 +909,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Enjoyment
     is worth [6] if there are two red moods, two white moods, or a red mood and a white mood in play.
+  errata: null
 - id: 05bf33fd-16e2-512c-8574-105a255f2bee
   name: Enthusiasm
   color:
@@ -876,6 +926,7 @@
   - If you have two Enthusiasms in play (say you copied it with Creativity), you can score one mood twice or two different
     moods once. Enthusiasm will stack with other cards that score extra times (Bliss, Exhilaration, and Passion), meaning
     you get to add all the extra combined scores together.
+  errata: null
 - id: d7d1099f-de0a-5112-925e-8313bf1829fa
   name: Envy
   color:
@@ -896,6 +947,7 @@
     target="_blank">Other Ways to Play</a>), aren't opponents and thus can't be the "moodiest opponent."
   - Moods are cards in play, so you can't discard a card in your hand to satisfy the "To play this card" requirement.
   - If this card is suppressed, it has a value of [0] regardless of how many moods the moodiest opponent has.
+  errata: null
 - id: 4fdad2cd-ba05-5e88-a8e0-e3e4d98c0f16
   name: Euphoria
   color:
@@ -912,6 +964,7 @@
     value [5] or more into the discard pile). Euphoria will get a value of [5] (as there are now five cards in play) before
     Courage's effect happens, so Euphoria could be destroyed by Courage.
   - If this card is suppressed, it has a value of [0] regardless of how many moods are in play.
+  errata: null
 - id: 1156cc87-a02b-5ae1-9146-f933d3df7e5c
   name: Excitement
   color:
@@ -924,6 +977,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Excitement
     is worth [6] if there are two black moods, two green moods, or a black mood and a green mood in play.
+  errata: null
 - id: 8fe9728e-cc1a-583e-b312-951e73b67259
   name: Exhilaration
   color:
@@ -944,6 +998,7 @@
     Exhilaration will stack with other cards that score extra times (Bliss, Enthusiasm, and Passion), meaning you get to add
     all the extra combined scores together.
   - Moods are cards in play, so you can't discard a card in your hand to satisfy the "To play this card" requirement.
+  errata: null
 - id: 949a5ba6-e205-5f06-a1d3-547c00f2a418
   name: Faith
   color:
@@ -969,6 +1024,7 @@
   - If this mood moves to another player, the suppressed card remains suppressed.
   - If you do not have a green or blue card in your hand to discard, you may not suppress a card.
   - If Imagination is in play, it only changes the color of the moods in play and not the cards in your hand.
+  errata: null
 - id: 199a4648-1af7-59e0-bca1-3edd55515de5
   name: Fascination
   color:
@@ -985,6 +1041,7 @@
     in hand, you can't get a value of [6][1].
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), you can give the extra card to a teammate.
+  errata: null
 - id: 4756780a-54e5-58be-bdc2-3d69f46d0a4c
   name: Fear
   color:
@@ -1005,6 +1062,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Fear. You may first play the additional card
     for Hurt Feelings before you play the additional card for Fear.
+  errata: null
 - id: cf2d0f9d-4d7b-57f2-b082-a9ce816e25ed
   name: Fickleness
   color:
@@ -1022,6 +1080,7 @@
   - A second Fickleness (say you copy it with Creativity) can return the first Fickleness to its player's hand if blue is
     the most common color.
   - Each card goes into the hand of the player who currently has it in play. It doesn't matter if another player played it.
+  errata: null
 - id: 5a917bbf-03ca-593e-af30-182d7af759f0
   name: Fondness
   color:
@@ -1036,6 +1095,7 @@
   - Every player in the game must have three moods in play for you to get this bonus. In a game with three or more players,
     just you and one other player having three cards will not count.
   - Fondness counts itself toward how many moods you have in play.
+  errata: null
 - id: 4aa69235-e4f8-54be-856b-4f823d0a6a57
   name: Friendliness
   color:
@@ -1051,6 +1111,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Friendliness. You may first play the additional
     card for Hurt Feelings before you play the additional card for Friendliness.
+  errata: null
 - id: a064290b-051c-558d-835b-3504457f748b
   name: Frustration
   color:
@@ -1063,6 +1124,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Frustration
     is worth [3] if there are two white moods, two blue moods, or a white mood and a blue mood in play.
+  errata: null
 - id: 5195fb6e-51d2-5b91-8cc7-88a54147ca36
   name: Fury
   color:
@@ -1079,6 +1141,7 @@
     pile.
   - All the cards go into the discard pile at the same time, so one of them leaving and causing value changes won't affect
     the choice of other cards.
+  errata: null
 - id: af2f74b3-c457-52c4-939a-f8330305b49d
   name: Generosity
   color:
@@ -1100,6 +1163,7 @@
     Eagerness (which allows you to play an additional card of a color you have in play). They may first play the additional
     card for Generosity before they play the additional card for Eagerness, which would allow them to play an additional card
     in the color of the card you played for Generosity.
+  errata: null
 - id: 7d646ea3-70d8-55b8-bae4-99ccf9acd624
   name: Glee
   color:
@@ -1112,6 +1176,7 @@
   rulings_text:
   - This card counts as playing a [0] card. For instance, you will get to play an extra card with Validation (which lets you
     play an additional card whenever you play a card with a [0] or [1] in its top right corner).
+  errata: null
 - id: df8f16f3-8bcf-550b-9ebe-7e5384973369
   name: Gluttony
   color:
@@ -1135,6 +1200,7 @@
     Bashfulness and you won the turn, you would put Bashfulness on the bottom of the deck and draw a card. It then wouldn't
     be there for Gluttony to put into the discard pile. If you choose for Gluttony to go first, Bashfulness would be put into
     the discard pile before its effect would happen.
+  errata: null
 - id: 335d7ed8-19b3-5c23-83ee-ddbd4e5c43e1
   name: Grace
   color:
@@ -1168,6 +1234,7 @@
     will be the color they naturally are.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), you have to match the color of a mood you have in play and not your teammate.
+  errata: null
 - id: ef9122c5-74c2-5f17-ab8e-07afc82690af
   name: Grief
   color:
@@ -1195,6 +1262,7 @@
     card of a color you have in play) from your hand. You may first play an additional card for Grief before you play the
     additional card for Eagerness, which would allow you to play an additional card in the color of the card you played for
     Grief.
+  errata: null
 - id: 10aa8804-5526-5a58-a772-b988847f6332
   name: Guile
   color:
@@ -1217,6 +1285,7 @@
     whether it's suppressed.
   - Moods moving players does not make "After playing this mood" effects happen.
   - If Guile moves to another player, you still keep the card taken by it.
+  errata: null
 - id: 98086f97-08e5-50a9-8d07-9b6fda107c11
   name: Guilt
   color:
@@ -1246,6 +1315,7 @@
   - You may only choose one of the two effects, although if the mood returns to your hand and you play it again, you may make
     a different choice.
   - You may choose to suppress your own black or red mood.
+  errata: null
 - id: 014fed71-ce39-5049-b13b-81c59868c361
   name: Happiness
   color:
@@ -1258,6 +1328,7 @@
   rulings_text:
   - One player has to have both the red card and the white card for Happiness to get a value of [6][2].
   - It's fine if more than one player has both.
+  errata: null
 - id: bd4b0a8b-8168-5e1b-bd43-18a209b5f7d3
   name: Harmony
   color:
@@ -1279,6 +1350,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Harmony. You may first play the additional
     card for Hurt Feelings before you play the additional card for Harmony.
+  errata: null
 - id: 1cf3ab5e-88ab-56a7-9a66-45893162b269
   name: Hate
   color:
@@ -1293,6 +1365,7 @@
   - If the deck is empty, you will draw the card that was just put on the bottom.
   - You may put your own card on the bottom of the deck.
   - No matter whose card you put on the bottom of the deck, you draw the card.
+  errata: null
 - id: ce87aa6b-f7bf-5d98-bedf-bd52c46c246b
   name: Hesitation
   color:
@@ -1312,6 +1385,7 @@
   - If you choose the first option, you can put a red or green card of yours into your hand.
   - If you choose the second option, all red and green cards, including yours, return to your hand.
   - If Imagination makes Hesitation red or green, it will return itself to your hand.
+  errata: null
 - id: cc9a7bdd-2d68-5107-abd0-bb8a0ab65b3f
   name: Honor
   color:
@@ -1329,6 +1403,7 @@
   - Play goes clockwise, so if you wish to go last, you will want to choose the player to your left to go first.
   - If there are two or more Honors in play (say one is Creativity copying it), whichever was the player chosen by the last
     Honor played is the person who goes first.
+  errata: null
 - id: fc6194c3-010e-5f90-a3f3-db445c64601e
   name: Hope
   color:
@@ -1347,6 +1422,7 @@
     played in any order. For example, let's say you have Hope and play Eagerness (which allows you to play an additional card
     of a color you have in play). You may first play the additional card for Hope before you play the additional card for
     Eagerness, which would allow you to play an additional card in the color of the card you played for Hope.
+  errata: null
 - id: c69e3b6b-0c6c-5ba8-a6f9-4cad64a6fb08
   name: Hostility
   color:
@@ -1368,6 +1444,7 @@
     is now only one black card in play. Hostility would now be able to put Discipline into the discard pile.
   - You can't combine the [3] value between the two cards, meaning, for instance, that you couldn't put one card with a value
     of [6] into the discard pile.
+  errata: null
 - id: aacf1143-7ab8-54dc-9343-eb0fe6484edf
   name: Hurt Feelings
   color: []
@@ -1380,6 +1457,7 @@
 
     This round, you may play an additional mood during your turn.'
   rulings_text: null
+  errata: null
 - id: ea760944-2431-508e-b88f-4cb6b0deefc5
   name: Idealism
   color:
@@ -1404,6 +1482,7 @@
   - If Idealism leaves play, the card it is affecting will revert to the value it would naturally have based on the state
     of the game. If a choice had previously been made for the card (from when you played it) that previous choice returns.
   - You cannot choose which cards Idealism affects. All your cards with two dice totals will have the higher value.
+  errata: null
 - id: 93601f3b-e272-519e-9463-f4a0039e1e73
   name: Imagination
   color:
@@ -1422,6 +1501,7 @@
   - If a second Imagination is played (say you copy it with Creativity), it will override the first Imagination. For example,
     your opponent plays Imagination and chooses red. All the moods are now red. You then play Creativity copying Imagination
     and choose green. All the moods are now green and no longer red.
+  errata: null
 - id: e6686a28-f83e-537c-ab72-af9ca34d0f0d
   name: Indecisiveness
   color:
@@ -1439,6 +1519,7 @@
   - You may choose any method to randomize the cards. We suggest shuffling them face down and having an opponent pick one.
   - You may not choose yourself to be affected as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't affect a teammate's cards.
+  errata: null
 - id: e1a9c2d5-01fa-5b17-b513-7fe78eed0e5e
   name: Indifference
   color:
@@ -1451,6 +1532,7 @@
   rulings_text:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
+  errata: null
 - id: 07621913-770c-5c26-9b99-f98b9234beaf
   name: Infatuation
   color:
@@ -1466,6 +1548,7 @@
     effect.'
   - If you choose to put cards into the discard pile, you must choose two. You can't put one card into the discard pile.
   - If you do not have two other moods in play, you can't get the [6][3] value.
+  errata: null
 - id: ee6712f7-2408-5886-ac43-627f8cb0c68e
   name: Insecurity
   color:
@@ -1490,6 +1573,7 @@
     choose Bashfulness and you won the turn, you would put Bashfulness on the bottom of the deck and draw a card. It then
     wouldn't be there for Insecurity to put into your hand. If you choose for Insecurity to go first, Bashfulness would be
     put into your hand before its effect would happen.
+  errata: null
 - id: 3d08bd50-a6c8-58ea-89aa-0dd21dd3bca3
   name: Instability
   color:
@@ -1498,8 +1582,11 @@
   dice_value: 2
   secondary_dice: null
   secondary_dice_value: null
-  rules_text: <strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you do, they
-    choose one of those moods and gives it to you, then you give them one of your moods.
+  rules_text: '<strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you do, they
+
+    choose one of those moods and give it to you, then you give them one of your moods.
+
+    '
   rulings_text:
   - If no other player has two cards, nothing happens.
   - If a mood is the only one a player has, it can't be chosen by this card.
@@ -1507,6 +1594,7 @@
   - You only give one of your cards to the opponent if you first get a card from them.
   - The card you give them can be Instability, but it doesn't have to be.
   - Instability's printed card text contains a small subject-verb agreement error that does not affect gameplay.
+  errata: null
 - id: 5945363b-92a3-5980-9313-f36e487e4444
   name: Intimidation
   color:
@@ -1526,6 +1614,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Intimidation. You may first play the additional
     card for Hurt Feelings before you play the additional card for Intimidation.
+  errata: null
 - id: 8cc8beb6-3aeb-5b64-b48d-0d6c7ed65e5b
   name: Joy
   color:
@@ -1543,6 +1632,7 @@
     you to play an additional card of a color you have in play). You may first play the additional card for Joy before you
     play the additional card for Eagerness, which would allow you to play an additional card in the color of the card you
     played for Joy.
+  errata: null
 - id: 324bf66c-1bd8-5023-82bc-e7d0a8cb1205
   name: Kindness
   color:
@@ -1559,6 +1649,7 @@
     played in any order. For example, let's say you have Hurt Feelings and play Kindness. You may first play the additional
     card for Hurt Feelings before you play the additional card for Kindness. You should be clear which additional card you
     are playing for which effect.
+  errata: null
 - id: c623a931-2134-5868-ac3f-3c0039676fd1
   name: Laziness
   color:
@@ -1571,6 +1662,7 @@
   rulings_text:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
+  errata: null
 - id: 4102e551-315d-5490-abec-a1389d261a34
   name: Love
   color:
@@ -1585,6 +1677,7 @@
   - Love looks at all moods in play. The five colors need not be the same player's moods.
   - Love counts itself.
   - Imagination (which turns all cards one color) will give Love a value of [4].
+  errata: null
 - id: 566c6fe5-cee5-5811-857d-1f26fc2d1654
   name: Loyalty
   color:
@@ -1597,6 +1690,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Loyalty
     is worth [6] if there are two green moods, two blue moods, or a green mood and a blue mood in play.
+  errata: null
 - id: 83fa31d1-320f-595c-b69d-c0e260aa11fa
   name: Malice
   color:
@@ -1618,6 +1712,7 @@
   - If a black card is chosen, all black cards other than Malice are put into the discard pile.
   - If another Malice is played (such as with Creativity) and a black card is chosen, it can put the first Malice into the
     discard pile. Malice doesn't affect itself.
+  errata: null
 - id: 8c416451-cbda-54dd-8b43-b23ecdaf3349
   name: Meekness
   color:
@@ -1645,6 +1740,7 @@
     doesn't become suppressed.
   - Meekness affects your moods that have a value of [5] or more.
   - If Meekness leaves play, all moods suppressed by it stop being suppressed.
+  errata: null
 - id: 7bd13526-68ea-5d37-b584-c20bd2a903ce
   name: Melancholy
   color:
@@ -1662,6 +1758,7 @@
     have in play. Say you have Boredom (a red card) in the discard pile and Imagination in play making everything white. You
     can play Boredom because when you play it, it is still red. Once it's in play, it will become white.
   - You are still allowed to play cards from your hand.
+  errata: null
 - id: 3ac8d640-78f7-5350-af2c-e6b20dc3efcd
   name: Misery
   color:
@@ -1674,6 +1771,7 @@
     that share a color.
   rulings_text:
   - Imagination's color-changing effect does not affect the discard pile.
+  errata: null
 - id: 779d7b9d-6274-5562-b4f0-17490f3ed9cb
   name: Neurosis
   color:
@@ -1687,6 +1785,7 @@
   rulings_text:
   - You can put any number of your moods into your hand, but you have to put at least one in hand to play Neurosis.
   - You can't play Neurosis if you have no moods in play.
+  errata: null
 - id: 104bd670-c691-5027-92a3-857c0ab2d600
   name: Nostalgia
   color:
@@ -1711,6 +1810,7 @@
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Nostalgia. You may first play the additional
     card for Hurt Feelings before you play the additional card for Nostalgia.
+  errata: null
 - id: 62f4c4f8-17b0-56bd-9bea-b7b5a249d815
   name: Obsession
   color:
@@ -1723,6 +1823,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Obsession
     is worth [6] if there are two white moods, two black moods, or a white mood and a black mood in play.
+  errata: null
 - id: 56d76cdd-c074-5b74-87da-0eeba5c4b189
   name: Pacifism
   color:
@@ -1747,6 +1848,7 @@
     card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
     previously been made for the mood (from when you played it) that previous choice returns.
   - If this mood moves to another player, the suppressed card remains suppressed.
+  errata: null
 - id: ca820fa0-f937-5767-8c39-602ceb1f90d7
   name: Panic
   color:
@@ -1764,6 +1866,7 @@
   - Panic can't return itself to your hand, but a second Panic (say you play Creativity) could return the first Panic. For
     example, you play Panic and return Self-Loathing to an opponent's hand. On your next turn, you may play Creativity copying
     Panic to return your first Panic to your hand.
+  errata: null
 - id: 054ee6cd-6020-52a8-9c27-fddfab15e15a
   name: Paranoia
   color:
@@ -1780,6 +1883,7 @@
   - If the deck is empty, you will draw the card the player just put on the bottom.
   - Players can choose their preferred randomization method. Shuffling the cards in your hand and having another player choose
     one is the default method.
+  errata: null
 - id: 86f85c09-449c-5910-b2c7-a2b201b1d91c
   name: Passion
   color:
@@ -1796,6 +1900,7 @@
   - If you have two Passions in play (say you copy it with Creativity), you can score one mood twice or two different moods
     once. Passion will stack with other cards that score extra times (Bliss, Enthusiasm, and Exhilaration), meaning you get
     to add all the extra combined scores together.
+  errata: null
 - id: 5669120a-f526-57e1-8058-18892fc0c6e3
   name: Patience
   color:
@@ -1807,6 +1912,7 @@
   rules_text: <strong>While in play</strong> — This mood's value is [1] if you played it this round.
   rulings_text:
   - Patience never has a value of [5] during the turn you play it.
+  errata: null
 - id: b6dc446c-1f97-53b6-bf68-a22212d2a7be
   name: Pity
   color:
@@ -1819,6 +1925,7 @@
   rulings_text:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Pity is
     worth [6] if there are two blue moods, two red moods, or a blue mood and a red mood in play.
+  errata: null
 - id: efb6548b-b5a8-5838-85a1-46a3a10588ad
   name: Pride
   color:
@@ -1847,6 +1954,7 @@
     deck") on one of the chosen player's cards, you can no longer play more cards because you now have the same number. You
     can choose to play Hate third because, at that time, the chosen player had one more mood than you. After the third card
     resolves, they do not have the additional mood, but you already played Hate as your third card.
+  errata: null
 - id: b79352ac-9763-5b78-9b29-ab6ad9c7d1d4
   name: Rage
   color:
@@ -1861,6 +1969,7 @@
   - This affects all other moods with a value of [3] or less, including your moods, although not itself.
   - This will put all suppressed cards into the discard pile.
   - A second Rage (say you copied it with Creativity) can destroy the first Rage.
+  errata: null
 - id: 106f0352-ec3c-5010-a1de-95b239d8b510
   name: Rationalization
   color:
@@ -1878,6 +1987,7 @@
   - If the deck is empty, you will draw the card(s) you just put on the bottom.
   - You pass all the cards in your hand.
   - If a player's hand is empty, they do not pass anything. The passing of other players' hands still happens.
+  errata: null
 - id: d9523ce1-c675-535f-bb11-568a8071f341
   name: Rebellion
   color:
@@ -1894,6 +2004,7 @@
   - Rebellion does not put itself into the discard pile if you choose [2].
   - All cards with that score, other than Rebellion, are put into the discard pile. You don't get to choose which ones.
   - Another Rebellion (say you copy it with Creativity) can put the first Rebellion into the discard pile, just not itself.
+  errata: null
 - id: 23a3bbb7-8cf1-5134-aafc-e3aa770b7f95
   name: Recklessness
   color:
@@ -1923,6 +2034,7 @@
     If Betrayal happens first, you will get the Relentless card before it goes to the bottom of the deck then draw the card.
     If you choose to have the Recklessness "after scoring" effect happen first, the player who has Recklessness would put
     it on the bottom of the deck and they would draw the card.
+  errata: null
 - id: 1fdf8e18-91d2-5ddd-8424-60b2ebae4620
   name: Regret
   color:
@@ -1939,6 +2051,7 @@
   - If you have less than two moods in play, you can't play this card.
   - You may not choose yourself to be affected as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't return a teammate's card to your hand as they are not an opponent.
+  errata: null
 - id: 2bdb02e4-0bc2-5284-a677-b3a65e7f0cd1
   name: Rejection
   color:
@@ -1954,6 +2067,7 @@
   - The moods do not have to be the same player's. For example, you may choose one of your moods and another player's mood.
   - '"Value" means the current score of the card. This may not be the number on the die in the top right corner. (Black dice
     inform you that the score can change.)'
+  errata: null
 - id: 5bb834dc-ff02-5cc3-906c-082f84c099ed
   name: Repentance
   color:
@@ -1981,6 +2095,7 @@
   - Because values are only whole numbers, you may only choose a whole number. You can choose a number that doesn't have a
     mood in play with that value.
   - Repentance affects all moods in play with that value, including your cards.
+  errata: null
 - id: df2c59a6-f27e-5eca-86d5-ccf8f494b780
   name: Sadness
   color:
@@ -1993,6 +2108,7 @@
   rulings_text:
   - It counts all cards in the discard pile regardless of who had them in play.
   - If this card is suppressed, it has a value of [0] regardless of how many cards are in the discard pile.
+  errata: null
 - id: a13194ee-7d1f-55c3-9fa3-5526720c7d14
   name: Scorn
   color:
@@ -2019,6 +2135,7 @@
   - If Imagination ("All moods are the chosen color") is in play, the moods won't trigger until they are in play, so they
     are the color chosen by Imagination. Since Imagination has changed all moods to that color, you will be able to suppress
     any mood in play.
+  errata: null
 - id: 1686c912-df23-5563-b19a-5fea0f4b0f7f
   name: Self-Loathing
   color:
@@ -2033,6 +2150,7 @@
   - You can put any number of your moods into the discard pile, but you have to put at least one into the discard pile to
     play Self-Loathing.
   - You can't play Self-Loathing if you have no moods in play.
+  errata: null
 - id: d0841099-0738-511c-9443-eeec90680774
   name: Serenity
   color:
@@ -2046,6 +2164,7 @@
   rulings_text:
   - Serenity only counts the number of moods you have in play.
   - Serenity counts itself.
+  errata: null
 - id: 0aae6735-b168-5421-8e5f-d178531ee9ee
   name: Shame
   color:
@@ -2080,6 +2199,7 @@
   - If Imagination ("All moods are the chosen color") is in play, your cards in hand are the color they actually are and are
     not the color all moods have been changed to by Imagination. Let's say Imagination is set to white. If you want to suppress
     all the cards in play, you will need to discard a card that is actually white.
+  errata: null
 - id: d5716284-61a1-5358-bd4b-26c8300cff87
   name: Shock
   color:
@@ -2095,6 +2215,7 @@
   - One of those players may be you.
   - The card has to currently have a value of [3] or less rather than the potential to have a score of [3] or less.
   - You can choose to put any suppressed card in the discard pile with Shock as suppressed cards have a value of [0].
+  errata: null
 - id: 25b4a3e2-1ef7-5974-af99-1b999ac7e1b8
   name: Sloth
   color:
@@ -2110,6 +2231,7 @@
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), Sloth will only look at your hand and not your teammate's.
   - If this card is suppressed, it has a value of [0] regardless of how many cards are in your hand.
+  errata: null
 - id: 526032f5-9a3a-509b-9ac0-bbfa981cb664
   name: Sneakiness
   color:
@@ -2139,6 +2261,7 @@
     first, it will stay in play as you are not winning. If you do the Sneakiness "after scoring" effect first, you can win
     the turn, then Bashfulness would go to the bottom of the deck and you would draw a card. The order you choose will determine
     what happens.
+  errata: null
 - id: d02816d3-4bee-52b1-9b30-287cfbc02090
   name: Spite
   color:
@@ -2152,6 +2275,7 @@
   rulings_text:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
+  errata: null
 - id: 58dc7772-a7a2-55e2-9de2-cb8922db8552
   name: Stubbornness
   color:
@@ -2177,6 +2301,7 @@
     card for Eagerness, which would allow you to play an additional card in the color of the card you played for Stubbornness.
   - Stubbornness grants you the ability to play the extra card at the beginning of the turn, so if it leaves play later in
     the turn, you still get to play your extra card.
+  errata: null
 - id: c4e8807b-bd0e-5d47-ac2a-1d3f696c22d1
   name: Superiority
   color:
@@ -2190,6 +2315,7 @@
   rulings_text:
   - If you are tied for the most cards in play with another player, this card is worth [3]. You must have more cards in play
     to be worth [6][1].
+  errata: null
 - id: 6bd21141-3983-5973-93ad-17e94247839f
   name: Suspicion
   color:
@@ -2206,6 +2332,7 @@
   - Discarded cards are revealed to all players, but only after each player chooses a card to discard.
   - If multiple people are discarding cards, they are all revealed at the same time. No one gets information about what other
     players are discarding before they choose what to discard.
+  errata: null
 - id: 8752bf70-15ac-54b7-a12f-136880ca896c
   name: Thrill
   color:
@@ -2228,6 +2355,7 @@
     played in any order. For example, let's say you have Thrill and play Eagerness (which allows you to play an additional
     card of a color you have in play). You may first play the additional card for Thrill before you play the additional card
     for Eagerness, which would allow you to play an additional card in the color of the card you played for Thrill.
+  errata: null
 - id: 8799892f-340a-5564-b77a-49e5d49cbd64
   name: Tranquility
   color:
@@ -2241,6 +2369,7 @@
   rulings_text:
   - Tranquility only counts the number of moods you have in play.
   - Tranquility counts itself.
+  errata: null
 - id: 85fc1687-af87-5871-b59e-d22318ea454d
   name: Triumph
   color:
@@ -2255,6 +2384,7 @@
   - The value of the card is set at the beginning of the round. It doesn't change once the first person has taken their turn.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), this card is not worth [5] if your teammate went first.
+  errata: null
 - id: 57c35873-f608-5ced-a126-370cd2b0c180
   name: Validation
   color:
@@ -2278,6 +2408,7 @@
     the top right corner on the card.
   - If you have two or more Validations in play (say one is a Creativity), you will get to play that many additional cards
     for each mood with a [0] or [1] you play.
+  errata: null
 - id: dfb32444-c2c1-5365-a824-3287134810a7
   name: Vanity
   color:
@@ -2291,6 +2422,7 @@
   rulings_text:
   - You are required to draw cards.
   - If this card is suppressed, it has a value of [0] regardless of how many moods you have.
+  errata: null
 - id: cd3be182-cd0f-5270-8309-a8e34392af78
   name: Vulnerability
   color:
@@ -2307,6 +2439,7 @@
     based on what happens on its first turn in play (other than determining its value for that first turn). This means Vulnerability
     will always start each round with a value of [1] and will change to [6][1] if a card gets put into the discard pile from
     anywhere that round.
+  errata: null
 - id: 4deef06f-acb1-58a5-8873-d0134ab7ee2b
   name: Wonder
   color:
@@ -2326,6 +2459,7 @@
   - Imagination (which changes the color of all moods) does not affect the color of cards in the discard pile.
   - If this card is suppressed, it has a value of [0] regardless of how many moods or cards in the discard pile are of the
     chosen color.
+  errata: null
 - id: 9f296033-e3cb-54b1-8e65-50f8576eb66d
   name: Worry
   color:
@@ -2345,6 +2479,7 @@
   - When you return a white or black card to your hand, "While in play" effects will happen before you return a card with
     a value of [3] or less. For example, you might return Charity to your hand. If Charity was one of only two white cards,
     that would change the value of Disgust from [3] to [6]. Disgust now can't be returned to its player's hand by Worry.
+  errata: null
 - id: 4d661fad-f1ba-5b31-8efc-7a47138ae46b
   name: Wrath
   color:
@@ -2360,6 +2495,7 @@
     not get to choose which cards.
   - Wrath does not put itself into the discard pile.
   - If you play a second Wrath (say you copy it with Creativity), the new Wrath will destroy the first Wrath.
+  errata: null
 - id: b2cb83fc-60e5-5f5f-8402-cd264bb360a6
   name: Zeal
   color:
@@ -2373,3 +2509,4 @@
   rulings_text:
   - '"May" means this effect is optional.'
   - If the deck is empty, the player will draw the card they just put on the bottom.
+  errata: null
