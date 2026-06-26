@@ -6,6 +6,11 @@
  */
 
 /**
+ * Semantic version of the data schema as a [major, minor, patch] tuple.
+ */
+export const SCHEMA_VERSION: readonly [0, 9, 0];
+
+/**
  * A unique card identity with its game-mechanical properties.
  */
 export interface Card {

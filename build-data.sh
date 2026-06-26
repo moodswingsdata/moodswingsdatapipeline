@@ -94,4 +94,13 @@ uv run ms to-json "$EDITIONS_YAML" -o "${OUT_BASE}editions.json"
 uv run ms to-json "$CARDS_YAML" -o "${OUT_BASE}cards.json"
 uv run ms to-json "$PRINTINGS_YAML" -o "${OUT_BASE}printings.json"
 
+# Step 6: Write meta file (schema version + output file hashes)
+echo "==> Writing meta file..."
+META_YAML="${OUT_BASE}meta.yaml"
+uv run ms write-meta \
+  "$EDITIONS_YAML" "$CARDS_YAML" "$PRINTINGS_YAML" \
+  "${OUT_BASE}editions.json" "${OUT_BASE}cards.json" "${OUT_BASE}printings.json" \
+  -o "$META_YAML"
+uv run ms to-json "$META_YAML" -o "${OUT_BASE}meta.json"
+
 echo "==> Done!"

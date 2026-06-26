@@ -175,6 +175,19 @@ the new printing is appended (keeping printings sorted by collector number).
 uv run ms create-printing inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml --card-name "Love"
 ```
 
+### `write-meta`
+
+Write a `meta.yaml` recording the current schema version and a SHA256 hash for
+each output file. This is the final step of a build and lets downstream
+consumers detect schema changes and verify file integrity.
+
+```bash
+uv run ms write-meta out/editions.yaml out/cards.yaml out/printings.yaml out/editions.json out/cards.json out/printings.json -o out/meta.yaml
+```
+
+The schema version comes from `SCHEMA_VERSION` in `src/moodswings/models.py`
+(mirrored in `types/moodswings.d.ts`).
+
 ## Data Format
 
 The pipeline produces three YAML files: **editions** (set identity and metadata),
@@ -187,6 +200,10 @@ documenting these shapes are available in:
 
 These are reference documentation for consumers of the data; they are not
 enforced at runtime by the pipeline.
+
+The schema is versioned via `SCHEMA_VERSION` in both stub files. A build also
+emits `meta.yaml`/`meta.json` recording that version alongside SHA256 hashes of
+every output file (see [`write-meta`](#write-meta)).
 
 ## Tests
 

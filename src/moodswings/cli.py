@@ -12,6 +12,7 @@ from moodswings.merge_printings import merge_printings
 from moodswings.prepare_editions import prepare_editions
 from moodswings.review_html import review_html
 from moodswings.to_json import to_json
+from moodswings.write_meta import write_meta
 
 
 @click.group()
@@ -32,3 +33,4 @@ main.add_command(merge_cards)
 main.add_command(create_printing)
 main.add_command(merge_printings)
 main.add_command(to_json)
+main.add_command(write_meta)
