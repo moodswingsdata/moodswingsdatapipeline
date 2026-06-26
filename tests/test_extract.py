@@ -224,6 +224,10 @@ class TestParseHtml:
         assert by_name["Altruism"]["timing"] == ["after_playing"]
         assert by_name["Ambivalence"]["timing"] == ["in_play"]
 
+    def test_printing_defaults_not_headliner(self, parsed):
+        _, printings = parsed
+        assert all(p["is_headliner"] is False for p in printings)
+
     def test_printing_has_image_url(self, parsed):
         _, printings = parsed
         # Find the Altruism printing

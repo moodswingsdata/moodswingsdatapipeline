@@ -295,6 +295,7 @@ def parse_html(html_path: Path) -> list[dict]:
             "treatment": "Standard",
             "artist": None,
             "card_image_url": image_url,
+            "is_headliner": False,
             "printed_rules_text": None,
             "errata": None,
         }

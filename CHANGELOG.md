@@ -1,6 +1,7 @@
 # Schema Changelog
 
 ## Dev
+- Added `Printing.is_headliner` (boolean, default false): an editorial flag marking an edition's headliner printing (Edition 1: Love #134). Set via `create-printing --is-headliner`. Updated `models.py` and `types/moodswings.d.ts`.
 - Added `Card.timing`: an array of canonical tokens (`in_play`, `after_playing`, `to_play`) describing when a card's rules apply, extracted from the bolded timing phrases. Updated `models.py` and `types/moodswings.d.ts`.
 - Renamed `Card.rulings_text` to `Card.notes` in `models.py` and `types/moodswings.d.ts`.
 - Added `Errata` type (`fields`, `note`) to `models.py` and `types/moodswings.d.ts`.

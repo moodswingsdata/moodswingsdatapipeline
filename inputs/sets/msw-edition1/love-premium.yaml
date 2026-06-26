@@ -9,5 +9,6 @@
   treatment: Foil
   artist: Mark Rosewater
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8674b312121.webp
+  is_headliner: true
   printed_rules_text: null
   errata: null

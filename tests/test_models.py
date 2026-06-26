@@ -41,6 +41,7 @@ PRINTING_FIELDS = {
     "treatment": (str,),
     "artist": (str, list, type(None)),
     "card_image_url": (str, type(None)),
+    "is_headliner": (bool,),
     "printed_rules_text": (str, type(None)),
     "errata": (dict, type(None)),
 }

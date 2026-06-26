@@ -10,6 +10,7 @@
   treatment: Standard
   artist: Howard Lyon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_1bc40321f2.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 20c095ad-abe6-58fe-9c11-d805a2addf0b
@@ -23,6 +24,7 @@
   treatment: Standard
   artist: Magali Villeneuve
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_39aeab52de.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 77ff1419-82ad-534c-ba3d-3ea354ccf09e
@@ -36,6 +38,7 @@
   treatment: Standard
   artist: Steve Prescott
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_056ea8dd92.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: aa78029b-5771-515f-a169-47a8db40e5f9
@@ -49,6 +52,7 @@
   treatment: Standard
   artist: Eric Deschamps
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_17ad03c3fd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 27e16c4c-586b-54aa-9121-22d275199072
@@ -62,6 +66,7 @@
   treatment: Standard
   artist: Kai Carpenter
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_28fdace6de.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 600d189d-91fc-5a0e-b8dc-54a8e37e15fb
@@ -75,6 +80,7 @@
   treatment: Standard
   artist: Aaron Miller
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_e2d644bb36.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c2a36416-b037-5f61-bbe0-76a7b956f0f5
@@ -88,6 +94,7 @@
   treatment: Standard
   artist: Zara Alfonso
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8d8ff36909.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 14867d72-b735-5741-8093-db7ae5f164c3
@@ -101,6 +108,7 @@
   treatment: Standard
   artist: Magali Villeneuve
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_c71c6fe5a6.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 2b70f101-53a5-57fd-a423-4a73bb328c62
@@ -114,6 +122,7 @@
   treatment: Standard
   artist: Daren Bader
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_599c19a67e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c5541092-956f-5ec5-bba8-e45711f37699
@@ -127,6 +136,7 @@
   treatment: Standard
   artist: Mark Tedin
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_88d0a39121.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 94b18c7e-ae74-5488-bc37-7cf45a798539
@@ -140,6 +150,7 @@
   treatment: Standard
   artist: Mike Burns
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a5c2c92dce.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: b79d3a5e-6e0a-5cd1-9dba-0033281e98ca
@@ -153,6 +164,7 @@
   treatment: Standard
   artist: Steve Argyle
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_51ab7c95dd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e36576e7-8fba-5bbc-a57a-9e0edd098ec4
@@ -166,6 +178,7 @@
   treatment: Standard
   artist: Caroline Gariba
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8ef71c708a.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 83fc3f4d-d349-5975-802b-70ccbe0b9abf
@@ -179,6 +192,7 @@
   treatment: Standard
   artist: John Stanko
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_cfb7aab4ca.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: f21858f8-6882-5b11-8cf5-236867e96608
@@ -192,6 +206,7 @@
   treatment: Standard
   artist: Steven Belledin
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_fcb2539b1b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: cff637ef-c48e-580a-a04f-b66467e58efe
@@ -205,6 +220,7 @@
   treatment: Standard
   artist: Willian Murai
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_65defcbada.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: ff323a78-6db6-5f99-a7c7-a0c37ceda0d1
@@ -218,6 +234,7 @@
   treatment: Standard
   artist: Jakub Kasper
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_900364d212.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 5992b327-ca5f-573e-aa3a-b40eaba27c2f
@@ -231,6 +248,7 @@
   treatment: Standard
   artist: Bryan Sola
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8c6dcb6580.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: de10f320-d698-5156-95cb-60a93e399844
@@ -244,6 +262,7 @@
   treatment: Standard
   artist: Fiona Hsieh
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_53a2b5358c.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6cf249f7-071f-5ae4-8732-7d3ecbda6358
@@ -257,6 +276,7 @@
   treatment: Standard
   artist: Jesper Ejsing
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_e1d60e419b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 29cc9cbd-37f5-53d5-8aa1-587849e5e3fd
@@ -270,6 +290,7 @@
   treatment: Standard
   artist: Johannes Voss
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_d106975fda.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: fa8a62bd-9deb-5472-ba83-f8e9c4f7b8cd
@@ -283,6 +304,7 @@
   treatment: Standard
   artist: Richard Whitters
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_0a4b823b72.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 8bf34610-8caa-523c-8fca-3464ea5ca3fa
@@ -296,6 +318,7 @@
   treatment: Standard
   artist: Daarken
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a1a9edc565.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: b66c3829-73da-530a-a937-bfa514ca9a04
@@ -309,6 +332,7 @@
   treatment: Standard
   artist: Eric Deschamps
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a9daebaf83.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: cbe920f9-fce3-515d-89b5-8cd335c29b55
@@ -322,6 +346,7 @@
   treatment: Standard
   artist: Zoltan Boros
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_18a5fa19a1.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 709215ea-2a32-582f-92cf-7a5348c26777
@@ -335,6 +360,7 @@
   treatment: Standard
   artist: D. Alexander Gregory
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_dd16eaf38e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 9b5a9886-3945-52a0-9aa8-9461bd913a03
@@ -350,6 +376,7 @@
   - Zoltan Boros
   - Gabor Szikszai
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_9f66939e52.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 06ca2d4a-d8d0-5fd7-9a65-ee474a2b3f94
@@ -363,6 +390,7 @@
   treatment: Standard
   artist: Matt Stewart
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_00bf0769bc.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e6b487e8-b33d-5c9c-b51b-19d893cab9ec
@@ -376,6 +404,7 @@
   treatment: Standard
   artist: Yangtian Li
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_6dd47f31dd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 123cc403-2b21-5ec9-b64d-21ca43cb463a
@@ -389,6 +418,7 @@
   treatment: Standard
   artist: Howard Lyon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2a40ab595f.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6039ed72-082e-5442-9294-f4adfe7331d6
@@ -402,6 +432,7 @@
   treatment: Standard
   artist: Wylie Beckert
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2e5a6b38f7.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 472577ed-329d-5458-9591-bd1ec02b9188
@@ -415,6 +446,7 @@
   treatment: Standard
   artist: Willian Murai
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_96bb086d3d.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: db66ea3e-e961-524a-8421-54d6dcbd28aa
@@ -428,6 +460,7 @@
   treatment: Standard
   artist: Steve Prescott
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_4189ffd6b0.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6114bffb-9a64-59de-a818-64b49953706e
@@ -441,6 +474,7 @@
   treatment: Standard
   artist: Zack Stella
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8a9c5980f4.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a9d19748-d8ca-5b95-99c8-c9215baebd6a
@@ -454,6 +488,7 @@
   treatment: Standard
   artist: Alex Horley-Orlandelli
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_5accb283ed.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a5f078bd-d45e-5678-b75e-e25f767e4db9
@@ -467,6 +502,7 @@
   treatment: Standard
   artist: Karl Kopinski
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_dd66017000.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: dc838c2f-f567-5b7f-a93c-e4870bbf60d2
@@ -480,6 +516,7 @@
   treatment: Standard
   artist: Daarken
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_1364393674.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 4a9cc302-8912-5dbf-ae33-9bdb6d4ef18c
@@ -493,6 +530,7 @@
   treatment: Standard
   artist: Jesper Ejsing
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_906b1bb1d6.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 43f475e7-6402-5dc0-8174-2b283987607d
@@ -506,6 +544,7 @@
   treatment: Standard
   artist: Tomek Larek
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_7b2399c941.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 49683c81-a662-5acc-8451-f000eefd94f4
@@ -519,6 +558,7 @@
   treatment: Standard
   artist: Eric Deschamps
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_4c31ac573b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 9672f7e1-28ae-566e-a90b-2a747d4def62
@@ -532,6 +572,7 @@
   treatment: Standard
   artist: Brian Despain
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_95ca483374.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 2d929149-6c73-5c4e-9b8f-9931af69525f
@@ -545,6 +586,7 @@
   treatment: Standard
   artist: Olena Richards
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_3af00d3391.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 31e63e4b-95a6-5fdc-9f13-40d5385c8eba
@@ -558,6 +600,7 @@
   treatment: Standard
   artist: Setor Fiadzigbey
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_50d6760556.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c071f701-88d8-5e21-8423-70073dd665f9
@@ -571,6 +614,7 @@
   treatment: Standard
   artist: Anna Steinbauer
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_0950b77878.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 5a7bba2c-0fe2-59aa-8eab-16b67e7ab789
@@ -584,6 +628,7 @@
   treatment: Standard
   artist: Jim Nelson
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_d74b605c8b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: d844ae2f-14c5-5207-95c6-6b7d31b04e2a
@@ -597,6 +642,7 @@
   treatment: Standard
   artist: Irvin Rodriguez
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_836f2df163.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 7d3167a9-98cc-5441-9bc7-cd3816f7d06a
@@ -610,6 +656,7 @@
   treatment: Standard
   artist: Julie Dillon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f9134e6286.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: dc8e6c1b-464a-5262-b863-ac567d67af11
@@ -623,6 +670,7 @@
   treatment: Standard
   artist: Jesper Ejsing
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_88c69dd9d3.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 21391760-9b65-5813-8866-385c95cc4947
@@ -636,6 +684,7 @@
   treatment: Standard
   artist: Jeremy Jarvis
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_d90751636e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 8e04db46-02e4-503c-a725-c73d94365ffa
@@ -649,6 +698,7 @@
   treatment: Standard
   artist: David Seguin
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8d23a36570.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 19e730cd-4289-5919-9e8d-a66e489c3ad0
@@ -662,6 +712,7 @@
   treatment: Standard
   artist: Anna Steinbauer
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_c7ddf50edd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: b7ef2ea9-d4eb-57f5-b213-d775b9b86c5c
@@ -675,6 +726,7 @@
   treatment: Standard
   artist: Greg Staples
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_d0c87e3659.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 4cbe01b9-2236-5971-88e8-d9cc12b16268
@@ -688,6 +740,7 @@
   treatment: Standard
   artist: Volkan Baga
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_5f8ab4747e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 8bfd676c-d2bd-5306-b50b-c830d5b12ac8
@@ -701,6 +754,7 @@
   treatment: Standard
   artist: Brandon Dorman
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f8d9de643e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e08730cf-7cc8-5b76-ae3e-5e7c2c1cf845
@@ -714,6 +768,7 @@
   treatment: Standard
   artist: Lars Grant-West
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_214a4fbfb6.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 033f7c0c-baad-57db-b3be-e1dc04aa450a
@@ -727,6 +782,7 @@
   treatment: Standard
   artist: Milivoj Ćeran
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2cf642f7d2.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 4747b5ba-77a7-5a39-9ee7-c126fa3d23be
@@ -740,6 +796,7 @@
   treatment: Standard
   artist: Clint Cearley
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_fedf3406e2.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: dfc2b08f-c794-5427-9252-f97f38b00e23
@@ -753,6 +810,7 @@
   treatment: Standard
   artist: Steve Prescott
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_0c52b2ac0d.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 5a0353a9-b863-54e5-80fd-465b00678e8e
@@ -766,6 +824,7 @@
   treatment: Standard
   artist: Michal Ivan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_6465486329.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 50e0effd-6e72-55d8-b609-8ce62bfbea43
@@ -779,6 +838,7 @@
   treatment: Standard
   artist: Yongjae Choi
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_493c0b60a1.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 0b5e34fa-f465-524e-8512-325e220b2a55
@@ -792,6 +852,7 @@
   treatment: Standard
   artist: Ralph Horsley
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_72e6fb2349.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a18ba6c0-79a7-58e6-a63a-90cd56a3b8f2
@@ -805,6 +866,7 @@
   treatment: Standard
   artist: Greg Staples
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_3e5cc80185.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 36d13510-468b-5774-8747-5c95ec2de9bf
@@ -818,6 +880,7 @@
   treatment: Standard
   artist: Lius Lasahido
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_449e96eaa5.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c6d29c52-67f2-54e5-978d-02d1b342be1e
@@ -831,6 +894,7 @@
   treatment: Standard
   artist: Magali Villeneuve
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_41c30f829d.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: bd4a24ae-9dd4-50b9-8791-526d06aea3bb
@@ -844,6 +908,7 @@
   treatment: Standard
   artist: Julie Dillon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_e4476b11a4.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: dde69eae-d0dd-5818-8660-3c43d1c4b7be
@@ -857,6 +922,7 @@
   treatment: Standard
   artist: Karl Kopinski
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_b423a5e0fc.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 04050bfe-3512-5cbc-a985-b7c76ddbeeaa
@@ -870,6 +936,7 @@
   treatment: Standard
   artist: Thomas M. Baxa
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_950df3062a.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 96369369-d99a-5d0a-bf62-daaa06a3d166
@@ -883,6 +950,7 @@
   treatment: Standard
   artist: Matt Stewart
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_69ca7ade91.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 0a8f5c8e-91dd-5983-95ee-50cba077bbb1
@@ -896,6 +964,7 @@
   treatment: Standard
   artist: Rovina Cai
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_b69d84c162.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c6301b7b-9194-5b3a-9a7a-72d18f29bb5b
@@ -909,6 +978,7 @@
   treatment: Standard
   artist: Pete Venters
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_9861468165.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 7d3a7ca3-9799-55fa-a004-8a03935d9688
@@ -922,6 +992,7 @@
   treatment: Standard
   artist: Jana Heidersdorfe
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_59818f9df2.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e6d6cde5-51f2-56a1-9c04-725a1022a74d
@@ -935,6 +1006,7 @@
   treatment: Standard
   artist: Aurore Folny
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_44a3456b6c.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: f2de3445-7b33-5a5a-91d0-c62decf688b1
@@ -948,6 +1020,7 @@
   treatment: Standard
   artist: Julia Metzger
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_334f16a788.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 08c3e574-ed48-5d51-a734-4335fd9c2803
@@ -961,6 +1034,7 @@
   treatment: Standard
   artist: Julie Dillon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_0cf6ff4201.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 67ec05a9-569a-5d95-adc0-8bec27491a32
@@ -974,6 +1048,7 @@
   treatment: Standard
   artist: Daarken
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_0236a11a6e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 758c1810-0f21-5f50-b550-2c3651c55f52
@@ -987,6 +1062,7 @@
   treatment: Standard
   artist: Wayne Reynolds
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_b795c10ecc.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 2587a75c-94d2-516f-ada5-1ac684a1fdaf
@@ -1000,6 +1076,7 @@
   treatment: Standard
   artist: James Ryman
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_9e3954cd2f.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: d429cf03-eadd-5d0a-a17f-005ad0ce833a
@@ -1013,6 +1090,7 @@
   treatment: Standard
   artist: Matt Stewart
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a927be2da9.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 1e129c8b-ad08-5b3c-97ed-d519f2f0f6be
@@ -1026,6 +1104,7 @@
   treatment: Standard
   artist: Kieran Yanner
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_e75bca82b9.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: bdb2e432-0599-5033-9969-a2c26260d87f
@@ -1039,6 +1118,7 @@
   treatment: Standard
   artist: Svetlin Velinov
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2bc0509610.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 3b39b6d2-4c11-538b-b95f-552881a5a43c
@@ -1052,6 +1132,7 @@
   treatment: Standard
   artist: Zoltan Boros
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_87967089d9.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 576916b3-8e54-5fca-b41e-c4f51b7c4ecc
@@ -1065,6 +1146,7 @@
   treatment: Standard
   artist: Livia Prima
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2c0da1316e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c0d8edd2-c410-532e-aa0f-99fd4f9584c2
@@ -1078,6 +1160,7 @@
   treatment: Standard
   artist: Svetlin Velinov
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a5c5a5f851.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 1b1e78e7-9f30-56fd-884b-224f441ca36a
@@ -1091,6 +1174,7 @@
   treatment: Standard
   artist: David Semple
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_10a2381e9e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 97279397-8471-56d0-897a-f03a4193f4db
@@ -1104,6 +1188,7 @@
   treatment: Standard
   artist: Luca Zontini
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_33c8513101.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: ab025ddc-b6ca-5c59-84eb-485540b3690c
@@ -1117,6 +1202,7 @@
   treatment: Standard
   artist: Jesper Ejsing
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f709a579c6.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 973de93e-895d-5a62-9c2c-8844fca4682b
@@ -1130,6 +1216,7 @@
   treatment: Standard
   artist: Gaboleps
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f96a43ef62.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: cb45b79c-69b9-5ffd-8f95-abd582736d43
@@ -1143,6 +1230,7 @@
   treatment: Standard
   artist: Zoltan Boros
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_091025d24d.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 13642556-9a04-5215-b426-5f3248339c00
@@ -1156,6 +1244,7 @@
   treatment: Standard
   artist: Dave Greco
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_32e19d377b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 51ad0ca4-2d59-5487-af0c-192e031217fc
@@ -1169,6 +1258,7 @@
   treatment: Standard
   artist: Wayne Reynolds
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_78e5406896.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 2f3dad66-b616-5122-a9f0-000e8fd67c44
@@ -1182,6 +1272,7 @@
   treatment: Standard
   artist: Kev Walker
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_4001d05e4a.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e8561db4-6601-56da-a852-75138a96d856
@@ -1195,6 +1286,7 @@
   treatment: Standard
   artist: Jesper Ejsing
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_c8db74f963.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 257ae8c5-1a80-5576-b61e-01e51019781b
@@ -1208,6 +1300,7 @@
   treatment: Standard
   artist: Jim Nelson
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_4e9904fa65.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: d677ce98-1b12-56b7-9eec-e724c9b7c991
@@ -1221,6 +1314,7 @@
   treatment: Standard
   artist: Wayne England
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_98adc285ea.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a304d26c-f23a-505e-b078-d04ce40eb0f7
@@ -1234,6 +1328,7 @@
   treatment: Standard
   artist: Omar Rayyan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f2c4eb5919.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 83974c7d-6793-5802-9df8-91bd819949f5
@@ -1247,6 +1342,7 @@
   treatment: Standard
   artist: Caio Monteiro
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_792f6c2f0a.webp
+  is_headliner: false
   printed_rules_text: '<strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you
     do, they
 
@@ -1268,6 +1364,7 @@
   treatment: Standard
   artist: Jim Murray
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_cae948ae72.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 3fa5baab-2253-52a1-bc2b-28bdeb543770
@@ -1281,6 +1378,7 @@
   treatment: Standard
   artist: Matt Cavotta
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_b4f2eea560.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 17a84771-44ca-5dbb-8800-f8a18d7e250e
@@ -1294,6 +1392,7 @@
   treatment: Standard
   artist: Kev Walker
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_4bc31ec6ea.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: dabccf17-0b36-569c-af50-5f6a61616b21
@@ -1307,6 +1406,7 @@
   treatment: Standard
   artist: Adi Granov
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_436cf6c9e4.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 014a2d55-2b8e-51a4-ad2a-f4daa8fc7490
@@ -1320,6 +1420,7 @@
   treatment: Standard
   artist: Jon Foster
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_fa95cdf5a9.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 725232df-0026-5f74-9922-fcb680b027b2
@@ -1333,6 +1434,7 @@
   treatment: Standard
   artist: Joe Slucher
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f2efdc8008.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: ff636a5c-3e1d-5901-8251-40394dd970e0
@@ -1346,6 +1448,7 @@
   treatment: Standard
   artist: Slawomir Maniak
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_595de70539.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 980577d1-e9a3-55f8-9e1a-64c8d98a5ae6
@@ -1359,6 +1462,7 @@
   treatment: Standard
   artist: Wisnu Tan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2e6fc27df8.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 265f3dea-6ea1-5c87-8132-36c5ec2d9cd6
@@ -1372,6 +1476,7 @@
   treatment: Standard
   artist: Volkan Baga
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_3d371a224c.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c2b0c454-f0e5-5424-b6f3-8ab566901914
@@ -1385,6 +1490,7 @@
   treatment: Standard
   artist: Volkan Baga
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8d29fbaa74.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 7eb9d141-0bfa-5e35-a57a-b82fbc197757
@@ -1398,6 +1504,7 @@
   treatment: Standard
   artist: Chris Rahn
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_6922ed810f.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 4b133776-e8cd-5d42-9256-303c4ece810a
@@ -1411,6 +1518,7 @@
   treatment: Standard
   artist: Iris Compiet
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f11ac0d4cd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6d0edebb-bc8c-5caa-b670-976f39262d03
@@ -1424,6 +1532,7 @@
   treatment: Standard
   artist: Joshua Cairos
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a73f42f958.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6d5391bd-553a-5710-80cf-5de12625426e
@@ -1437,6 +1546,7 @@
   treatment: Standard
   artist: April Prime
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a84ef2f73e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 328350ce-759f-5a5c-bcc3-6c90e15562cf
@@ -1450,6 +1560,7 @@
   treatment: Standard
   artist: Johannes Voss
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8a3502598f.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 17639bc8-325c-522a-b21c-cf0d2c7570ba
@@ -1463,6 +1574,7 @@
   treatment: Standard
   artist: Arif Wijaya
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_f6a797b668.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 13f6255f-875d-53fb-a035-dd5683d221c8
@@ -1476,6 +1588,7 @@
   treatment: Standard
   artist: Kai Carpenter
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_6147c110a1.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 6d3729a8-929e-5a44-a4f1-cad862d09714
@@ -1489,6 +1602,7 @@
   treatment: Standard
   artist: Borja Pindado
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_638fd1b331.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 12471386-70f2-5595-b89a-7e99cbacfea2
@@ -1502,6 +1616,7 @@
   treatment: Standard
   artist: Julie Dillon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_3f91566414.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a83c9dcd-f31d-526f-bb1f-cd4b156ee7a1
@@ -1515,6 +1630,7 @@
   treatment: Standard
   artist: Aaron J. Riley
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_37c8ff6ac3.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: fecd0e02-45ca-5a0c-bbc7-7374315ee943
@@ -1528,6 +1644,7 @@
   treatment: Standard
   artist: David Sladek
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_944642a216.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: fee4df34-3bf2-54f3-b542-78cb5e83b809
@@ -1541,6 +1658,7 @@
   treatment: Standard
   artist: Matt Dixon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_cf54facc33.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: aeecd5ee-1b1a-5b7f-aa26-edbe136fd07a
@@ -1554,6 +1672,7 @@
   treatment: Standard
   artist: Scott Murphy
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_d5d19db135.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 2dbfe96a-9b69-57a5-8639-84f53b624647
@@ -1567,6 +1686,7 @@
   treatment: Standard
   artist: Wisnu Tan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_b5b6235248.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: f6badbfb-318c-5f1e-a76d-128f04a90ad1
@@ -1580,6 +1700,7 @@
   treatment: Standard
   artist: Milivoj Ćeran
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_a4ac5b193b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: d0fcc3cc-9303-55fc-a8ff-98db23f437e3
@@ -1593,6 +1714,7 @@
   treatment: Standard
   artist: Steve Prescott
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_44522f15f3.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: e2afe3be-ffa2-54ed-93ac-0e34772ca6c2
@@ -1606,6 +1728,7 @@
   treatment: Standard
   artist: Chris Seaman
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_1de68dc34c.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 9be5d4ea-c86f-5786-aa93-c8c1c9b6e0f1
@@ -1619,6 +1742,7 @@
   treatment: Standard
   artist: Jason Chan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8569c6868b.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 8f53d9af-a393-5509-a5d7-8ec4fe12dd85
@@ -1632,6 +1756,7 @@
   treatment: Standard
   artist: Rhonda Libbey
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_58ef667397.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 8082c092-409a-596e-8bee-93acd0611d50
@@ -1645,6 +1770,7 @@
   treatment: Standard
   artist: Fajareka Setiawan
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_66b6f7a960.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: d2cbb112-28ff-5ea3-87af-dbd8eb16ed9c
@@ -1658,6 +1784,7 @@
   treatment: Standard
   artist: Howard Lyon
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_9bcb67999e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 104c73bd-9cd8-5830-b876-891a89922d40
@@ -1673,6 +1800,7 @@
   - Zoltan Boros
   - Gabor Szikszai
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_fa2e8db989.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: a3c500c2-ea09-5f64-b0f8-f88b442f263f
@@ -1686,6 +1814,7 @@
   treatment: Standard
   artist: Caroline Gariba
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_26d579f073.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: bb08b18c-6c89-59db-b2a7-de2b83e2b5a3
@@ -1699,6 +1828,7 @@
   treatment: Standard
   artist: Darrell Riche
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_355c27037e.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 181effc1-05df-5be8-9359-de12b322560e
@@ -1712,6 +1842,7 @@
   treatment: Standard
   artist: Ekaterina Burmak
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_85da101a78.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 32db3186-da68-568b-8dbf-9f0354ba7a34
@@ -1725,6 +1856,7 @@
   treatment: Standard
   artist: Greg Staples
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_2dbb36bbfd.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: c743ea69-c23a-5aa7-92b7-44081b76680a
@@ -1738,6 +1870,7 @@
   treatment: Standard
   artist: Eli Minaya
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_e844a24ace.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null
 - id: 072bfb5e-ef12-5eb1-87ae-cbe879c63376
@@ -1751,6 +1884,7 @@
   treatment: Foil
   artist: Mark Rosewater
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_8674b312121.webp
+  is_headliner: true
   printed_rules_text: null
   errata: null
 - id: b378be9c-7231-5a05-9625-4c86b867f66c
@@ -1764,5 +1898,6 @@
   treatment: Helper
   artist: Mike Dringenberg
   card_image_url: https://media.wizards.com/2026/msw/xABg1Js9Np/en_SDbCBoXR0F.webp
+  is_headliner: false
   printed_rules_text: null
   errata: null

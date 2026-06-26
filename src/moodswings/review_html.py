@@ -237,6 +237,10 @@ def format_value(key: str, value) -> str:
         if not value:
             return '<span style="color:#666">—</span>'
         return escape_html(", ".join(value))
+    if key == "is_headliner":
+        if value:
+            return '<strong style="color:#ffd700">★ headliner</strong>'
+        return '<span style="color:#666">—</span>'
     if key == "card_image_url":
         escaped = escape_html(str(value))
         return f'<a href="{escaped}" style="color:#a8d8ea">{escaped}</a>'

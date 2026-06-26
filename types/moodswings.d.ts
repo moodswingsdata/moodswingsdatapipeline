@@ -125,6 +125,12 @@ export interface Printing {
   card_image_url: string | null;
 
   /**
+   * Whether this printing is the edition's headliner (an editorial
+   * designation). False for the vast majority of printings.
+   */
+  is_headliner: boolean;
+
+  /**
    * Rules text exactly as physically printed on this printing, or null when it
    * is identical to the card's oracle rules_text. Populated when an erratum
    * means the printed text differs from the corrected oracle text.

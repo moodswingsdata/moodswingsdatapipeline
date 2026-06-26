@@ -202,6 +202,13 @@ the new printing is appended (keeping printings sorted by collector number).
 uv run ms create-printing inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml --card-name "Love"
 ```
 
+Pass `--is-headliner` to mark the printing as the edition's headliner (an
+editorial designation; e.g. Love #134 in Edition 1):
+
+```bash
+uv run ms create-printing inputs/sets/msw-edition1/love-premium.yaml --cards out/cards.yaml --editions out/editions.yaml --card-name "Love" --is-headliner
+```
+
 ### `write-meta`
 
 Write a `meta.yaml` recording the current schema version and a SHA256 hash for
@@ -239,6 +246,10 @@ A card's `timing` is an array of canonical tokens — `in_play`, `after_playing`
 and `to_play` — describing when its rules apply. A card may have zero, one, or
 several. The tokens are decoupled from the exact wording printed on the card
 (in Edition 1 these come from the bolded lead-in phrases).
+
+A printing's `is_headliner` flag (default `false`) marks an edition's headliner —
+an editorial designation with no obvious source in the inputs, so it is set when
+the printing is added (Edition 1: Love #134).
 
 The schema is versioned via `SCHEMA_VERSION` in both stub files. A build also
 emits `meta.yaml`/`meta.json` recording that version alongside SHA256 hashes of

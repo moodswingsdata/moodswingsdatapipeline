@@ -121,6 +121,10 @@ class Printing(TypedDict):
     card_image_url: str | None
     """URL to the card image, or None if unavailable."""
 
+    is_headliner: bool
+    """Whether this printing is the edition's headliner (an editorial
+    designation). False for the vast majority of printings."""
+
     printed_rules_text: str | None
     """Rules text exactly as physically printed on this printing, or None when
     it is identical to the card's oracle rules_text. Populated when an erratum
