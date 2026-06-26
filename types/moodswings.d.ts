@@ -8,7 +8,7 @@
 /**
  * Semantic version of the data schema as a [major, minor, patch] tuple.
  */
-export const SCHEMA_VERSION: readonly [0, 9, 0];
+export const SCHEMA_VERSION: readonly [1, 0, 0];
 
 /**
  * Marks a record whose data was corrected from what was originally printed.

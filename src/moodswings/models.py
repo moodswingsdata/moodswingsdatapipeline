@@ -8,7 +8,7 @@ but serve as documentation and enable type-checking with mypy/pyright.
 from datetime import date
 from typing import TypedDict
 
-SCHEMA_VERSION = (0, 9, 0)
+SCHEMA_VERSION = (1, 0, 0)
 """Semantic version of the data schema as a (major, minor, patch) tuple."""
 
 
