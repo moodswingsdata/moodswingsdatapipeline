@@ -181,6 +181,8 @@
     in play.
   - If Arrogance moves to another player, you still keep the card taken by it. But if it leaves play, even if another player
     has it, the card goes back to its original owner.
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: 9325105f-32cf-5676-a3c1-5b0af6315d72
   name: Avoidance
@@ -201,6 +203,8 @@
     whether it's suppressed.
   - Moods moving players does not make "After playing this mood" effects happen.
   - Avoidance can be chosen as the card you choose to move.
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: 518520f9-3407-5d21-a294-74f029017fa0
   name: Awe
@@ -297,6 +301,8 @@
     If Betrayal happens first, you will get the Relentless card before it goes to the bottom of the deck and draw the card.
     If you choose to have the Recklessness "after scoring" effect happen first, the player who has Recklessness would put
     it on the bottom of the deck and they would draw the card.
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: 5670c935-e7c6-50c2-8a98-3f832b4005f6
   name: Bitterness
@@ -410,11 +416,14 @@
   notes:
   - Any qualities of the cards, including their value and suppressed status, stay the same. For example, if Cheer is worth
     [5] because the person who played it discarded a card, the card still has a value of [5] after being moved around by Chaos.
-    The same would be true of a card suppressed by Pacifism. It stays suppressed after moving.
+    The same would be true of a card suppressed by Pacifism. It stays suppressed after moving as long as Pacifism remains
+    with the player who initially played. If the Pacifism gets moved to another player, the suppressing would stop.
   - Once Chaos is played, the cards in front of a player are now their cards. If a card is returned to a player's hand, it
     goes to their hand and not the player who originally played the card.
   - If Chaos is the first card played in a game, it will essentially stay in play for that player. (It is technically shuffled
     and dealt out starting with that player.)
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: a0d37cc4-9064-53ac-9490-e0a77dd8a4d2
   name: Charity
@@ -648,7 +657,11 @@
   - The card stays as a copy even if the original later leaves play.
   - If you use Creativity to copy a Creativity in play, you copy whatever that Creativity is a copy of and not Creativity
     itself.
-  errata: null
+  - Cards are the color they are in your hand when you play them. A Doubt stopping blue would stop Creativity from being played.
+  errata:
+    fields:
+    - notes
+    note: The note about card color and Doubt was added per correspondence with Mark Rosewater via Discord in June 2026.
 - id: d4a2a670-b99a-50af-8142-0a1edc674b23
   name: Cruelty
   color:
@@ -1131,10 +1144,11 @@
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
   - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it) that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+    in play on your side. If that mood leaves play or goes to another player, the suppressed mood is no longer suppressed.
+    If the suppressing mood leaves play or goes to another player, the card it is affecting will revert to the value it would
+    naturally have based on the state of the game. If a choice had previously been made for the mood (from when you played
+    it) that previous choice returns.
+  - If this mood moves to another player, the suppressed card(s) stop being suppressed.
   - If you do not have a green or blue card in your hand to discard, you may not suppress a card.
   - If Imagination is in play, it only changes the color of the moods in play and not the cards in your hand.
   errata: null
@@ -1425,6 +1439,8 @@
     whether it's suppressed.
   - Moods moving players does not make "After playing this mood" effects happen.
   - If Guile moves to another player, you still keep the card taken by it.
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: 98086f97-08e5-50a9-8d07-9b6fda107c11
   name: Guilt
@@ -1450,10 +1466,11 @@
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
   - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it), that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+    in play on your side. If that mood leaves play or goes to another player, the suppressed mood is no longer suppressed.
+    If the suppressing mood leaves play or goes to another player, the card it is affecting will revert to the value it would
+    naturally have based on the state of the game. If a choice had previously been made for the mood (from when you played
+    it) that previous choice returns.
+  - If this mood moves to another player, the suppressed card(s) stop being suppressed.
   - You may only choose one of the two effects, although if the mood returns to your hand and you play it again, you may make
     a different choice.
   - You may choose to suppress your own black or red mood.
@@ -1919,10 +1936,11 @@
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
   - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it), that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+    in play on your side. If that mood leaves play or goes to another player, the suppressed mood is no longer suppressed.
+    If the suppressing mood leaves play or goes to another player, the card it is affecting will revert to the value it would
+    naturally have based on the state of the game. If a choice had previously been made for the mood (from when you played
+    it) that previous choice returns.
+  - If this mood moves to another player, the suppressed card(s) stop being suppressed.
   - Only the moods that have a value of [5] or more at the time of this mood's effects become suppressed. If a mood later
     goes up in value to [5] or above, it doesn't become suppressed. If a new mood enters play with a value [5] or above, it
     doesn't become suppressed.
@@ -2044,10 +2062,11 @@
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
   - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it) that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+    in play on your side. If that mood leaves play or goes to another player, the suppressed mood is no longer suppressed.
+    If the suppressing mood leaves play or goes to another player, the card it is affecting will revert to the value it would
+    naturally have based on the state of the game. If a choice had previously been made for the mood (from when you played
+    it) that previous choice returns.
+  - If this mood moves to another player, the suppressed card(s) stop being suppressed.
   errata: null
 - id: ca820fa0-f937-5767-8c39-602ceb1f90d7
   name: Panic
@@ -2255,6 +2274,8 @@
     If Betrayal happens first, you will get the Relentless card before it goes to the bottom of the deck then draw the card.
     If you choose to have the Recklessness "after scoring" effect happen first, the player who has Recklessness would put
     it on the bottom of the deck and they would draw the card.
+  - If a card suppressing other cards moves to a different player, the suppressing stops. It does not turn back on if it returns
+    to the original player.
   errata: null
 - id: 1fdf8e18-91d2-5ddd-8424-60b2ebae4620
   name: Regret
@@ -2314,11 +2335,7 @@
   - The suppressed mood is still in play and is counted for any effects that care. For example, your opponent suppresses your
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
-  - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it) that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+  - If this mood moves to another player, the suppressed card(s) remains suppressed until the end of the round.
   - Repentance's suppress effect continues until the end of the round. After scoring, the cards are no longer suppressed.
   - Because values are only whole numbers, you may only choose a whole number. You can choose a number that doesn't have a
     mood in play with that value.
@@ -2362,7 +2379,7 @@
   - A suppressed mood is still in play and is counted for any effects that care. For example, your opponent suppresses your
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
-  - If this mood moves to another player, the suppressed card remains suppressed this turn.
+  - If this mood moves to another player, the suppressed card(s) remains suppressed until the end of the round.
   - Suppressing a card is optional.
   - Scorn's suppress effect continues until the end of the round. After scoring, the card is no longer suppressed.
   - If Imagination ("All moods are the chosen color") is in play, the moods won't trigger until they are in play, so they
@@ -2423,10 +2440,11 @@
     Sadness (worth [2] extra for every card in the discard pile). Sadness now has a value of [0], but it is still a black
     card in play that can help make your Excitement worth [6].
   - If the mood is suppressed for "as long as you have this mood," the mood stays suppressed as long as that mood remains
-    in play. If that mood leaves play, the suppressed mood is no longer suppressed. If the suppressing mood leaves play, the
-    card it is affecting will revert to the value it would naturally have based on the state of the game. If a choice had
-    previously been made for the mood (from when you played it) that previous choice returns.
-  - If this mood moves to another player, the suppressed card remains suppressed.
+    in play on your side. If that mood leaves play or goes to another player, the suppressed mood is no longer suppressed.
+    If the suppressing mood leaves play or goes to another player, the card it is affecting will revert to the value it would
+    naturally have based on the state of the game. If a choice had previously been made for the mood (from when you played
+    it) that previous choice returns.
+  - If this mood moves to another player, the suppressed card(s) stop being suppressed.
   - Discard is optional. If you don't discard a card, Shame has no effect and simply has a value of [3].
   - Only the moods that are the color of the discarded card at the time of this mood's effects become suppressed. If a mood
     later changes to that color, it doesn't become suppressed. If a new mood enters play of the discarded card's color, it
@@ -2742,8 +2760,7 @@
   timing:
   - after_playing
   notes:
-  - '"May" means this effect is optional. You do not have to play an additional card. You will still get the "While in play"
-    effect.'
+  - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You may choose to only affect one mood.
   - Both moods can be from the same person.
   - You may choose a mood or moods that are yours.

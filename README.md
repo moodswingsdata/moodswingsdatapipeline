@@ -140,12 +140,29 @@ Errata YAML format (printing example):
     note: "Typo in the printed card."
 ```
 
-Each entry replaces the oracle field with the `corrected` value and stores the
-`errata` marker so downstream consumers can choose how to display the change. The
-`as_printed` value is compared against the current data (ignoring whitespace
-wrapping); a mismatch emits a warning and skips that field, so errata that have
-drifted out of sync with the data are caught rather than silently applied.
-Re-running is idempotent.
+Each field block uses **exactly one** of two mutually-exclusive operations,
+chosen by key name so the source file is unambiguous:
+
+* `corrected` — **replace** the field's value wholesale. The optional
+  `as_printed` value is compared against the current data (ignoring whitespace
+  wrapping); a mismatch emits a warning and skips that field, so errata that have
+  drifted out of sync with the data are caught rather than silently applied.
+* `append` — **add** one or more items to a list field (e.g. a card's `notes`),
+  leaving existing items untouched. Items already present are skipped, so
+  re-running is idempotent. Only valid for list-valued, non-oracle fields.
+
+Card-keyed `append` example (adds a note to a card):
+```yaml
+- card_id: "06f6dc87-58bb-..."
+  notes:
+    append:
+      - "An extra clarification from the designer."
+    note: "Added per the designer; not yet on the publisher's website."
+```
+
+Each entry stores the `errata` marker (which fields changed plus a note) so
+downstream consumers can choose how to display the change. Re-running is
+idempotent.
 
 ### `lint`
 

@@ -1,0 +1,11 @@
+# Errata that correct a card's oracle (canonical) data directly.
+# Keyed by card_id. Each field block uses exactly one operation:
+#   * corrected: <value>   -> replace the field's value
+#   * append: [<items>]    -> add items to a list field (e.g. notes), skipping
+#                             ones already present (idempotent)
+- card_id: 06f6dc87-58bb-5668-a4e1-eeb38ad693c1  # Creativity
+  notes:
+    append:
+      - "Cards are the color they are in your hand when you play them. A Doubt stopping blue would stop Creativity from being played."
+    note: >-
+      The note about card color and Doubt was added per correspondence with Mark Rosewater via Discord in June 2026.

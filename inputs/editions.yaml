@@ -13,3 +13,5 @@
     - sets/msw-edition1/hurt-feelings.yaml
   - printing_errata:
     - sets/msw-edition1/printings-errata.yaml
+  - card_errata:
+    - sets/msw-edition1/cards-errata.yaml

@@ -49,6 +49,57 @@ class TestApplyCardErrata:
         assert applied == 0
         assert "c99" in warnings[0]
 
+    def test_append_adds_note(self):
+        cards = [{"id": "c1", "notes": ["first"]}]
+        errata = [{"card_id": "c1", "notes": {
+            "append": ["second"], "note": "Designer addition."}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 1
+        assert warnings == []
+        assert cards[0]["notes"] == ["first", "second"]
+        assert cards[0]["errata"] == {"fields": ["notes"], "note": "Designer addition."}
+
+    def test_append_to_missing_notes_field(self):
+        cards = [{"id": "c1"}]
+        errata = [{"card_id": "c1", "notes": {"append": ["only"]}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 1
+        assert cards[0]["notes"] == ["only"]
+
+    def test_append_idempotent_skip(self):
+        cards = [{"id": "c1", "notes": ["first", "second"]}]
+        errata = [{"card_id": "c1", "notes": {"append": ["second"], "note": "Add."}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 0
+        assert skipped == 1
+        assert cards[0]["notes"] == ["first", "second"]
+        assert cards[0]["errata"]["fields"] == ["notes"]
+
+    def test_append_normalizes_whitespace_for_dedup(self):
+        cards = [{"id": "c1", "notes": ["alpha beta"]}]
+        errata = [{"card_id": "c1", "notes": {"append": ["alpha\n  beta"]}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 0
+        assert skipped == 1
+        assert cards[0]["notes"] == ["alpha beta"]
+
+    def test_corrected_and_append_mutually_exclusive(self):
+        cards = [{"id": "c1", "notes": ["first"]}]
+        errata = [{"card_id": "c1", "notes": {"corrected": ["x"], "append": ["y"]}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 0
+        assert len(warnings) == 1
+        assert "not both" in warnings[0]
+        assert "errata" not in cards[0]
+
+    def test_append_to_non_list_field_warns(self):
+        cards = [{"id": "c1", "rules_text": "scalar"}]
+        errata = [{"card_id": "c1", "rules_text": {"append": ["x"]}}]
+        applied, skipped, warnings = apply_card_errata(cards, errata)
+        assert applied == 0
+        assert len(warnings) == 1
+        assert "non-list" in warnings[0]
+
 
 class TestApplyPrintingErrata:
     def test_oracle_field_propagates_to_card_and_preserves_printed(self):

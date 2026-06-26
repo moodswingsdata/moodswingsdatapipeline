@@ -15,13 +15,31 @@ Errata files come in two flavours, auto-detected by their id key:
   correction propagates to the card's oracle field while the original printed
   text is kept on the printing.
 
-Each entry maps one or more field names to a correction block::
+Each entry maps one or more field names to a correction block. A correction
+block uses exactly one of two mutually-exclusive operations, chosen by key name
+so the intent is unambiguous in the source file:
+
+* ``corrected`` — **replace** the field's value wholesale (optionally guarded by
+  an ``as_printed`` value that must match the current data)::
 
     - printing_id: 83974c7d-...
       rules_text:
         as_printed: "...gives it to you..."   # original (kept on the printing)
         corrected: "...give it to you..."      # oracle (written to the card)
         note: "Typo in the printed card."
+
+* ``append`` — **add** one or more items to a list field (e.g. a card's
+  ``notes``) without disturbing the existing items. Items already present are
+  skipped, so re-running is idempotent::
+
+    - card_id: 06f6dc87-...
+      notes:
+        append:
+          - "An extra clarification from the designer."
+        note: "Added per the designer; not yet on the publisher's website."
+
+``append`` is only valid for list-valued, non-oracle fields. ``corrected`` and
+``append`` may not both appear in the same correction block.
 """
 
 from pathlib import Path
@@ -57,6 +75,48 @@ def _field_blocks(entry: dict, id_key: str) -> dict:
     return {k: v for k, v in entry.items() if k != id_key}
 
 
+def _correction_op(correction: object) -> tuple[str | None, str | None]:
+    """Determine which operation a correction block requests.
+
+    Returns ``(op, error)`` where ``op`` is ``"corrected"`` (replace) or
+    ``"append"`` (extend a list), and ``error`` is a message when the block is
+    malformed (the two keys are mutually exclusive and exactly one is required).
+    """
+    if not isinstance(correction, dict):
+        return None, "correction must be a mapping."
+    has_corrected = "corrected" in correction
+    has_append = "append" in correction
+    if has_corrected and has_append:
+        return None, "use either 'corrected' (replace) or 'append', not both."
+    if has_corrected:
+        return "corrected", None
+    if has_append:
+        return "append", None
+    return None, "correction must define 'corrected' or 'append'."
+
+
+def _append_to_list_field(target: dict, field: str, additions: object) -> tuple[str | None, str | None]:
+    """Append new items to a list field, skipping ones already present.
+
+    Returns ``(status, error)`` where ``status`` is ``"applied"`` (items added)
+    or ``"skipped"`` (all items already present), and ``error`` is set when the
+    operation is invalid for this field.
+    """
+    if not isinstance(additions, list):
+        return None, f"field '{field}': 'append' must be a list of items."
+    current = target.get(field)
+    if current is None:
+        current = []
+    if not isinstance(current, list):
+        return None, f"field '{field}': cannot append to non-list value."
+    existing = {_normalize(item) for item in current}
+    new_items = [item for item in additions if _normalize(item) not in existing]
+    if not new_items:
+        return "skipped", None
+    target[field] = current + new_items
+    return "applied", None
+
+
 def apply_card_errata(cards: list[dict], errata: list[dict]) -> tuple[int, int, list[str]]:
     """Apply card-keyed errata to cards in place.
 
@@ -76,10 +136,22 @@ def apply_card_errata(cards: list[dict], errata: list[dict]) -> tuple[int, int, 
         notes: list[str | None] = []
 
         for field, correction in _field_blocks(entry, "card_id").items():
-            if not isinstance(correction, dict) or "corrected" not in correction:
-                warnings.append(
-                    f"Card '{card['id']}' field '{field}': correction must define 'corrected'."
-                )
+            op, error = _correction_op(correction)
+            if error is not None:
+                warnings.append(f"Card '{card['id']}' field '{field}': {error}")
+                continue
+
+            if op == "append":
+                status, append_error = _append_to_list_field(card, field, correction["append"])
+                if append_error is not None:
+                    warnings.append(f"Card '{card['id']}' {append_error}")
+                    continue
+                if status == "applied":
+                    applied += 1
+                else:
+                    skipped += 1
+                applied_fields.append(field)
+                notes.append(correction.get("note"))
                 continue
 
             corrected = correction["corrected"]
@@ -128,10 +200,28 @@ def apply_printing_errata(
         notes: list[str | None] = []
 
         for field, correction in _field_blocks(entry, "printing_id").items():
-            if not isinstance(correction, dict) or "corrected" not in correction:
-                warnings.append(
-                    f"Printing '{printing['id']}' field '{field}': correction must define 'corrected'."
-                )
+            op, error = _correction_op(correction)
+            if error is not None:
+                warnings.append(f"Printing '{printing['id']}' field '{field}': {error}")
+                continue
+
+            if op == "append":
+                if field in ORACLE_FIELDS:
+                    warnings.append(
+                        f"Printing '{printing['id']}' field '{field}': 'append' is not "
+                        f"supported for oracle fields."
+                    )
+                    continue
+                status, append_error = _append_to_list_field(printing, field, correction["append"])
+                if append_error is not None:
+                    warnings.append(f"Printing '{printing['id']}' {append_error}")
+                    continue
+                if status == "applied":
+                    applied += 1
+                else:
+                    skipped += 1
+                applied_fields.append(field)
+                notes.append(correction.get("note"))
                 continue
 
             corrected = correction["corrected"]
