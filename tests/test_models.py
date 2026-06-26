@@ -24,7 +24,7 @@ CARD_FIELDS = {
     "secondary_dice": (str, type(None)),
     "secondary_dice_value": (int, type(None)),
     "rules_text": (str, type(None)),
-    "rulings_text": (list, type(None)),
+    "notes": (list, type(None)),
     "errata": (dict, type(None)),
 }
 
@@ -92,13 +92,13 @@ class TestCardConformsToModel:
                     f"Card {card['name']} has invalid color '{c}'"
                 )
 
-    def test_card_rulings_items_are_strings(self, parsed_data):
+    def test_card_notes_items_are_strings(self, parsed_data):
         cards, _ = parsed_data
         for card in cards:
-            if card["rulings_text"] is not None:
-                for item in card["rulings_text"]:
+            if card["notes"] is not None:
+                for item in card["notes"]:
                     assert isinstance(item, str), (
-                        f"Card {card['name']} has non-string ruling: {item!r}"
+                        f"Card {card['name']} has non-string note: {item!r}"
                     )
 
     def test_card_id_is_uuid_format(self, parsed_data):

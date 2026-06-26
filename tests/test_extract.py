@@ -177,16 +177,16 @@ class TestParseHtml:
         # Bliss has no rules text (just dice value)
         assert by_name["Bliss"]["rules_text"] is None or by_name["Bliss"]["rules_text"] == ""
 
-    def test_card_has_rulings(self, parsed):
+    def test_card_has_notes(self, parsed):
         cards, _ = parsed
         by_name = {c["name"]: c for c in cards}
-        assert by_name["Altruism"]["rulings_text"] is not None
-        assert len(by_name["Altruism"]["rulings_text"]) == 2
+        assert by_name["Altruism"]["notes"] is not None
+        assert len(by_name["Altruism"]["notes"]) == 2
 
-    def test_card_without_rulings(self, parsed):
+    def test_card_without_notes(self, parsed):
         cards, _ = parsed
         by_name = {c["name"]: c for c in cards}
-        assert by_name["Anger"]["rulings_text"] is None
+        assert by_name["Anger"]["notes"] is None
 
     def test_printing_has_image_url(self, parsed):
         _, printings = parsed

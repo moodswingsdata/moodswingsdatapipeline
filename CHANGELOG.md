@@ -1,6 +1,7 @@
 # Schema Changelog
 
 ## Dev
+- Renamed `Card.rulings_text` to `Card.notes` in `models.py` and `types/moodswings.d.ts`.
 - Added `Errata` type (`fields`, `note`) to `models.py` and `types/moodswings.d.ts`.
 - Added optional `errata` marker to `Card` and `Printing` to flag corrected fields for downstream consumers.
 - Added `printed_rules_text` to `Printing`: the as-printed text when it differs from the card's oracle `rules_text` (null when identical). `Card.rules_text` is now documented as the canonical oracle value.

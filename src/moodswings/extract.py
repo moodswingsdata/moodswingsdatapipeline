@@ -108,8 +108,8 @@ def extract_rules_html(p_tag: Tag) -> str:
     return rules_html
 
 
-def extract_rulings(p_tag: Tag) -> str | None:
-    """Extract rulings from the <ul> following the card paragraph."""
+def extract_notes(p_tag: Tag) -> str | None:
+    """Extract notes from the <ul> following the card paragraph."""
     # Find next sibling elements after this <p>
     sibling = p_tag.next_sibling
     while sibling is not None:
@@ -121,7 +121,7 @@ def extract_rulings(p_tag: Tag) -> str | None:
                     items.append(li.decode_contents().strip())
                 return items if items else None
             else:
-                # Next element is not a <ul>, so no rulings
+                # Next element is not a <ul>, so no notes
                 return None
         sibling = sibling.next_sibling
     return None
@@ -231,8 +231,8 @@ def parse_html(html_path: Path) -> list[dict]:
         # Extract rules text (HTML after second <br>)
         rules_html = extract_rules_html(p_tag)
 
-        # Extract rulings
-        rulings = extract_rulings(p_tag)
+        # Extract notes
+        notes = extract_notes(p_tag)
 
         # Get image URL by matching name
         image_url = image_map.get(name)
@@ -250,7 +250,7 @@ def parse_html(html_path: Path) -> list[dict]:
             "secondary_dice": dice_info["secondary_dice"],
             "secondary_dice_value": dice_info["secondary_dice_value"],
             "rules_text": rules_html if rules_html else None,
-            "rulings_text": rulings,
+            "notes": notes,
             "errata": None,
         }
 

@@ -10,7 +10,7 @@
   rules_text: <strong>After playing this mood</strong> — If the discard pile has at least one card in it, this mood's value
     becomes [6][1]. Then starting with the next player in turn order, each player takes a random card from the discard pile
     and puts it into their hand. Put the rest of the discard pile onto the bottom of the deck in a random order.
-  rulings_text:
+  notes:
   - If the discard pile is empty, Altruism is a card with a value of [3] that doesn't do anything.
   - If there are less cards than there are players, not every player will get a card. As long as at least one player gets
     a card, Altruism is worth [6][1].
@@ -28,7 +28,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand. If you do, you may play an
     additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Ambition. You may first play the additional
@@ -43,7 +43,7 @@
   secondary_dice: '[3]'
   secondary_dice_value: 3
   rules_text: <strong>While in play</strong> — This mood's value is [3] if there are two or more red and/or green moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Ambivalence
     is worth [3] if there are two red moods, two green moods, or a red mood and a green mood in play.
   errata: null
@@ -57,7 +57,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put any number of moods with total value [5] or less into
     the discard pile.
-  rulings_text:
+  notes:
   - The total value of cards put into the discard pile can be less than [5].
   - You may choose some of your own moods.
   - You can include [0] value cards. Essentially, you can destroy any number of [0]-value moods.
@@ -86,7 +86,7 @@
   rules_text: <strong>After playing this mood</strong> — You may put one of your blue or red moods into the discard pile.
     If you do, you may play an additional mood this turn from the discard pile. <em>(You can play the card you just put into
     the discard pile if you want.)</em>
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - Moods played from the discard pile are played similarly to how they are played from the hand.
   - You may play any mood in the discard pile, even ones that originally were played by other players.
@@ -110,7 +110,7 @@
   secondary_dice: '[5]'
   secondary_dice_value: 5
   rules_text: <strong>While in play</strong> — This mood's value is [5] if any opponent has three or more cards in hand.
-  rulings_text:
+  notes:
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), this card does not care about the number of cards in a teammate's hand.
   - In a game with three or more players, only one opponent needs to have three or more cards for Animosity to have a value
@@ -126,7 +126,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, put one of their
     moods with an odd value into their hand.
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - '[0] is even.'
@@ -140,7 +140,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: null
-  rulings_text:
+  notes:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
   errata: null
@@ -155,7 +155,7 @@
   rules_text: <strong>After playing this mood</strong> — You may choose an opponent. If you do, they choose one of their white
     or blue moods and it becomes yours. After this mood is no longer in play, give the mood you took back to them <em>(if
     you still have it)</em>.
-  rulings_text:
+  notes:
   - When a mood moves from one player to another all qualities of that card remain the same. This includes its value and whether
     it's suppressed.
   - Moods moving players does not make "After playing this mood" effects happen.
@@ -175,7 +175,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose left or right. Each player chooses one of their moods and
     gives it to the next player in the chosen direction. <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - If a player has no moods, they do not pass one.
   - Players should make their decision before moving any moods so that the cards being moved are revealed at the same time.
   - When a mood moves from one player to another, all qualities of that card remain the same. This includes its value and
@@ -194,7 +194,7 @@
   rules_text: <strong>After playing this mood</strong> — There is no scoring this round. No one wins or loses this round.
     You choose which player goes first next round. <em>(This round, no one will draw a card or get Hurt Feelings, and "after
     scoring" effects won't happen.)</em>
-  rulings_text:
+  notes:
   - This card prevents scoring. Without a new score, there are no winners or losers for the round. No losers means no one
     draws a card or gets Hurt Feelings in a multiplayer game.
   - The player who plays Awe gets to decide who plays first the next round. This does not change how ties work for the next
@@ -215,7 +215,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — After scoring this round, if you won the round, put this mood on
     the bottom of the deck and draw a card.
-  rulings_text:
+  notes:
   - If the deck is empty, the player will draw the card they just put on the bottom.
   - You only draw a card if Bashfulness goes to the bottom of the deck.
   - Bashfulness only goes to the bottom of the deck if you win the turn you play Bashfulness. If you win a later turn, Bashfulness
@@ -240,7 +240,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn if it doesn't share a color
     with any of your moods.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Benevolence. You may first play the additional
@@ -258,7 +258,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Give one of your moods to another player. After scoring, that mood
     becomes yours again <em>(if it's still in play)</em>.
-  rulings_text:
+  notes:
   - If you give a suppressed card to another player, that card is still suppressed.
   - When a mood moves from one player to another, all qualities of that card remain the same. This includes its value and
     whether it's suppressed.
@@ -281,7 +281,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Calculate the most common color or colors among all moods. Put all
     other moods that share one of those colors into the discard pile.
-  rulings_text:
+  notes:
   - If two or more colors are tied for the most, they are all put into the discard pile.
   - Bitterness counts itself toward the number of black moods in play, but Bitterness never puts itself in the discard pile
     even if black is the most common color.
@@ -302,7 +302,7 @@
     play this card.)</em><br/>
 
     <strong>While in play</strong> — Score each of your moods that share a color with the discarded card two extra times.'
-  rulings_text:
+  notes:
   - You can't play Bliss if you don't have another card in hand.
   - Bliss always has a value of [2]. It's allowing you to score your other cards twice. It does not itself gain any value.
   - If Bliss is set to green, you will score Bliss two extra times.
@@ -321,7 +321,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: null
-  rulings_text:
+  notes:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
   errata: null
@@ -335,7 +335,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put one of your other moods into the discard pile <em>(moods
     are cards in play)</em>. If you do, you may play an additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Bravado. You may first play the additional
@@ -351,7 +351,7 @@
   secondary_dice_value: 7
   rules_text: <strong>While in play</strong> — This mood's value is [6][1] if there are more colors among your moods than
     among each other player's moods.
-  rulings_text:
+  notes:
   - If you are tied for the most colors in play with another player, this card is worth [3]. You must have more colors in
     play for it to be worth [6][1].
   - The only way for Celebration to be worth [6][1] with Imagination in play is for you to have both cards and your opponents
@@ -368,7 +368,7 @@
   rules_text: <strong>After playing this mood</strong> — Shuffle <strong>all</strong> moods together. Starting with you and
     going in turn order, deal those moods out one at a time to each player. <em>(Moods may change players but "After playing
     this mood" effects won't happen again.)</em>
-  rulings_text:
+  notes:
   - Any qualities of the cards, including their value and suppressed status, stay the same. For example, if Cheer is worth
     [5] because the person who played it discarded a card, the card still has a value of [5] after being moved around by Chaos.
     The same would be true of a card suppressed by Pacifism. It stays suppressed after moving.
@@ -386,7 +386,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Charity. You may first play the additional
@@ -402,7 +402,7 @@
   secondary_dice_value: 5
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand with a [0], [2], [4], or [6]
     in its top right corner. If you do, this mood's value becomes [5].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its base score and not do its effect.'
   - Cards in your hand always look at the top right corner when caring about die numbers and never the lower left corner.
   - If you discard what is asked and the card has multiple values, in play it will always be the lower left value (with the
@@ -420,7 +420,7 @@
   secondary_dice: '[5]'
   secondary_dice_value: 5
   rules_text: <strong>While in play</strong> — This mood's value is [5] if you didn't go first this round.
-  rulings_text:
+  notes:
   - This card is worth [5] in games with three or more players as long as someone else went first.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
     Ways to Play</a>), this card is worth [5] even if your teammate went first.
@@ -434,7 +434,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: null
-  rulings_text:
+  notes:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
   errata: null
@@ -448,7 +448,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose another player. That player chooses a card from their hand
     and gives it to you.
-  rulings_text:
+  notes:
   - If that player has no cards in hand, they do not give you a card.
   - This is not an optional effect (it doesn't say "may"). You must choose another player and they must give you a card, if
     able. You can choose a player without a card and not receive one.
@@ -467,7 +467,7 @@
   secondary_dice_value: 6
   rules_text: <strong>After playing this mood</strong> — You may give a card from your hand to another player. If you do,
     this mood's value becomes [6].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - To get a value of [6], you must give a card to another player. If you don't have another card in hand, you can't get [6].
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
@@ -483,7 +483,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose left or right. Each player chooses a card from their hand
     and gives it to the next player in the chosen direction.
-  rulings_text:
+  notes:
   - Confusion's effect is mandatory. All players must pass a card if able.
   - If a player does not have a card, they do not pass one.
   - Selected cards should be passed face down (so they aren't known), and no player should look at their card until all the
@@ -502,7 +502,7 @@
     • Put a green or white mood into the discard pile.<br/>
 
     • Put all green and white moods into the discard pile.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect, meaning you choose
     to do neither effect.'
   - If you choose the first option, you can put a green or white card of yours into the discard pile.
@@ -519,7 +519,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose a mood. Its player puts it on the bottom of the deck and draws
     a card.
-  rulings_text:
+  notes:
   - If the deck is empty, the player will draw the card they just put on the bottom.
   - You can choose any player's mood, including your own. That mood's player is the one who draws the card.
   errata: null
@@ -536,7 +536,7 @@
     • Put up to two cards from the discard pile on the bottom of the deck, then draw that many cards.<br/>
 
     • The winner of the current round wins two rounds instead of one. <em>(Each losing player still draws only one card.)</em>'
-  rulings_text:
+  notes:
   - If the deck is empty, the player will draw the card(s) they just put on the bottom.
   - Whoever wins this turn gets two wins for the round. That can include other players.
   - If the winner of this round has one or more wins and gets two wins this round, they will win the game. They still win
@@ -554,7 +554,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, put one of their
     moods with a value of [5] or more into the discard pile.
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - You do not choose what card you are affecting until after "While in play" effects happen, meaning if there is a card with
@@ -573,7 +573,7 @@
   secondary_dice_value: null
   rules_text: You may play this card as a copy of any mood. <em>(Treat this mood as if it were an exact copy of that printed
     card, including dice, color, and abilities. The copied traits last for as long as this mood is in play.)</em>
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect. If you do not, this
     card is a blue card with a value of [0].'
   - You may copy a mood of another player.
@@ -598,7 +598,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose any number of opponents who each have two or more moods. Each
     chosen opponent puts a random one of their moods into the discard pile. <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - You can't choose an opponent with one or zero moods.
   - You may not choose yourself to be affected as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't affect a teammate's cards.
@@ -618,7 +618,7 @@
   secondary_dice_value: 6
   rules_text: <strong>After playing this mood</strong> — You may choose a player. If you do, that player reveals a random
     card from their hand. If the revealed card shares a color with any mood, this mood's value becomes [6].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You may choose yourself.
   - The revealed card is seen by all players and not just the person playing Curiosity.
@@ -636,7 +636,7 @@
   secondary_dice_value: 6
   rules_text: <strong>After playing this mood</strong> — You may put a card from the discard pile into an opponent's hand.
     If you do, this mood's value becomes [6].
-  rulings_text:
+  notes:
   - You may not choose yourself to be affected as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't affect a teammate's cards.
   - If there are no cards in the discard pile, Cynicism can't have a value of [6].
@@ -652,7 +652,7 @@
   secondary_dice_value: 5
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand with a [1], [3], or [5] in
     its top right corner. If you do, this mood's value becomes [5].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its base score and not do its effect.'
   - Cards in your hand always look at the top right corner when caring about die numbers and never the lower left corner.
   - If you discard what is asked and the card has multiple values, in play it will always be the lower left value (with the
@@ -671,7 +671,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose two other moods. If the two chosen moods share a color
     or have the same value, put them into their players' hands.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - The moods do not have to be the same player's. For example, you may choose one of your moods and another player's mood.
   - '"Value" means the current score of the card. This may not be the number on the die in the top right corner. (Black dice
@@ -689,7 +689,7 @@
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are three or more moods that share a color.
     <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - Determination counts all moods in play, not just yours.
   - Determination counts itself, so if there are two other green cards in play, Determination has a value of [6].
   - Determination merely cares that there are three cards of any one color. Which color doesn't matter, and Determination
@@ -705,7 +705,7 @@
   secondary_dice_value: 5
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand with a [0], [1], [2], or [3]
     in its top right corner. If you do, this mood's value becomes [5].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its base score and not do its effect.'
   - Cards in your hand always look at the top right corner when caring about die numbers and never the lower left corner.
   - If you discard what is asked and the card has multiple values, in play it will always be the lower left value (with the
@@ -723,7 +723,7 @@
   secondary_dice: '[3]'
   secondary_dice_value: 3
   rules_text: <strong>While in play</strong> — This mood's value is [3] if there are two or more black and/or red moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Discipline
     is worth [3] if there are two black moods, two red moods, or a black mood and a red mood in play.
   errata: null
@@ -736,7 +736,7 @@
   secondary_dice: '[3]'
   secondary_dice_value: 3
   rules_text: <strong>While in play</strong> — This mood's value is [3] if there are two or more green and/or white moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Disgust
     is worth [3] if there are two green moods, two white moods, or a green mood and a white mood in play.
   errata: null
@@ -750,7 +750,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Starting with the next player in turn order, each player may choose
     a color. Put each other mood that shares one of those colors into the discard pile.
-  rulings_text:
+  notes:
   - Turn order is clockwise, so the person to your left names the first color (if they choose to).
   - Players may choose not to name a color.
   - All colors are named before any cards are put into the discard pile.
@@ -771,7 +771,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose a number. If you do, put all other moods with the
     chosen value into their players' hands.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You may choose any whole number, even one that doesn't have a card with that value in play.
   - '"Value" means the current score of the card. This may not be the number on the die in the top right corner. (Black dice
@@ -791,7 +791,7 @@
   secondary_dice: '[3]'
   secondary_dice_value: 3
   rules_text: <strong>While in play</strong> — This mood's value is [3] if there are two or more blue and/or black moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Disregard
     is worth [3] if there are two blue moods, two black moods, or a blue mood and a black mood in play.
   errata: null
@@ -806,7 +806,7 @@
   rules_text: <strong>After playing this mood</strong> — You may reveal any number of cards from your hand and put them on
     the bottom of the deck, then draw that many cards. During the <strong>next</strong> round, players can't play moods that
     share a color with any of the revealed cards.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - If the deck is empty, the player will draw the card(s) they just put on the bottom.
   - A revealed card is seen by all players.
@@ -827,7 +827,7 @@
 
     <strong>While in play</strong> — Each time you play another mood, you may have that mood''s "After playing this mood"
     effect happen an additional time. <em>(If that effect involves a choice, different choices can be made each time.)</em>'
-  rulings_text:
+  notes:
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Duplicity and play Eagerness (which allows you to play an additional
     card of a color you have in play). You may first play the additional card for Duplicity before you play the additional
@@ -852,7 +852,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn if it shares a color with
     one of your moods.
-  rulings_text:
+  notes:
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Eagerness. You may first play the additional
     card for Hurt Feelings before you play the additional card for Eagerness, which would allow you to play an additional
@@ -871,7 +871,7 @@
   secondary_dice_value: 5
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand with a [4], [5], or [6] in
     its top right corner. If you do, this mood's value becomes [5].
-  rulings_text:
+  notes:
   - Cards in your hand always look at the top right corner when caring about die numbers and never the lower left corner.
   - If you discard what is asked and the card has multiple values, in play it will always be the lower left value (with the
     card arranged vertically). We recommend turning the card 180 degrees so that the current score is represented in the top
@@ -889,7 +889,7 @@
 
     <strong>While in play</strong> — The chosen mood uses the dice total in its top right corner or lower left corner, whichever
     is higher, to determine its value.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You do not have the ability to choose which total to count. It is always the highest value. For example, you are close
     to being last this round and wish to have the lowest score to get Hurt Feelings. Encouragement does not allow you to count
@@ -906,7 +906,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are two or more red and/or white moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Enjoyment
     is worth [6] if there are two red moods, two white moods, or a red mood and a white mood in play.
   errata: null
@@ -919,7 +919,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — While scoring, you may score one of your moods an extra time.
-  rulings_text:
+  notes:
   - Scoring the extra card is optional. You don't have to do it.
   - You may choose which of your cards to score. It does not need to be the highest scoring card.
   - Enthusiasm always has a value of [0]. It's allowing you to score another card twice. It does not itself gain any value.
@@ -939,7 +939,7 @@
     you can''t play this card. Moods are cards in play.)</em><br/>
 
     <strong>While in play</strong> — This mood''s value increases by [2] for each mood your moodiest opponent has.'
-  rulings_text:
+  notes:
   - The "moodiest" opponent is whichever opponent has the most moods in play.
   - The moodiest opponent can change from round to round.
   - If two opponents have the same number of cards, either can be the "moodiest," but don't count both.
@@ -958,7 +958,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — This mood's value increases by [1] for each mood <em>(including itself and
     other players' moods)</em>.
-  rulings_text:
+  notes:
   - When a card is played, Euphoria will adjust its value before that card's "After playing this mood" effect happens. For
     instance, let's say there are four cards in play including Euphoria. Your opponent plays Courage (which puts a card with
     value [5] or more into the discard pile). Euphoria will get a value of [5] (as there are now five cards in play) before
@@ -974,7 +974,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are two or more black and/or green moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Excitement
     is worth [6] if there are two black moods, two green moods, or a black mood and a green mood in play.
   errata: null
@@ -990,7 +990,7 @@
     you can''t play this card. Moods are cards in play.)</em><br/>
 
     <strong>While in play</strong> — Score your moods an extra time.'
-  rulings_text:
+  notes:
   - Exhilaration always has a value of [0]. It's allowing you to score your other cards twice. It does not itself gain any
     value.
   - The extra scoring is mandatory. You can't choose not to do it.
@@ -1010,7 +1010,7 @@
   rules_text: <strong>After playing this mood</strong> — You may discard a green or blue card from your hand. If you do, suppress
     any mood. It remains suppressed for as long as you have this mood. <em>(While suppressed, that mood has a value of [0].
     Turn it sideways to keep track.)</em>
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
@@ -1035,7 +1035,7 @@
   secondary_dice_value: 7
   rules_text: <strong>After playing this mood</strong> — You may reveal a blue or black card from your hand and give it to
     another player. If you do, this mood's value becomes [6][1].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - To get a value of [6][1], you must give a blue or black card to another player. If you don't have a blue or black card
     in hand, you can't get a value of [6][1].
@@ -1052,7 +1052,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put another one of your moods into your hand. You may play
     an additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means both effects are optional. You may do one without doing the other. For example, you may play an additional
     card without returning a mood to your hand.'
   - You may play the mood you return to your hand as the additional mood, but you may instead play a different mood from your
@@ -1073,7 +1073,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Calculate the most common color or colors among all moods. Put all
     moods other than this one that share one of those colors into their players' hands.
-  rulings_text:
+  notes:
   - If two or more colors have the same number of moods in play more than any other color, they are all considered the "most
     common color" and are all returned.
   - Fickleness will never put itself back into your hand if blue is the most common color.
@@ -1091,7 +1091,7 @@
   secondary_dice_value: 7
   rules_text: <strong>While in play</strong> — This mood's value is [6][1] if each player has three or more moods. <em>(Moods
     are cards in play.)</em>
-  rulings_text:
+  notes:
   - Every player in the game must have three moods in play for you to get this bonus. In a game with three or more players,
     just you and one other player having three cards will not count.
   - Fondness counts itself toward how many moods you have in play.
@@ -1106,7 +1106,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn if it has a [0], [2], [4],
     or [6] in its top right corner.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Friendliness. You may first play the additional
@@ -1121,7 +1121,7 @@
   secondary_dice: '[3]'
   secondary_dice_value: 3
   rules_text: <strong>While in play</strong> — This mood's value is [3] if there are two or more white and/or blue moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Frustration
     is worth [3] if there are two white moods, two blue moods, or a white mood and a blue mood in play.
   errata: null
@@ -1135,7 +1135,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Each player chooses one of their highest value moods and puts it
     into the discard pile.
-  rulings_text:
+  notes:
   - Fury will put itself into a discard pile if it is your highest value mood.
   - If a player has two or more cards with the same value, that player chooses which of the cards to put into the discard
     pile.
@@ -1152,7 +1152,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose an opponent. They may play an additional mood on their next
     turn.
-  rulings_text:
+  notes:
   - The opponent gets to play their additional card on their next turn. That will be the same round if they haven't played
     yet. It will be next round if they have.
   - The additional card is optional. They do not have to play an additional card.
@@ -1173,7 +1173,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if you played it this round.
-  rulings_text:
+  notes:
   - This card counts as playing a [0] card. For instance, you will get to play an extra card with Validation (which lets you
     play an additional card whenever you play a card with a [0] or [1] in its top right corner).
   errata: null
@@ -1187,7 +1187,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn. If you do, after scoring,
     put that mood into the discard pile <em>(if it's still in play)</em>.
-  rulings_text:
+  notes:
   - If the extra card has moved to another player, it is still put into the discard pile after scoring.
   - If the extra card lets you play more additional extra cards, those extra cards are not put into the discard pile after
     scoring, just the initial extra card.
@@ -1211,7 +1211,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — During each of your turns <em>(including the turn you play this mood)</em>,
     you may play an additional mood from the discard pile if it shares a color with one of your moods.
-  rulings_text:
+  notes:
   - Moods played from the discard pile are played similarly to how they are played from the hand.
   - You may play any mood in the discard pile, even ones that originally were played by other players.
   - Playing a card from the discard pile that lets you play an additional card only lets you play the additional card from
@@ -1245,7 +1245,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play up to two additional moods this turn from the discard
     pile.
-  rulings_text:
+  notes:
   - You can play zero, one, or two cards from your discard pile.
   - Moods played from the discard pile are played similarly to how they are played from the hand.
   - You may play any mood in the discard pile, even ones that originally were played by other players.
@@ -1275,7 +1275,7 @@
     play this card.)</em><br/>
 
     <strong>After playing this mood</strong> — Choose one of your opponents'' moods. It becomes yours.'
-  rulings_text:
+  notes:
   - If you have less than two cards in hand other than Guile, you will be unable to play Guile.
   - Taking a mood doesn't change its suppressed status.
   - You must take a mood from another player. If there is no other mood to take, you do not take anything.
@@ -1300,7 +1300,7 @@
     has a value of [0]. Turn it sideways to keep track.)</em><br/>
 
     • Suppress all black and red moods. Those moods remain suppressed for as long as you have this mood.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
@@ -1325,7 +1325,7 @@
   secondary_dice: '[6][2]'
   secondary_dice_value: 8
   rules_text: <strong>While in play</strong> — This mood's value is [6][2] if a player has both a red mood and a white mood.
-  rulings_text:
+  notes:
   - One player has to have both the red card and the white card for Happiness to get a value of [6][2].
   - It's fine if more than one player has both.
   errata: null
@@ -1338,7 +1338,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn from the discard pile.
-  rulings_text:
+  notes:
   - Moods played from the discard pile are played similarly to how they are played from the hand.
   - You may play any mood in the discard pile, even ones that originally were played by other players.
   - Playing a card from the discard pile that lets you play an additional card only lets you play the additional card from
@@ -1361,7 +1361,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put <strong>any</strong> mood on the bottom of the deck.
     If you do, draw a card. <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - If the deck is empty, you will draw the card that was just put on the bottom.
   - You may put your own card on the bottom of the deck.
   - No matter whose card you put on the bottom of the deck, you draw the card.
@@ -1379,7 +1379,7 @@
     • Put a red or green mood into its player''s hand.<br/>
 
     • Put all red and green moods into their players'' hands.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect, meaning you choose
     to do neither effect.'
   - If you choose the first option, you can put a red or green card of yours into your hand.
@@ -1398,7 +1398,7 @@
 
     <strong>While in play</strong> — The chosen player goes first each round regardless of who won the previous round. <em>(This
     doesn''t change who draws a card.)</em>'
-  rulings_text:
+  notes:
   - You only choose the player once. It doesn't change between rounds.
   - Play goes clockwise, so if you wish to go last, you will want to choose the player to your left to go first.
   - If there are two or more Honors in play (say one is Creativity copying it), whichever was the player chosen by the last
@@ -1414,7 +1414,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — You may play an additional mood during each of your turns <em>(including the
     turn you play this mood)</em>.
-  rulings_text:
+  notes:
   - The additional card is optional. You do not have to play it.
   - If the first card you play causes Hope to leave play (going to your hand or discard pile) you will not get to play an
     additional card. It has to be in play for the "While in play" effect to work.
@@ -1433,7 +1433,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put one of your black or green moods into the discard pile.
     If you do, put up to two moods each with a value of [3] or less into the discard pile.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect, meaning you choose
     to do neither effect.'
   - You may choose "up to two moods" to put into the discard pile, so you can choose to put zero, one, or two cards into the
@@ -1456,7 +1456,7 @@
     for the next round. If there''s a tie, whoever took a turn latest this round wins the tie.)</em>
 
     This round, you may play an additional mood during your turn.'
-  rulings_text: null
+  notes: null
   errata: null
 - id: ea760944-2431-508e-b88f-4cb6b0deefc5
   name: Idealism
@@ -1470,7 +1470,7 @@
 
     <strong>While in play</strong> — For each of your moods with dice in its lower left corner, use the dice total in its
     top right corner or lower left corner, whichever is higher, to determine its value.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not need to play an additional card and will still get the "While in play"
     effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
@@ -1494,7 +1494,7 @@
   rules_text: '<strong>After playing this mood</strong> — Choose a color.<br/>
 
     <strong>While in play</strong> — All moods are the chosen color and no other colors.'
-  rulings_text:
+  notes:
   - You must choose a color.
   - This card only affects moods, which are cards in play. Cards in hands and the discard pile do not have their color changed
     by Imagination.
@@ -1512,7 +1512,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose any number of opponents who each have two or more moods. Each
     chosen player puts a random one of their moods into their hand.
-  rulings_text:
+  notes:
   - You may choose zero, one, two (in a three-player game), or three (in a four-player game) opponents. You do not have to
     choose all the opponents.
   - If a player has zero or one card, Indecisiveness will not affect them.
@@ -1529,7 +1529,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: null
-  rulings_text:
+  notes:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
   errata: null
@@ -1543,7 +1543,7 @@
   secondary_dice_value: 9
   rules_text: <strong>After playing this mood</strong> — You may put two of your other moods into the discard pile <em>(moods
     are cards in play)</em>. If you do, this mood's value becomes [6][3].
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not need to play an additional card and will still get the "While in play"
     effect.'
   - If you choose to put cards into the discard pile, you must choose two. You can't put one card into the discard pile.
@@ -1559,7 +1559,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn. If you do, after scoring,
     put that mood into your hand <em>(if it's still in play)</em>.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - If another player has the mood you played with Insecurity after scoring, it will still return to your hand.
   - The extra card will still return to your hand after scoring even if Insecurity is no longer in play.
@@ -1587,7 +1587,7 @@
     choose one of those moods and give it to you, then you give them one of your moods.
 
     '
-  rulings_text:
+  notes:
   - If no other player has two cards, nothing happens.
   - If a mood is the only one a player has, it can't be chosen by this card.
   - The player who has the two moods chooses which one you get.
@@ -1605,7 +1605,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose another player. If you do, that player reveals a card
     from their hand and puts it into your hand. You may play it as an additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - A revealed card is seen by all players.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
@@ -1624,7 +1624,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood on your <strong>next</strong> turn.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - Your "next turn" is defined as the turn you take during the next round.
   - You can play that additional card any time during your next turn. If multiple cards grant you additional cards, those
@@ -1643,7 +1643,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may play an additional mood this turn if it has a [1], [3], or
     [5] in its top right corner.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Kindness. You may first play the additional
@@ -1659,7 +1659,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: null
-  rulings_text:
+  notes:
   - There are five blank cards (all with a value of [4]), one in each color. These five cards and Creativity are the only
     cards without one of the three main abilities ("To play this card," "While in play," and "After playing this mood").
   errata: null
@@ -1673,7 +1673,7 @@
   secondary_dice_value: 12
   rules_text: <strong>While in play</strong> — This mood's value is [6][6] if there's a white mood, a blue mood, a black mood,
     a red mood, and a green mood <em>(including this one)</em>.
-  rulings_text:
+  notes:
   - Love looks at all moods in play. The five colors need not be the same player's moods.
   - Love counts itself.
   - Imagination (which turns all cards one color) will give Love a value of [4].
@@ -1687,7 +1687,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are two or more green and/or blue moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Loyalty
     is worth [6] if there are two green moods, two blue moods, or a green mood and a blue mood in play.
   errata: null
@@ -1702,7 +1702,7 @@
   rules_text: <strong>After playing this mood</strong> — Choose <strong>any</strong> player who has two or more moods <em>(moods
     are cards in play)</em>. That player chooses two of their moods. Put those moods and all other moods that share a color
     with either of them into the discard pile.
-  rulings_text:
+  notes:
   - The chosen player can only choose moods they have in play.
   - You can pick yourself or a teammate in a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>). If you pick a teammate, they will choose the two cards.
@@ -1724,7 +1724,7 @@
   rules_text: <strong>After playing this mood</strong> — Suppress all moods with a value of [5] or more. Those moods remain
     suppressed for as long as you have this mood. <em>(While suppressed, those moods have a value of [0]. Turn them sideways
     to keep track.)</em>
-  rulings_text:
+  notes:
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
   - The suppressed mood is still in play and is counted for any effects that care. For example, your opponent suppresses your
@@ -1750,7 +1750,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — You may play moods from the discard pile as though they were in your hand.
-  rulings_text:
+  notes:
   - Moods played from the discard pile are played similarly to how they are played from the hand.
   - You may play any mood in the discard pile, even ones that originally were played by other players.
   - Cards in the discard pile are the color they are and are not affected by Imagination (which changes the color of all moods
@@ -1769,7 +1769,7 @@
   secondary_dice_value: 8
   rules_text: <strong>While in play</strong> — This mood's value is [6][2] if there are two or more cards in the discard pile
     that share a color.
-  rulings_text:
+  notes:
   - Imagination's color-changing effect does not affect the discard pile.
   errata: null
 - id: 779d7b9d-6274-5562-b4f0-17490f3ed9cb
@@ -1782,7 +1782,7 @@
   secondary_dice_value: null
   rules_text: <strong>To play this card</strong> — Put one or more of your moods into your hand. <em>(If you can't do that,
     you can't play this card.)</em>
-  rulings_text:
+  notes:
   - You can put any number of your moods into your hand, but you have to put at least one in hand to play Neurosis.
   - You can't play Neurosis if you have no moods in play.
   errata: null
@@ -1796,7 +1796,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put a card from the discard pile into your hand. You may
     play an additional mood this turn.
-  rulings_text:
+  notes:
   - '"May" means both effects are optional. You may do one without doing the other. For example, you may play an additional
     card without putting a card in the discard pile into your hand.'
   - You may play the mood you put into your hand from the discard pile as the additional mood, but you also could play a different
@@ -1820,7 +1820,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are two or more white and/or black moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Obsession
     is worth [6] if there are two white moods, two black moods, or a white mood and a black mood in play.
   errata: null
@@ -1835,7 +1835,7 @@
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, suppress one of
     their moods. It remains suppressed for as long as you have this mood. <em>(While suppressed, that mood has a value of
     [0]. Turn it sideways to keep track.)</em>
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
@@ -1859,7 +1859,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, put one of their
     moods into their hand. You can't put this mood into your hand this way.
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - If you return a mood to its player's hand, it goes to that player even if a different player originally played it.
@@ -1877,7 +1877,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose a player with one or more cards in their hand. If
     you do, that player reveals a random card from their hand and puts it on the bottom of the deck, then you draw a card.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - The card is revealed to all players.
   - If the deck is empty, you will draw the card the player just put on the bottom.
@@ -1894,7 +1894,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — While scoring, you may score one of your opponents' moods as though it were
     yours. <em>(They also still score it.)</em>
-  rulings_text:
+  notes:
   - You may choose which opponent's card to score. It does not need to be the highest scoring card.
   - Passion always has a value of [0]. It's allowing you to score another card twice. It does not itself gain any value.
   - If you have two Passions in play (say you copy it with Creativity), you can score one mood twice or two different moods
@@ -1910,7 +1910,7 @@
   secondary_dice: '[1]'
   secondary_dice_value: 1
   rules_text: <strong>While in play</strong> — This mood's value is [1] if you played it this round.
-  rulings_text:
+  notes:
   - Patience never has a value of [5] during the turn you play it.
   errata: null
 - id: b6dc446c-1f97-53b6-bf68-a22212d2a7be
@@ -1922,7 +1922,7 @@
   secondary_dice: '[6]'
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if there are two or more blue and/or red moods.
-  rulings_text:
+  notes:
   - This card cares about there being two cards of one of the two colors or if one of each is in play. For example, Pity is
     worth [6] if there are two blue moods, two red moods, or a blue mood and a red mood in play.
   errata: null
@@ -1936,7 +1936,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose a player with more moods than you <em>(moods are cards
     in play)</em>. If you do, you may keep playing additional moods this turn until you have as many moods as the chosen player.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
     played in any order. For example, let's say you have Hurt Feelings and play Pride. You may first play the additional card
@@ -1965,7 +1965,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put all other moods with a value of [3] or less into the
     discard pile.
-  rulings_text:
+  notes:
   - This affects all other moods with a value of [3] or less, including your moods, although not itself.
   - This will put all suppressed cards into the discard pile.
   - A second Rage (say you copied it with Creativity) can destroy the first Rage.
@@ -1983,7 +1983,7 @@
     • Put your hand on the bottom of the deck, then draw that many cards.<br/>
 
     • Choose left or right. Simultaneously, each player gives their hand to the next player in the chosen direction.'
-  rulings_text:
+  notes:
   - If the deck is empty, you will draw the card(s) you just put on the bottom.
   - You pass all the cards in your hand.
   - If a player's hand is empty, they do not pass anything. The passing of other players' hands still happens.
@@ -1998,7 +1998,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose [0], [1], [2], or [3]. Put all other moods with the chosen
     value into the discard pile.
-  rulings_text:
+  notes:
   - You must choose [0], [1], [2], or [3]. However, there don't need to be any cards with that score in play.
   - If you choose [0], this will put all suppressed cards into the discard pile.
   - Rebellion does not put itself into the discard pile if you choose [2].
@@ -2017,7 +2017,7 @@
     give the mood you took back to them <em>(if you still have it)</em>.<br/>
 
     <strong>While in play</strong> — After scoring, put this mood on the bottom of the deck and draw a card.'
-  rulings_text:
+  notes:
   - The player of Recklessness chooses which card gets taken.
   - If the deck is empty, the player will draw the card they just put on the bottom.
   - When a mood moves from one player to another, all qualities of that card remain the same. This includes its value and
@@ -2047,7 +2047,7 @@
     can''t play this card.)</em><br/>
 
     <strong>After playing this mood</strong> — Put an opponent''s mood into your hand.'
-  rulings_text:
+  notes:
   - If you have less than two moods in play, you can't play this card.
   - You may not choose yourself to be affected as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't return a teammate's card to your hand as they are not an opponent.
@@ -2062,7 +2062,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may choose two other moods. If the two chosen moods share a color
     or have the same value, put them into the discard pile.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - The moods do not have to be the same player's. For example, you may choose one of your moods and another player's mood.
   - '"Value" means the current score of the card. This may not be the number on the die in the top right corner. (Black dice
@@ -2079,7 +2079,7 @@
   rules_text: <strong>After playing this mood</strong> — You may choose a number. If you do, suppress all other moods with
     the chosen value. They remain suppressed until the end of this round. <em>(While suppressed, those moods have a value
     of [0]. Turn them sideways to keep track.)</em>
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not have to choose a number.'
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
@@ -2105,7 +2105,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — This mood's value increases by [2] for each card in the discard pile.
-  rulings_text:
+  notes:
   - It counts all cards in the discard pile regardless of who had them in play.
   - If this card is suppressed, it has a value of [0] regardless of how many cards are in the discard pile.
   errata: null
@@ -2122,7 +2122,7 @@
 
     <strong>While in play</strong> — Each time you play another mood, you may suppress a mood that shares a color with the
     mood you played. It remains suppressed until the end of this round.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not have to suppress a mood.'
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
@@ -2146,7 +2146,7 @@
   secondary_dice_value: null
   rules_text: <strong>To play this card</strong> — Put one or more of your moods into the discard pile. <em>(If you can't
     do that, you can't play this card. Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - You can put any number of your moods into the discard pile, but you have to put at least one into the discard pile to
     play Self-Loathing.
   - You can't play Self-Loathing if you have no moods in play.
@@ -2161,7 +2161,7 @@
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if you have an even number of moods <em>(including
     this one)</em>.
-  rulings_text:
+  notes:
   - Serenity only counts the number of moods you have in play.
   - Serenity counts itself.
   errata: null
@@ -2176,7 +2176,7 @@
   rules_text: <strong>After playing this mood</strong> — You may discard a card from your hand. If you do, suppress all other
     moods that share a color with the discarded card. Those moods remain suppressed for as long as you have this mood. <em>(While
     suppressed, those moods have a value of [0]. Turn them sideways to keep track.)</em>
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You may just play the card for its score and not do its effect.'
   - A card that is suppressed has a value of [0] for the purposes of scoring. This includes cards that start at [0] and gain
     value due to effects.
@@ -2210,7 +2210,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, put one of their
     moods with a value of [3] or less into the discard pile.
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   - The card has to currently have a value of [3] or less rather than the potential to have a score of [3] or less.
@@ -2225,7 +2225,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — This mood's value increases by [1] for each card in your hand.
-  rulings_text:
+  notes:
   - Sloth's value is [3] plus the number of cards in your hand. On the first turn, assuming you only play Sloth, it will have
     a value of [6][1] ([3] plus [4] for the four cards in your hand).
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
@@ -2242,7 +2242,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose an opponent. This round, after scoring, swap your score with
     that player before determining who wins the round.
-  rulings_text:
+  notes:
   - You may not choose yourself as you are not an opponent. In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings"
     target="_blank">Other Ways to Play</a>), you can't choose a teammate.
   - This change only happens for this round. The scores go back for all future rounds.
@@ -2272,7 +2272,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose up to two players. For each chosen player, put one of their
     moods with an even value into the discard pile. <em>([0] is even.)</em>
-  rulings_text:
+  notes:
   - You may choose zero, one, or two players for this effect.
   - One of those players may be you.
   errata: null
@@ -2286,7 +2286,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — At the start of each of your turns, if another player has more moods than you,
     you may play an additional mood this turn. <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - Stubbornness checks to see if your opponent has more cards than you at the start of your turn. Note that this is not the
     start of the round, unless you go first, so if you go second and your opponent played a card and thus has more cards than
     you, you get to play an additional card with Stubbornness.
@@ -2312,7 +2312,7 @@
   secondary_dice_value: 7
   rules_text: <strong>While in play</strong> — This mood's value is [6][1] if you have more moods than each other player.
     <em>(Moods are cards in play.)</em>
-  rulings_text:
+  notes:
   - If you are tied for the most cards in play with another player, this card is worth [3]. You must have more cards in play
     to be worth [6][1].
   errata: null
@@ -2326,7 +2326,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — Choose any number of players. Each chosen player discards a card
     from their hand.
-  rulings_text:
+  notes:
   - You may choose yourself.
   - You may choose zero players.
   - Discarded cards are revealed to all players, but only after each player chooses a card to discard.
@@ -2343,7 +2343,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put any number of your other moods into your hand. If you
     do, you may play that many additional moods this turn.
-  rulings_text:
+  notes:
   - Thrill can't affect itself.
   - If you create a second Thrill (say you copy it with Creativity), you can pick up the first Thrill. Yes, this is the one
     infinite combo in the game (that I've discovered at the time of writing this document).
@@ -2366,7 +2366,7 @@
   secondary_dice_value: 6
   rules_text: <strong>While in play</strong> — This mood's value is [6] if you have an odd number of moods <em>(including
     this one)</em>.
-  rulings_text:
+  notes:
   - Tranquility only counts the number of moods you have in play.
   - Tranquility counts itself.
   errata: null
@@ -2379,7 +2379,7 @@
   secondary_dice: '[5]'
   secondary_dice_value: 5
   rules_text: <strong>While in play</strong> — This mood's value is [5] if you went first this round.
-  rulings_text:
+  notes:
   - In a game with more than two players, "first" means that you played your cards before anyone else.
   - The value of the card is set at the beginning of the round. It doesn't change once the first person has taken their turn.
   - In a team game (see <a href="https://magic.wizards.com/en/news/feature/other-ways-to-play-mood-swings" target="_blank">Other
@@ -2397,7 +2397,7 @@
 
     <strong>While in play</strong> — Each time you play another mood with a [0] or [1] in its top right corner, you may play
     an additional mood this turn.'
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not have to play an additional card. You will still get the "While in play"
     effect.'
   - You can play that additional card for the rest of your turn. If multiple cards grant you additional cards, those can be
@@ -2419,7 +2419,7 @@
   secondary_dice_value: null
   rules_text: <strong>While in play</strong> — This mood's value increases by [1] for each of your moods <em>(including itself)</em>.
     If there are no cards in your hand, this mood's value instead increases by [3] for each of your moods <em>(including itself)</em>.
-  rulings_text:
+  notes:
   - You are required to draw cards.
   - If this card is suppressed, it has a value of [0] regardless of how many moods you have.
   errata: null
@@ -2432,7 +2432,7 @@
   secondary_dice: '[6][1]'
   secondary_dice_value: 7
   rules_text: <strong>While in play</strong> — This mood's value is [6][1] if a card was put into the discard pile this round.
-  rulings_text:
+  notes:
   - Vulnerability does not care where the card in the discard pile came from. It could have been put there from any player's
     hand or in play (or the deck, but no cards currently do that).
   - Vulnerability's score changes each turn and is based on whether a card was put into the discard pile that turn. It's not
@@ -2452,7 +2452,7 @@
 
     <strong>While in play</strong> — This mood''s value increases by [2] for each mood of the chosen color and each card in
     the discard pile of the chosen color.'
-  rulings_text:
+  notes:
   - The color is chosen when you play Wonder and does not change (unless you return it to your hand and play it again). You
     will need to remember the color.
   - Wonder cares about all moods in play, not just yours.
@@ -2470,7 +2470,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put one of your white or black moods into your hand. If you
     do, put up to two moods other than this one each with a value of [3] or less into their players' hands.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional. You do not have to play an additional card. You will still get the "While in play"
     effect.'
   - You may choose to only affect one mood.
@@ -2489,7 +2489,7 @@
   secondary_dice: null
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put all other moods into the discard pile.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional.'
   - If you choose to have the "After playing this mood" effect happen, it puts all other cards in the discard pile. You do
     not get to choose which cards.
@@ -2506,7 +2506,7 @@
   secondary_dice_value: null
   rules_text: <strong>After playing this mood</strong> — You may put a card from your hand on the bottom of the deck. If you
     do, draw a card.
-  rulings_text:
+  notes:
   - '"May" means this effect is optional.'
   - If the deck is empty, the player will draw the card they just put on the bottom.
   errata: null

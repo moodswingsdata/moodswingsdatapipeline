@@ -107,7 +107,7 @@ h1 {{
     font-style: italic;
     line-height: 1.4;
 }}
-.rulings li {{
+.notes li {{
     margin-bottom: 4px;
     font-size: 13px;
     color: #ccc;
@@ -230,9 +230,9 @@ def format_value(key: str, value) -> str:
     if key in ("rules_text", "printed_rules_text"):
         # Show the raw HTML markup as-is (it's meant to include markup)
         return f'<span class="rules-text">{value}</span>'
-    if key == "rulings_text" and isinstance(value, list):
+    if key == "notes" and isinstance(value, list):
         items = "".join(f"<li>{escape_html(item)}</li>" for item in value)
-        return f'<ul class="rulings">{items}</ul>'
+        return f'<ul class="notes">{items}</ul>'
     if key == "card_image_url":
         escaped = escape_html(str(value))
         return f'<a href="{escaped}" style="color:#a8d8ea">{escaped}</a>'

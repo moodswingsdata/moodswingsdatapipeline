@@ -55,8 +55,8 @@ class Card(TypedDict):
     rules_text: str | None
     """Oracle (canonical) HTML-formatted rules text, or None for vanilla cards."""
 
-    rulings_text: list[str] | None
-    """List of ruling strings, or None if no rulings exist."""
+    notes: list[str] | None
+    """List of note strings, or None if no notes exist."""
 
     errata: Errata | None
     """Errata applied to this card's oracle data, or None if there is none."""

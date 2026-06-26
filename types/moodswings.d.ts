@@ -54,8 +54,8 @@ export interface Card {
   /** Oracle (canonical) HTML-formatted rules text, or null for vanilla cards. */
   rules_text: string | null;
 
-  /** List of ruling strings, or null if no rulings exist. */
-  rulings_text: string[] | null;
+  /** List of note strings, or null if no notes exist. */
+  notes: string[] | null;
 
   /** Errata applied to this card's oracle data, or null if there is none. */
   errata: Errata | null;
