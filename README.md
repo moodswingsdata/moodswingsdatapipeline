@@ -235,6 +235,11 @@ represented in the data. Both cards and printings have an optional `errata`
 marker recording which fields were corrected and a note, so downstream apps can
 choose how to surface the change (see [`apply-errata`](#apply-errata)).
 
+A card's `timing` is an array of canonical tokens — `in_play`, `after_playing`,
+and `to_play` — describing when its rules apply. A card may have zero, one, or
+several. The tokens are decoupled from the exact wording printed on the card
+(in Edition 1 these come from the bolded lead-in phrases).
+
 The schema is versioned via `SCHEMA_VERSION` in both stub files. A build also
 emits `meta.yaml`/`meta.json` recording that version alongside SHA256 hashes of
 every output file (see [`write-meta`](#write-meta)).

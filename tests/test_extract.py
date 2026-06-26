@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from moodswings.extract import (
+    extract_timing,
     generate_card_id,
     generate_printing_id,
     parse_dice_line,
@@ -117,6 +118,35 @@ class TestGenerateIds:
         assert id1 != id2
 
 
+class TestExtractTiming:
+    def test_single_timing(self):
+        assert extract_timing("<strong>While in play</strong> — do a thing") == ["in_play"]
+
+    def test_after_playing(self):
+        assert extract_timing("<strong>After playing this mood</strong> — x") == ["after_playing"]
+
+    def test_to_play(self):
+        assert extract_timing("<strong>To play this card</strong> — x") == ["to_play"]
+
+    def test_multiple_in_order(self):
+        html = "<strong>To play this card</strong> — a <strong>While in play</strong> — b"
+        assert extract_timing(html) == ["to_play", "in_play"]
+
+    def test_dedupes(self):
+        html = "<strong>While in play</strong> a <strong>while in play</strong> b"
+        assert extract_timing(html) == ["in_play"]
+
+    def test_case_and_whitespace_insensitive(self):
+        assert extract_timing("<strong>after\n  playing  this mood</strong>") == ["after_playing"]
+
+    def test_ignores_non_timing_bold(self):
+        assert extract_timing("Take the <strong>next</strong> card") == []
+
+    def test_none_and_empty(self):
+        assert extract_timing(None) == []
+        assert extract_timing("") == []
+
+
 class TestParseHtml:
     @pytest.fixture
     def parsed(self):
@@ -187,6 +217,12 @@ class TestParseHtml:
         cards, _ = parsed
         by_name = {c["name"]: c for c in cards}
         assert by_name["Anger"]["notes"] is None
+
+    def test_card_timing(self, parsed):
+        cards, _ = parsed
+        by_name = {c["name"]: c for c in cards}
+        assert by_name["Altruism"]["timing"] == ["after_playing"]
+        assert by_name["Ambivalence"]["timing"] == ["in_play"]
 
     def test_printing_has_image_url(self, parsed):
         _, printings = parsed

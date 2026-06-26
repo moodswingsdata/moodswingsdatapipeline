@@ -54,6 +54,12 @@ export interface Card {
   /** Oracle (canonical) HTML-formatted rules text, or null for vanilla cards. */
   rules_text: string | null;
 
+  /**
+   * When the card's rules apply. Canonical tokens: "in_play", "after_playing",
+   * "to_play". Empty array if the card has no timing (e.g. vanilla cards).
+   */
+  timing: string[];
+
   /** List of note strings, or null if no notes exist. */
   notes: string[] | null;
 

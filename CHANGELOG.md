@@ -1,6 +1,7 @@
 # Schema Changelog
 
 ## Dev
+- Added `Card.timing`: an array of canonical tokens (`in_play`, `after_playing`, `to_play`) describing when a card's rules apply, extracted from the bolded timing phrases. Updated `models.py` and `types/moodswings.d.ts`.
 - Renamed `Card.rulings_text` to `Card.notes` in `models.py` and `types/moodswings.d.ts`.
 - Added `Errata` type (`fields`, `note`) to `models.py` and `types/moodswings.d.ts`.
 - Added optional `errata` marker to `Card` and `Printing` to flag corrected fields for downstream consumers.

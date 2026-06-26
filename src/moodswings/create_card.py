@@ -5,7 +5,7 @@ from pathlib import Path
 import click
 import yaml
 
-from moodswings.extract import generate_card_id, dice_to_int
+from moodswings.extract import generate_card_id, dice_to_int, extract_timing
 
 
 VALID_COLORS = {"White", "Blue", "Black", "Red", "Green"}
@@ -93,6 +93,7 @@ def create_card(output: Path):
         "secondary_dice": secondary_dice,
         "secondary_dice_value": secondary_dice_value,
         "rules_text": rules_text if rules_text else None,
+        "timing": extract_timing(rules_text if rules_text else None),
         "notes": None,
         "errata": None,
     }

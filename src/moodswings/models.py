@@ -55,6 +55,10 @@ class Card(TypedDict):
     rules_text: str | None
     """Oracle (canonical) HTML-formatted rules text, or None for vanilla cards."""
 
+    timing: list[str]
+    """When the card's rules apply. Canonical tokens: "in_play", "after_playing",
+    "to_play". Empty list if the card has no timing (e.g. vanilla cards)."""
+
     notes: list[str] | None
     """List of note strings, or None if no notes exist."""
 

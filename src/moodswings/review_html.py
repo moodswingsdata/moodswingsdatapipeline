@@ -233,6 +233,10 @@ def format_value(key: str, value) -> str:
     if key == "notes" and isinstance(value, list):
         items = "".join(f"<li>{escape_html(item)}</li>" for item in value)
         return f'<ul class="notes">{items}</ul>'
+    if key == "timing" and isinstance(value, list):
+        if not value:
+            return '<span style="color:#666">—</span>'
+        return escape_html(", ".join(value))
     if key == "card_image_url":
         escaped = escape_html(str(value))
         return f'<a href="{escaped}" style="color:#a8d8ea">{escaped}</a>'

@@ -24,6 +24,7 @@ CARD_FIELDS = {
     "secondary_dice": (str, type(None)),
     "secondary_dice_value": (int, type(None)),
     "rules_text": (str, type(None)),
+    "timing": (list,),
     "notes": (list, type(None)),
     "errata": (dict, type(None)),
 }
