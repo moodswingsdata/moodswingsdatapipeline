@@ -32,3 +32,5 @@ jobs:
             out/editions.json
             out/printings.yaml
             out/printings.json
+            out/meta.yaml
+            out/meta.json

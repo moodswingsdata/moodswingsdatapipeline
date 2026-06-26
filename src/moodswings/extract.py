@@ -13,6 +13,34 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 MSDATA_NAMESPACE = uuid.UUID("f47ac10b-58cc-4372-a567-0d02b2c3d479")
 
 
+# Maps the (normalized) bolded timing phrase used in Edition 1 to its canonical
+# token. Kept loose on purpose: the data model commits to the tokens, not the
+# exact wording, so future editions can map new phrasings to the same tokens.
+TIMING_PHRASES = {
+    "while in play": "in_play",
+    "after playing this mood": "after_playing",
+    "to play this card": "to_play",
+}
+
+
+def extract_timing(rules_html: str | None) -> list[str]:
+    """Extract timing tokens from a card's rules HTML.
+
+    Timing phrases (e.g. "While in play") are bolded in Edition 1. Returns the
+    canonical tokens ("in_play", "after_playing", "to_play") in order of first
+    appearance, with duplicates removed.
+    """
+    if not rules_html:
+        return []
+    timings: list[str] = []
+    for match in re.findall(r"<strong>(.*?)</strong>", rules_html, re.IGNORECASE | re.DOTALL):
+        phrase = " ".join(match.split()).lower()
+        token = TIMING_PHRASES.get(phrase)
+        if token is not None and token not in timings:
+            timings.append(token)
+    return timings
+
+
 def generate_card_id(card_name: str) -> str:
     """Generate a stable card ID (UUID5) from card name."""
     return str(uuid.uuid5(MSDATA_NAMESPACE, card_name))
@@ -108,8 +136,8 @@ def extract_rules_html(p_tag: Tag) -> str:
     return rules_html
 
 
-def extract_rulings(p_tag: Tag) -> str | None:
-    """Extract rulings from the <ul> following the card paragraph."""
+def extract_notes(p_tag: Tag) -> str | None:
+    """Extract notes from the <ul> following the card paragraph."""
     # Find next sibling elements after this <p>
     sibling = p_tag.next_sibling
     while sibling is not None:
@@ -121,7 +149,7 @@ def extract_rulings(p_tag: Tag) -> str | None:
                     items.append(li.decode_contents().strip())
                 return items if items else None
             else:
-                # Next element is not a <ul>, so no rulings
+                # Next element is not a <ul>, so no notes
                 return None
         sibling = sibling.next_sibling
     return None
@@ -231,8 +259,8 @@ def parse_html(html_path: Path) -> list[dict]:
         # Extract rules text (HTML after second <br>)
         rules_html = extract_rules_html(p_tag)
 
-        # Extract rulings
-        rulings = extract_rulings(p_tag)
+        # Extract notes
+        notes = extract_notes(p_tag)
 
         # Get image URL by matching name
         image_url = image_map.get(name)
@@ -250,7 +278,9 @@ def parse_html(html_path: Path) -> list[dict]:
             "secondary_dice": dice_info["secondary_dice"],
             "secondary_dice_value": dice_info["secondary_dice_value"],
             "rules_text": rules_html if rules_html else None,
-            "rulings_text": rulings,
+            "timing": extract_timing(rules_html),
+            "notes": notes,
+            "errata": None,
         }
 
         printing = {
@@ -265,6 +295,9 @@ def parse_html(html_path: Path) -> list[dict]:
             "treatment": "Standard",
             "artist": None,
             "card_image_url": image_url,
+            "is_headliner": False,
+            "printed_rules_text": None,
+            "errata": None,
         }
 
         cards.append(card)

@@ -41,7 +41,13 @@ PRINTING_FIELDS = [
     required=True,
     help="Card name to create a printing for.",
 )
-def create_printing(output: Path, cards: Path, editions: Path, card_name: str):
+@click.option(
+    "--is-headliner",
+    is_flag=True,
+    default=False,
+    help="Mark this printing as the edition's headliner (editorial designation).",
+)
+def create_printing(output: Path, cards: Path, editions: Path, card_name: str, is_headliner: bool):
     """Create a printing interactively and write it to OUTPUT.
 
     If OUTPUT exists, the new printing is appended (keeping printings sorted by
@@ -102,6 +108,10 @@ def create_printing(output: Path, cards: Path, editions: Path, card_name: str):
                 printing[field] = value
         else:
             printing[field] = value if value else None
+
+    printing["is_headliner"] = is_headliner
+    printing["printed_rules_text"] = None
+    printing["errata"] = None
 
     if printing["collector_number"] is not None and set_code_value:
         printing["id"] = generate_printing_id(

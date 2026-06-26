@@ -1,4 +1,7 @@
-- printing_id: 9d9f6896-b0f7-5244-86cb-437d1793deb3
+# Errata where a printing's text differs from the card's oracle text.
+# Keyed by printing_id. The corrected (oracle) value is written to the card;
+# the original printed text is preserved on the printing as printed_rules_text.
+- printing_id: 83974c7d-6793-5802-9df8-91bd819949f5  # Instability, msw #96
   rules_text:
     as_printed: |
       <strong>After playing this mood</strong> — You may choose two moods from the same opponent. If you do, they

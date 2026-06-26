@@ -52,6 +52,18 @@ elif field == 'errata':
             for e in item['errata']:
                 print(e)
             sys.exit(0)
+elif field == 'card_errata':
+    for item in ds:
+        if 'card_errata' in item:
+            for e in item['card_errata']:
+                print(e)
+            sys.exit(0)
+elif field == 'printing_errata':
+    for item in ds:
+        if 'printing_errata' in item:
+            for e in item['printing_errata']:
+                print(e)
+            sys.exit(0)
 "
 }
 
@@ -114,21 +126,21 @@ echo "==> Downloading additional card images to $IMAGE_DIR..."
 uv run ms download-images "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     --output-dir "$IMAGE_DIR"
 
-# Step 8: Generate review HTML with errata
-ERRATA_FILES="$(read_edition_field errata)"
-ERRATA_ARGS=""
-if [ -n "$ERRATA_FILES" ]; then
-    while IFS= read -r errata_file; do
-        ERRATA_ARGS="--errata ${errata_file}"
-    done <<< "$ERRATA_FILES"
-fi
+# Step 7b: Bake errata into cards and printings
+echo "==> Applying errata..."
+while IFS= read -r ERRATA; do
+    [ -z "$ERRATA" ] && continue
+    echo "... ${ERRATA}"
+    uv run ms apply-errata "$CARDS_YAML" "$PRINTINGS_ENRICHED" "${ERRATA}" \
+        --cards-out "$CARDS_YAML" --printings-out "$PRINTINGS_ENRICHED"
+done < <(read_edition_field card_errata; read_edition_field printing_errata)
 
+# Step 8: Generate review HTML (errata is baked into the data)
 echo "==> Generating review HTML..."
 uv run ms review-html "$CARDS_YAML" "$PRINTINGS_ENRICHED" \
     -o "$REVIEW_HTML" \
     --editions "$EDITIONS_YAML" \
-    --image-dir "$IMAGE_DIR" \
-    $ERRATA_ARGS
+    --image-dir "$IMAGE_DIR"
 
 # Step 9: Copy set-relevant files here
 echo "==> Copying data files here..."

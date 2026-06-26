@@ -7,6 +7,7 @@ from pathlib import Path
 import click
 import yaml
 
+from moodswings.apply_errata import AS_PRINTED_FIELD
 from moodswings.download_images import IMAGE_MAP_FILENAME
 
 
@@ -106,7 +107,7 @@ h1 {{
     font-style: italic;
     line-height: 1.4;
 }}
-.rulings li {{
+.notes li {{
     margin-bottom: 4px;
     font-size: 13px;
     color: #ccc;
@@ -226,12 +227,20 @@ def format_value(key: str, value) -> str:
     """Format a card field value for HTML display."""
     if value is None:
         return '<span style="color:#666">null</span>'
-    if key == "rules_text":
+    if key in ("rules_text", "printed_rules_text"):
         # Show the raw HTML markup as-is (it's meant to include markup)
         return f'<span class="rules-text">{value}</span>'
-    if key == "rulings_text" and isinstance(value, list):
+    if key == "notes" and isinstance(value, list):
         items = "".join(f"<li>{escape_html(item)}</li>" for item in value)
-        return f'<ul class="rulings">{items}</ul>'
+        return f'<ul class="notes">{items}</ul>'
+    if key == "timing" and isinstance(value, list):
+        if not value:
+            return '<span style="color:#666">—</span>'
+        return escape_html(", ".join(value))
+    if key == "is_headliner":
+        if value:
+            return '<strong style="color:#ffd700">★ headliner</strong>'
+        return '<span style="color:#666">—</span>'
     if key == "card_image_url":
         escaped = escape_html(str(value))
         return f'<a href="{escaped}" style="color:#a8d8ea">{escaped}</a>'
@@ -243,48 +252,60 @@ def apply_errata(merged: dict, errata: dict | None) -> dict:
     if not errata:
         return merged
     for field_name, info in errata.items():
-        if field_name == "printing_id":
+        if field_name in ("card_id", "printing_id"):
             continue
         if isinstance(info, dict) and "corrected" in info:
             merged[field_name] = info["corrected"]
     return merged
 
 
-def render_errata(errata: dict | None) -> str:
-    """Render errata as a collapsed details/summary section."""
-    if not errata:
-        return ""
+def render_errata(card: dict, printing: dict) -> str:
+    """Render an errata section from the baked data model, if any.
 
-    # Skip the printing_id field, render the rest
-    fields = {k: v for k, v in errata.items() if k != "printing_id"}
-    if not fields:
-        return ""
+    Reads the structured ``errata`` markers on the printing and/or card and
+    shows the printed-vs-oracle text so a human reviewer can confirm the
+    correction.
+    """
+    sections: list[str] = []
 
-    items = ""
-    for field_name, info in fields.items():
-        note = info.get("note", "")
-        as_printed = info.get("as_printed", "")
-        corrected = info.get("corrected", "")
-        items += '<div class="errata-item">'
-        items += f'<div class="errata-note">Note ({escape_html(field_name)}): {escape_html(note)}</div>'
-        items += f'<div class="errata-printed">As printed: {escape_html(str(as_printed))}</div>'
-        items += f'<div class="errata-printed">Corrected: {escape_html(str(corrected))}</div>'
-        items += "</div>\n"
+    p_errata = printing.get("errata")
+    if isinstance(p_errata, dict):
+        items = ""
+        for field in p_errata.get("fields", []):
+            printed = printing.get(AS_PRINTED_FIELD.get(field, field))
+            oracle = card.get(field)
+            items += '<div class="errata-item">'
+            items += f'<div class="errata-printed">As printed ({escape_html(field)}): {escape_html(str(printed))}</div>'
+            items += f'<div class="errata-printed">Oracle: {escape_html(str(oracle))}</div>'
+            items += "</div>\n"
+        note = escape_html(p_errata.get("note", ""))
+        sections.append(f'<div class="errata-note">Printing errata: {note}</div>\n{items}')
+
+    c_errata = card.get("errata")
+    if isinstance(c_errata, dict):
+        items = ""
+        for field in c_errata.get("fields", []):
+            items += '<div class="errata-item">'
+            items += f'<div class="errata-printed">Oracle ({escape_html(field)}): {escape_html(str(card.get(field)))}</div>'
+            items += "</div>\n"
+        note = escape_html(c_errata.get("note", ""))
+        sections.append(f'<div class="errata-note">Card errata: {note}</div>\n{items}')
+
+    if not sections:
+        return ""
 
     return (
         '<details class="errata-section">\n'
         "<summary>Errata</summary>\n"
-        f"{items}"
+        f"{''.join(sections)}"
         "</details>"
     )
 
 
-def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path: Path | None, errata: dict | None = None, output_dir: Path | None = None, image_map: dict[str, str] | None = None) -> str:
+def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path: Path | None, output_dir: Path | None = None, image_map: dict[str, str] | None = None) -> str:
     """Render a single card entry as HTML."""
-    # Merge card + printing for display
+    # Merge card + printing for display (errata is already baked into the data)
     merged = {**card, **printing}
-    # Apply errata corrections to displayed values
-    merged = apply_errata(merged, errata)
     collector_number = merged.get("collector_number", 0)
     name = escape_html(merged.get("name", "Unknown"))
     color = escape_html(", ".join(merged.get("color", [])))
@@ -324,8 +345,8 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path
             else:
                 image_src = str(missing_path)
 
-    # Build table rows for all fields
-    skip_fields = {"name", "collector_number"}
+    # Build table rows for all fields (errata shown in its own section below)
+    skip_fields = {"name", "collector_number", "errata"}
     rows = ""
     for key, value in merged.items():
         if key in skip_fields:
@@ -344,7 +365,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path
         treatment=treatment,
         image_src=image_src,
         rows=rows,
-        errata_html=render_errata(errata),
+        errata_html=render_errata(card, printing),
     )
 
 
@@ -376,13 +397,7 @@ def render_card(card: dict, printing: dict, image_dir: Path | None, missing_path
     default=None,
     help="Fallback image for printings without a card image. Defaults to missing.png if it exists.",
 )
-@click.option(
-    "--errata",
-    type=click.Path(exists=True, path_type=Path),
-    default=None,
-    help="Errata YAML file with corrections keyed by printing_id.",
-)
-def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: Path | None, image_dir: Path | None, missing: Path | None, errata: Path | None):
+def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: Path | None, image_dir: Path | None, missing: Path | None):
     """Generate a static HTML page for reviewing card data."""
     # Resolve missing image fallback
     if missing is None:
@@ -412,23 +427,13 @@ def review_html(cards_yaml: Path, printings_yaml: Path, output: Path, editions: 
     if not cards or not printings:
         raise click.ClickException("No data found in YAML files.")
 
-    # Load errata if provided
-    errata_by_printing: dict[str, dict] = {}
-    if errata:
-        with open(errata, "r", encoding="utf-8") as f:
-            errata_list = yaml.safe_load(f) or []
-        for entry in errata_list:
-            pid = entry.get("printing_id")
-            if pid:
-                errata_by_printing[pid] = entry
-
     # Build card lookup by id
     card_by_id = {card["id"]: card for card in cards}
 
     # Iterate over printings (one entry per printing, even if same card)
     output_dir = output.parent.resolve()
     cards_html = "\n".join(
-        render_card(card_by_id[p["card_id"]], p, image_dir, missing, errata_by_printing.get(p.get("id")), output_dir, image_map=image_map)
+        render_card(card_by_id[p["card_id"]], p, image_dir, missing, output_dir, image_map=image_map)
         for idx, p in enumerate(printings, 1)
         if p["card_id"] in card_by_id
     )
