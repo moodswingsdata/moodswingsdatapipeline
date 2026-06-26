@@ -1,10 +1,10 @@
 # Schema Changelog
 
 ## Dev
-- Added `Printing.is_headliner` (boolean, default false): an editorial flag marking an edition's headliner printing (Edition 1: Love #134). Set via `create-printing --is-headliner`. Updated `models.py` and `types/moodswings.d.ts`.
-- Added `Card.timing`: an array of canonical tokens (`in_play`, `after_playing`, `to_play`) describing when a card's rules apply, extracted from the bolded timing phrases. Updated `models.py` and `types/moodswings.d.ts`.
-- Renamed `Card.rulings_text` to `Card.notes` in `models.py` and `types/moodswings.d.ts`.
-- Added `Errata` type (`fields`, `note`) to `models.py` and `types/moodswings.d.ts`.
+- Added `Printing.is_headliner` (boolean, default false): an editorial flag marking an edition's headliner printing (Edition 1: Love #134). Set via `create-printing --is-headliner`.
+- Added `Card.timing`: an array of canonical tokens (`in_play`, `after_playing`, `to_play`) describing when a card's rules apply, extracted from the bolded timing phrases.
+- Renamed `Card.rulings_text` to `Card.notes`.
+- Added `Errata` type (`fields`, `note`).
 - Added optional `errata` marker to `Card` and `Printing` to flag corrected fields for downstream consumers.
 - Added `printed_rules_text` to `Printing`: the as-printed text when it differs from the card's oracle `rules_text` (null when identical). `Card.rules_text` is now documented as the canonical oracle value.
 
