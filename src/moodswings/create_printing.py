@@ -5,14 +5,14 @@ from pathlib import Path
 import click
 import yaml
 
-from moodswings.extract import generate_printing_id, dice_to_int
+from moodswings.extract import generate_printing_id, dice_to_int, VALID_RARITIES
 from moodswings.prepare_editions import generate_edition_id
 
 
 PRINTING_FIELDS = [
     ("frame", "Frame (e.g., White, Blue, Black, Red, Green)"),
     ("reminder_icon", "Reminder icon (e.g., '!' or leave blank for none)"),
-    ("rarity", "Rarity (Common, Uncommon, Rare, Mythic)"),
+    ("rarity", f"Rarity ({', '.join(VALID_RARITIES)})"),
     ("dice_color", "Dice color (white, black, or leave blank)"),
     ("collector_number", "Collector number (integer)"),
     ("set_code", "Set code"),
@@ -106,6 +106,12 @@ def create_printing(output: Path, cards: Path, editions: Path, card_name: str, i
                 printing[field] = [a.strip() for a in value.split("&") if a.strip()]
             else:
                 printing[field] = value
+        elif field == "rarity":
+            if value and value not in VALID_RARITIES:
+                raise click.ClickException(
+                    f"Invalid rarity '{value}'. Must be one of: {', '.join(VALID_RARITIES)}"
+                )
+            printing[field] = value if value else None
         else:
             printing[field] = value if value else None
 

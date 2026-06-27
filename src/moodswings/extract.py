@@ -13,6 +13,10 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 MSDATA_NAMESPACE = uuid.UUID("f47ac10b-58cc-4372-a567-0d02b2c3d479")
 
 
+# Canonical printing rarities. The data model commits to these exact strings.
+VALID_RARITIES = ("Common", "Uncommon", "Rare", "Mythic Rare")
+
+
 # Maps the (normalized) bolded timing phrase used in Edition 1 to its canonical
 # token. Kept loose on purpose: the data model commits to the tokens, not the
 # exact wording, so future editions can map new phrasings to the same tokens.
@@ -162,7 +166,7 @@ def parse_heading(strong_text: str) -> tuple[str, str, str]:
     Returns (name, color, rarity).
     """
     colors = {"White", "Blue", "Black", "Red", "Green"}
-    rarities = {"Common", "Uncommon", "Rare", "Mythic Rare"}
+    rarities = set(VALID_RARITIES)
 
     # Handle both () and [] delimiters, color-first or rarity-first
     match = re.match(
