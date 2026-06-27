@@ -160,3 +160,31 @@ class TestLintPrintings:
         errors = []
         lint_printings(data, "test.yaml", errors)
         assert errors == []
+
+    def test_valid_rarities_no_issues(self):
+        data = [
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 1, "rarity": "Common"},
+            {"id": "bbb", "card_id": "c2", "edition_id": "ed1", "collector_number": 2, "rarity": "Uncommon"},
+            {"id": "ccc", "card_id": "c3", "edition_id": "ed1", "collector_number": 3, "rarity": "Rare"},
+            {"id": "ddd", "card_id": "c4", "edition_id": "ed1", "collector_number": 4, "rarity": "Mythic Rare"},
+        ]
+        errors = []
+        lint_printings(data, "test.yaml", errors)
+        assert errors == []
+
+    def test_invalid_rarity(self):
+        data = [
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 1, "rarity": "Mythic"},
+        ]
+        errors = []
+        lint_printings(data, "test.yaml", errors)
+        assert len(errors) == 1
+        assert "invalid rarity 'Mythic'" in errors[0]
+
+    def test_null_rarity_allowed(self):
+        data = [
+            {"id": "aaa", "card_id": "c1", "edition_id": "ed1", "collector_number": 1, "rarity": None},
+        ]
+        errors = []
+        lint_printings(data, "test.yaml", errors)
+        assert errors == []

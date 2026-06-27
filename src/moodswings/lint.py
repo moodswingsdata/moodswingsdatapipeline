@@ -5,6 +5,8 @@ from pathlib import Path
 import click
 import yaml
 
+from moodswings.extract import VALID_RARITIES
+
 
 def lint_editions(data: list[dict], path: str, errors: list[str]) -> None:
     """Check edition YAML for issues."""
@@ -79,6 +81,13 @@ def lint_printings(data: list[dict], path: str, errors: list[str]) -> None:
                 errors.append(f"{path}: duplicate printing id '{entry_id}' at entries {seen_ids[entry_id]} and {idx}")
             else:
                 seen_ids[entry_id] = idx
+
+        rarity = entry.get("rarity")
+        if rarity is not None and rarity not in VALID_RARITIES:
+            errors.append(
+                f"{path}: invalid rarity '{rarity}' at entry {idx}; "
+                f"must be one of: {', '.join(VALID_RARITIES)}"
+            )
 
         edition_id = entry.get("edition_id", "")
         collector_number = entry.get("collector_number") or 9999

@@ -167,7 +167,8 @@ idempotent.
 ### `lint`
 
 Check output YAML files for common issues: duplicate IDs, duplicate names,
-and sort order (cards sorted by name, printings by collector number).
+sort order (cards sorted by name, printings by collector number), and invalid
+printing rarities (must be one of Common, Uncommon, Rare, Mythic Rare).
 
 ```bash
 uv run ms lint --editions out/editions.yaml --cards out/cards.yaml --printings out/printings.yaml
