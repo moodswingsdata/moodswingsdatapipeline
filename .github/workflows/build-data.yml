@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      # required to create releases
+      contents: write
     steps:
       - uses: actions/checkout@v7
 
