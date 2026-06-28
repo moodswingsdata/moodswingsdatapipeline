@@ -30,11 +30,11 @@ jobs:
         with:
           working_directory: out
           files: |
-            out/cards.yaml
-            out/cards.json
-            out/editions.yaml
-            out/editions.json
-            out/printings.yaml
-            out/printings.json
-            out/meta.yaml
-            out/meta.json
+            cards.yaml
+            cards.json
+            editions.yaml
+            editions.json
+            printings.yaml
+            printings.json
+            meta.yaml
+            meta.json
