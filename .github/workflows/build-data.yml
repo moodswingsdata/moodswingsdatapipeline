@@ -2,6 +2,9 @@ name: Build Data Files
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -20,12 +23,14 @@ jobs:
 
       - name: Collate editions
         run: ./build-data.sh
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      
+      - name: Create release
+        uses: softprops/action-gh-release@718ea10b132b3b2eba29c1007bb80653f286566b # 3.0.1
+        if: github.ref_type == 'tag'
         with:
-          name: edition1-data
-          path: |
+          body_path: ${{ github.workspace }}/CHANGELOG.txt
+          working_directory: out
+          files: |
             out/cards.yaml
             out/cards.json
             out/editions.yaml
