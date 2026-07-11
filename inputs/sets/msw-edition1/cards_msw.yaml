@@ -657,6 +657,13 @@
   - The card stays as a copy even if the original later leaves play.
   - If you use Creativity to copy a Creativity in play, you copy whatever that Creativity is a copy of and not Creativity
     itself.
+  - If Doubt prevents a blue card from being played, you will not be able to play Creativity as it is blue in your hand.
+  - Creativity's copying effect happens first, before "To play this card" effects happen, so if a card has to pay a cost,
+    the person playing Creativity will still have to pay it. For example, if you copy a Self-Loathing you will still need
+    to put one of your moods in play into the discard pile.
+  - Creativity's copying will also happen before "While in play" effects that care about a card getting played occur (Duplicity,
+    Scorn, and Validation), so they will respond to the card as the copied version. For example, if you play Creativity, you
+    will only get to play another card with Validation if the card you copy has a [0] or [1] in the top right corner.
   - Cards are the color they are in your hand when you play them. A Doubt stopping blue would stop Creativity from being played.
   errata:
     fields:
